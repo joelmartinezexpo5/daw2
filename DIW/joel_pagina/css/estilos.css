@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.general {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+header {
+    width: 100%;
+    background-color: rgb(226, 177, 43);
+    text-align: left;
+    border-radius: 25px;
+}
+
+.menu {
+    width: 40%;
+    height: 60px;
+    background-color: rgb(226, 177, 43);
+    padding-left: 60%;
+}
+
+.menu ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    height: 60px;
+    line-height: 60px;
+}
+
+.menu ul li {
+    width: 25%;
+    text-align: center;
+}
+
+.menu ul li a:hover {
+    font-size: larger;
+    color: red;
+    transition: 500ms;
+}
+
+.menu ul li:not(hover) {
+    transition: 500ms;
+}
+
+.menu ul li:hover {
+    background-color: black;
+    transition: 500ms;
+}
+
+.aside_menu {
+    display: flex;
+    flex-flow: column;
+    width: 20%;
+    background-color: white;
+}
+
+.aside_menu .titulo{
+    background-color: rgb(226, 177, 43);
+    margin-top: 10px;
+}
+
+.aside_menu div p{
+    color: rgb(226, 177, 43);
+}
+
+.boton{
+    margin-right: 175px;
+}
+
+.aside_menu ul li {
+    padding: 10px;
+}
+
+.general .articulos {
+    display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: white;
+
+}
+
+.centro{
+    width: 60%;
+}
+
+.centro .titulo{
+    display: flex;
+    background-color: rgb(226, 177, 43);
+    margin-top: 10px;
+    height: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 30px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.fecha{
+    padding-left: 50%;
+}
+
+.texto{
+    margin-left: 50px;
+}
+
+.general .articulos article {
+    width: 40%;
+    border: 2px solid black;
+    
+}
+
+.aside_list {
+    width: 20%;
+    background-color: white;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+
+
+.pie {
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: ivory;
+}
+
+.pie p {
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.pie nav ul li img:not(hover){
+    padding: 20%;
+    filter: grayscale(100%);
+    transition: 500ms;
+}
+
+.pie nav ul li img:hover {
+    padding-top: 0%;
+    filter: grayscale(0%);
+    transition: 500ms;
+}
+
+.pie nav ul li img {
+    width: 65%;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.pie nav ul li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.pie nav ul {
+    display: flex;
+    margin-left: 30%;
+    margin-right: 25%;
+}
