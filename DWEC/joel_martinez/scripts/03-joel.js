@@ -3,6 +3,20 @@
 // rectángulo.
 // Añade el código auxiliar necesario para probar la aplicación.
 
-function dibujarCuadrado(tamano){
+function dibujarCuadrado(tamano) {
+    let cuadrado = [];
 
+    for (let i = 0; i < tamano; i++) {
+        cuadrado.push('* '.repeat(tamano).trim());
+    }
+
+    return cuadrado;
 }
+
+let tamano = 5;
+let resultado = dibujarCuadrado(tamano);
+
+for (let i of resultado) {
+    console.log(i);
+}
+
