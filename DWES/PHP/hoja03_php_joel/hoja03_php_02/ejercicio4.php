@@ -15,14 +15,13 @@
             return $capital * pow((1 + $tasa / 100), $tiempo) - $capital;
         }
         
-        $capital = 1000; // Capital inicial
-        $tasa = 5; // Tasa de interés en porcentaje
-        $tiempo = 3; // Tiempo en años
+        $capital = 1000;
+        $tasa = 5; 
+        $tiempo = 3; 
         
         $interesSimple = interesSimple($capital, $tasa, $tiempo);
         $interesCompuesto = interesCompuesto($capital, $tasa, $tiempo);
         
-        echo "<h2>Cálculo de Intereses</h2>";
         echo "Interés Simple: $interesSimple €<br>";
         echo "Interés Compuesto: $interesCompuesto €<br>";
         
@@ -31,11 +30,6 @@
         } else {
             echo "El interés simple es más beneficioso.";
         }
-        ?>
-        
-        </body>
-        </html>
-        
     ?>
 </body>
 </html>

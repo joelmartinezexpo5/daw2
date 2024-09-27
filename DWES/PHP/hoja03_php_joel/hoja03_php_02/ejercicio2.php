@@ -11,8 +11,8 @@
             return $numero1 + $numero2;
         }
         
-        $num1 = 5;  // Puedes cambiar estos valores
-        $num2 = 10; // Puedes cambiar estos valores
+        $num1 = 5;
+        $num2 = 10; 
         
         $resultado = sumar($num1, $num2);
         echo "<h2>La suma de $num1 y $num2 es: $resultado</h2>";

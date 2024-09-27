@@ -7,8 +7,13 @@
 </head>
 <body>
     <?php
-        setlocale(LC_TIME, 'es_ES.UTF-8');
-        echo strftime("%A, %d de %B de %Y") . "<br><br>";
+
+        $fecha = new DateTime();
+        $fecha->setTimezone(new DateTimeZone('Europe/Madrid'));
+        
+        echo $fecha->format('l, d M Y');
     ?>
 </body>
 </html>
+
+ 

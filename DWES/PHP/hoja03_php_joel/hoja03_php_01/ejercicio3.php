@@ -14,5 +14,21 @@
         echo esCapicua($numero) ? "Sí" : "No";
         echo "<br><br>";      
     ?>
+
+    <?php
+        $numero = 4774;
+        $inverso = 0;
+        $aux = $numero;
+        while($aux != 0){
+            $resto = $aux % 10;
+            $inverso = $inverso * 10 + $resto;
+            $aux = (int)($aux / 10);
+        }
+        if($numero == $inverso){
+            echo "El numero $numero es capicua <br>";
+        }else{
+            echo "El numero $numero NO es capicua <br>";
+        }
+    ?>
 </body>
 </html>
