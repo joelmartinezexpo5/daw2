@@ -11,9 +11,7 @@
             echo $mensaje;
         }
 
-        $mensaje = "Mensaje de prueba";
-
-        imprimirMensaje($mensaje);
+        imprimirMensaje("Mensaje de prueba");
 
     ?>
 </body>

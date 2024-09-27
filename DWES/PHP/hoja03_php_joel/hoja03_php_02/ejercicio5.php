@@ -19,10 +19,10 @@
             return strlen(strval(abs($numero))); 
         }
         
-        $numero = 12321;
+        $numero = 12320.2;
         
-        $esCapicua = esCapicua($numero);
         $numeroRedondeado = redondearNumero($numero);
+        $esCapicua = esCapicua($numeroRedondeado);
         $numeroDigitos = contarDigitos($numero);
         
         echo "<h2>Comprobaciones del número: $numero</h2>";
