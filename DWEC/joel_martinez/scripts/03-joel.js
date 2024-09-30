@@ -4,20 +4,20 @@
 // Añade el código auxiliar necesario para probar la aplicación.
 
 function dibujarCuadrado(tamano) {
-    let cuadrado = new Array(tamano);
+    let cuadrado = [];
 
     for (let i = 0; i < tamano; ++i) {
         let linea = '';
-        
+
         for (let j = 0; j < tamano; ++j) {
             if (i === 0 || i === tamano - 1 || j === 0 || j === tamano - 1) {
-                linea += '* ';
+                linea += '*  ';
             } else {
-                linea += '  ';
+                linea += '   ';
             }
         }
 
-        cuadrado[i] = linea.trim();
+        cuadrado[i] = linea;
     }
 
     return cuadrado;
