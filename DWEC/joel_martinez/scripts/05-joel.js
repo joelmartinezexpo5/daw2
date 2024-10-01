@@ -4,7 +4,7 @@
 // Añade el código auxiliar necesario para probar la aplicación.
 
 function dibujarRombo(tamano) {
-    let rombo = new Array(tamano * 2 - 1);
+    let rombo = [];
 
     for (let i = 0; i < tamano; i++) {
         let espacios = '';
@@ -18,7 +18,7 @@ function dibujarRombo(tamano) {
             asteriscos += '* ';
         }
 
-        rombo[i] = espacios + asteriscos.trim();
+        rombo[i] = espacios + asteriscos;
     }
 
     for (let i = tamano - 2; i >= 0; i--) {
@@ -33,13 +33,13 @@ function dibujarRombo(tamano) {
             asteriscos += '* ';
         }
 
-        rombo[2 * tamano - i - 2] = espacios + asteriscos.trim();
+        rombo[2 * tamano - i - 2] = espacios + asteriscos;
     }
 
     return rombo;
 }
 
-let tamano = 5; 
+let tamano = 6; 
 let resultado = dibujarRombo(tamano);
 
 for (let i of resultado) {
