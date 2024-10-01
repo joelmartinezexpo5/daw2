@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>Informacion Personal</legend>
+            <fieldset>
+                <legend>Datos Basicos</legend>
+                Nombre: <input type="text" placeholder="Escribe tu nombre"> <br> <br>
+                Apellido: <input type="text" placeholder="Escribe tu apellido"> <br> <br>
+                Correo Electronico: <input type="text"> <br> <br>
+                Telefono: <input type="tel" placeholder="600000000" pattern="[0-9]{9}">
+            </fieldset>
+            <fieldset>
+                <legend>Detalles Adicionales</legend>
+                Genero: <br>
+                <input type="radio" name="genero"> Masculino <br>
+                <input type="radio" name="genero"> Femenino <br><br>
+
+                Fecha de nacimiento: <input type="date"> <br><br>
+
+                Nacionalidad:
+                <select name="" id="" aria-placeholder="Selecciona o escribe tu pais">
+                    <option value="">España</option>
+                    <option value="">Portugal</option>
+                    <option value="">Francia</option>
+                    <option value="">Italia</option>
+                    <option value="">Suiza</option>
+                    <option value="">Belgica</option>
+                    <option value="">Luxemburgo</option>
+                </select>
+            </fieldset>
+        </fieldset>
+        <fieldset>
+            <legend>Intereses y habilidades</legend>
+            <fieldset>
+                <legend>Intereses</legend>
+                Selecciona tus Intereses: <br>
+                <input type="checkbox"> Deporte <br>
+                <input type="checkbox"> Musica <br>
+                <input type="checkbox"> Arte <br>
+            </fieldset>
+            <fieldset>
+                <legend>Habilidades</legend>
+                Selecciona tus habilidades: <br>
+                <select name="" id="" multiple>
+                    <option value="">Programacion</option>
+                    <option value="">Diseño</option>
+                    <option value="">Gestion de proyectos</option>
+                    <option value="">Comunicacion</option>
+                </select>
+            </fieldset>
+        </fieldset>
+        Comentarios adicionales: <br>
+        <textarea name="" id="" placeholder="Escribe aqui tus Comentarios" cols="50" rows="5"></textarea>
+        <br>
+        <input type="submit"> <input type="reset">
+    </form>
+</body>
+
+</html>
