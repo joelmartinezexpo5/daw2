@@ -3,8 +3,9 @@
 // rectángulo.
 // Añade el código auxiliar necesario para probar la aplicación.
 
+'use strict';
 function dibujarTrianguloIsosceles(altura) {
-    let triangulo = new Array(altura);
+    let triangulo = [];
 
     for (let i = 0; i < altura; ++i) {
         let espacios = '';
@@ -18,7 +19,7 @@ function dibujarTrianguloIsosceles(altura) {
             asteriscos += '* ';
         }
 
-        triangulo[i] = espacios + asteriscos.trim();
+        triangulo[i] = espacios + asteriscos;
     }
 
     return triangulo;
