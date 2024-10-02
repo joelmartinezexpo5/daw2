@@ -16,7 +16,6 @@
             return array_merge($array1, $array2);
         }
 
-
         $array1 = [3, 8, 1, 9, 4, 5, 7, 2, 6, 10, 12, 11, 15, 13, 17, 16, 14, 20, 19, 18];
         $array2 = [25, 21, 24, 30, 29, 26, 28, 22, 23, 27, 31, 32, 34, 33, 35, 38, 36, 37, 39, 40];
 
@@ -36,6 +35,5 @@
         echo "\nArray Fusionado (mezclado y ordenado): \n";
         print_r($arrayMezcladoOrdenado);
     ?>
-
 </body>
 </html>
