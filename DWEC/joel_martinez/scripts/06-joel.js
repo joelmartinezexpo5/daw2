@@ -1,14 +1,16 @@
-// 6-Crea una función que dibuje en un alert la figura geométrica indicada por parámetro. Donde
-// el primer parámetro será la función que genera el polígono y el segundo parámetro el número
-// que indica el tamaño del polígono.
-// Deberás definir un menú que solicite el polígono a representar: cuadrado hueco, triangulo,
-// rombo. Y después solicitar el tamaño al usuario. Incluye una opción de terminar.
-// Añade el código auxiliar necesario para probar la aplicación.
+/**
+ * 6-Crea una función que dibuje en un alert la figura geométrica indicada por parámetro. Donde
+ * el primer parámetro será la función que genera el polígono y el segundo parámetro el número
+ * que indica el tamaño del polígono.
+ * Deberás definir un menú que solicite el polígono a representar: cuadrado hueco, triangulo,
+ * rombo. Y después solicitar el tamaño al usuario. Incluye una opción de terminar.
+ * Añade el código auxiliar necesario para probar la aplicación.
+ */
 
 //Cuadrado
 'use strict'
 function dibujarCuadrado(tamano) {
-    let cuadrado = new Array(tamano);
+    let cuadrado = [];
 
     for (let i = 0; i < tamano; ++i) {
         let linea = '';
@@ -21,7 +23,7 @@ function dibujarCuadrado(tamano) {
             }
         }
 
-        cuadrado[i] = linea.trim();
+        cuadrado[i] = linea;
     }
 
     return cuadrado;
@@ -29,7 +31,7 @@ function dibujarCuadrado(tamano) {
 
 //Triangulo
 function dibujarTrianguloIsosceles(altura) {
-    let triangulo = new Array(altura);
+    let triangulo = [];
 
     for (let i = 0; i < altura; ++i) {
         let espacios = '';
@@ -43,7 +45,7 @@ function dibujarTrianguloIsosceles(altura) {
             asteriscos += '* ';
         }
 
-        triangulo[i] = espacios + asteriscos.trim();
+        triangulo[i] = espacios + asteriscos;
     }
 
     return triangulo;
@@ -51,7 +53,7 @@ function dibujarTrianguloIsosceles(altura) {
 
 //Rombo
 function dibujarRombo(tamano) {
-    let rombo = new Array(tamano * 2 - 1);
+    let rombo = [];
 
     for (let i = 0; i < tamano; i++) {
         let espacios = '';
@@ -65,7 +67,7 @@ function dibujarRombo(tamano) {
             asteriscos += '* ';
         }
 
-        rombo[i] = espacios + asteriscos.trim();
+        rombo[i] = espacios + asteriscos;
     }
 
     for (let i = tamano - 2; i >= 0; i--) {
@@ -80,7 +82,7 @@ function dibujarRombo(tamano) {
             asteriscos += '* ';
         }
 
-        rombo[2 * tamano - i - 2] = espacios + asteriscos.trim();
+        rombo[2 * tamano - i - 2] = espacios + asteriscos;
     }
 
     return rombo;
@@ -101,5 +103,5 @@ switch(figura){
         alert(dibujarRombo(tamano).join('\n'));
         break;
     default:
-        alert('ERROR: Opcion no valida')
+        alert('ERROR: Opcion no valida');
 }
