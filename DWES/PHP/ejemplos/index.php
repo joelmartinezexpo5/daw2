@@ -1,24 +1,16 @@
-<html> 
-    <head> <title>Desarrollo Web</title> </head> 
-<body>
-<?php 
-    if (isset($_POST['enviar'])) { 
-        $nombre = $_POST['nombre']; 
-        $modulos = $_POST['modulos'];
-        print "Nombre: ".$nombre."<br />"; 
-        foreach ($modulos as $modulo) { print "Modulo: ".$modulo."<br />"; }
-    } 
-    else {
-?>
-<form name="input" action="" method="post"> 
-    <label for="nombre">Nombre del alumno: </label>
-    <input type="text" name="nombre" id="nombre" />
-        <br />
-    <p>Módulos que cursa:</p> 
-    <input type="checkbox" name="modulos[]" value="DWES" />Desarrollo web en entorno servidor<br /> 
-    <input type="checkbox" name="modulos[]" value="DWEC" />Desarrollo web en entorno cliente<br /> <br /> 
-    <input type="submit" name="enviar" value="Enviar" />
-</form>
-<?php  	}   ?>
-</body>
-</html>
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;// crea el objeto
+$generator = new ComputerPasswordGenerator();
+// opciones para generar la contraseña
+$generator
+    ->setOptionValue(ComputerPasswordGenerator::OPTION_UPPER_CASE, true)
+    ->setOptionValue(ComputerPasswordGenerator::OPTION_LOWER_CASE, true)
+    ->setOptionValue(ComputerPasswordGenerator::OPTION_NUMBERS, true)
+    ->setOptionValue(ComputerPasswordGenerator::OPTION_SYMBOLS, true)
+    ->setLength(8);
+
+$password = $generator->generatePassword();
+
+echo $password;

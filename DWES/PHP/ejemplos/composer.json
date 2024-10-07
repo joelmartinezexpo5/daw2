@@ -1,0 +1,15 @@
+{
+    "name": "martinez/miproyecto",
+    "description": "Estoy aprendiendo a trabajar con composer",
+    "type": "project",
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hackzilla/password-generator": "^1.7"
+    }
+}
