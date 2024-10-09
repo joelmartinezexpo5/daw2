@@ -1,0 +1,15 @@
+{
+    "name": "joel/hoja03_composer_01",
+    "description": "Hoja 1 Composer",
+    "type": "project",
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "brick/math": "^0.12.1"
+    }
+}
