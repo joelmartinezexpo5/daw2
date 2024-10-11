@@ -1,48 +1,127 @@
 'use strict'
 
-let inventario={};
+const $negocio = (function () {
+    let inventario = {};
 
-function agregarProducto(nombre,cantidad,precio,categoria){
-    if(inventario[nombre]){
-        alert("El producto ya existe");
-    }else{
-        inventario[nombre]={
-            cantidad: cantidad,
-            precio: precio,
-            categoria: categoria
+    function agregarProducto(nombre, cantidad, precio, categoria) {
+        if (inventario[nombre]) {
+            alert("El producto ya existe");
+        } else {
+            inventario[nombre] = {
+                cantidad: cantidad,
+                precio: precio,
+                categoria: categoria
+            };
         }
     }
-}
 
-function eliminarProducto(nombre){
-    if(!inventario[nombre]){
-        alert("Este producto no existe");
-    }else{
-        delete(inventario[nombre]);
-    }
-}
-
-function buscarProducto(nombre){
-    if(inventario[nombre]){
-        return inventario[nombre];
-    }
-}
-
-function actualizarInventario(nombre, cantidad){
-    if(inventario[nombre]){
-        inventario[nombre].cantidad += cantidad;
-        if(inventario[nombre].cantidad === 0){
-            alert("No hay stock, se necesita reponer");
+    function eliminarProducto(nombre) {
+        if (!inventario[nombre]) {
+            alert("Este producto no existe");
+        } else {
+            delete inventario[nombre];
         }
     }
+
+    function buscarProducto(nombre) {
+        if (inventario[nombre]) {
+            return inventario[nombre];
+        } else {
+            alert("El producto no existe");
+            return null;
+        }
+    }
+
+    function actualizarInventario(nombre, cantidad) {
+        if (inventario[nombre]) {
+            inventario[nombre].cantidad += cantidad;
+            if (inventario[nombre].cantidad <= 0) {
+                alert("No hay stock, se necesita reponer");
+            }
+        } else {
+            alert("El producto no existe");
+        }
+    }
+
+    function ordenarProductoPorPrecio() {
+        const productosOrdenados = Object.entries(inventario)
+            .map(([nombre, producto]) => ({
+                nombre,
+                cantidad: producto.cantidad,
+                precio: producto.precio,
+                categoria: producto.categoria
+            }))
+            .sort((a, b) => a.precio - b.precio);
+
+        return productosOrdenados;
+    }
+
+    function imprimirInventario() {
+        return Object.entries(inventario).map(([nombre, producto]) => ({
+            nombre,
+            categoria: producto.categoria,
+            cantidad: producto.cantidad,
+            precio: producto.precio,
+            total: producto.cantidad * producto.precio
+        }));
+    }
+
+    function filtrarProductosPorCategoria(categoria) {
+        return Object.entries(inventario)
+          .filter(([, producto]) => producto.categoria === categoria)
+          .map(([nombre, producto]) => ({ nombre, cantidad: producto.cantidad, precio: producto.precio }));
+    }
+
+    return{
+        agregarProducto,
+        eliminarProducto,
+        buscarProducto,
+        actualizarInventario,
+        ordenarProductoPorPrecio,
+        imprimirInventario,
+        filtrarProductosPorCategoria
+    }
+})();
+
+window.addEventListener('load', function() {
+
+    const btnAgregar = document.getElementById('btnAgregar');
+    const btnEliminar = document.getElementById('btnEliminar');
+    const btnBuscar = document.getElementById('btnBuscar');
+    const btnActualizar = document.getElementById('btnActualizar');
+    const btnOrdenarPorPrecio = document.getElementById('btnOrdenarPorPrecio');
+    const btnImprimirInventario = document.getElementById('btnImprimirInventario');
+    const btnFiltrarProductosPorPrecio = document.getElementById('btnAgregar');
+
+    btnAgregar('click', function(){
+        
+    })
 }
 
-function ordenarProductoPorPrecio(){
-    let resultado = inventario.entries().map(x, y => nombre = x, cantidad = y, precio = y, categoria = y);
 
-    return inventario.sort((a, b) => a.precio - b.precio);
-}
 
-function imprimirInventario(){
-    
-}
+
+
+
+      
+
+    // agregarProducto('Manzanas', 10, 1.5, 'Frutas');
+    // agregarProducto('Peras', 5, 2.0, 'Frutas');
+    // agregarProducto('Naranjas', 8, 1.2, 'Frutas');
+
+    // console.log(filtrarProductosPorCategoria('Frutas'));
+
+    // eliminarProducto('Peras');
+
+    // console.log(filtrarProductosPorCategoria('Frutas'));
+    // // Llamar a la función ordenarProductoPorPrecio y mostrar el resultado
+    // const productosOrdenados = ordenarProductoPorPrecio();
+    // console.log("Productos ordenados por precio:", productosOrdenados);
+
+    // // Llamar a la función imprimirInventario y mostrar el inventario
+    // const inventarioImpreso = imprimirInventario();
+    // console.log("Inventario completo:", inventarioImpreso);
+
+
+
+
