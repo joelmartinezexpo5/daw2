@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Módulos POST</title>
+</head>
+<body>
+    <h2>Formulario de Módulos (POST)</h2>
+    <form action="procesa.php" method="POST">
+        <label for="nombre">Nombre del alumno:</label>
+        <input type="text" name="nombre" id="nombre"><br><br>
+
+        <label for="modulo">Selecciona el módulo:</label>
+        <select name="modulo" id="modulo">
+            <option value="DesarrolloWebenEntornoServidor">Desarrollo Web en Entorno Servidor</option>
+            <option value="DesarrolloWebenEntornoCliente">Desarrollo Web en Entorno Cliente</option>
+        </select><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
