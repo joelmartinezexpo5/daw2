@@ -91,12 +91,86 @@ window.addEventListener('load', function() {
     const btnActualizar = document.getElementById('btnActualizar');
     const btnOrdenarPorPrecio = document.getElementById('btnOrdenarPorPrecio');
     const btnImprimirInventario = document.getElementById('btnImprimirInventario');
-    const btnFiltrarProductosPorPrecio = document.getElementById('btnAgregar');
+    const btnFiltrar = document.getElementById('btnFiltrar');
 
-    btnAgregar('click', function(){
+    // Botón Agregar Producto
+    btnAgregar.addEventListener('click', function(e) {
+        e.preventDefault();  // Evita que el formulario se envíe de forma predeterminada
+        const nombre = document.getElementById('nombreAgregar').value.trim();
+        const cantidad = parseInt(document.getElementById('cantidadAgregar').value.trim());
+        const precio = parseFloat(document.getElementById('precioAgregar').value.trim());
+        const categoria = document.getElementById('categoriaAgregar').value.trim();
+
+        if (!nombre || isNaN(cantidad) || isNaN(precio) || !categoria) {
+            alert('Por favor, completa todos los campos correctamente');
+            return;
+        }
+
+        $negocio.agregarProducto(nombre, cantidad, precio, categoria);
+
         
-    })
-}
+    });
+
+    // Otros botones
+    btnEliminar.addEventListener('click', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombreEliminar').value.trim();
+        if (!nombre) {
+            alert('Introduce un nombre de producto válido para eliminar.');
+            return;
+        }
+        $negocio.eliminarProducto(nombre);
+    });
+
+    btnBuscar.addEventListener('click', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombreBuscar').value.trim();
+        if (!nombre) {
+            alert('Introduce un nombre de producto válido para buscar.');
+            return;
+        }
+        const producto = $negocio.buscarProducto(nombre);
+        console.log(producto);
+    });
+
+    btnActualizar.addEventListener('click', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombreActualizar').value.trim();
+        const cantidad = parseInt(document.getElementById('cantidadActualizar').value.trim());
+        if (!nombre || isNaN(cantidad)) {
+            alert('Introduce un nombre y cantidad válidos para actualizar.');
+            return;
+        }
+        $negocio.actualizarInventario(nombre, cantidad);
+    });
+
+    btnOrdenarPorPrecio.addEventListener('click', function(e) {
+        e.preventDefault();
+        const productosOrdenados = $negocio.ordenarProductoPorPrecio();
+        console.log(productosOrdenados);
+    });
+
+    btnImprimirInventario.addEventListener('click', function(e) {
+        e.preventDefault();
+        const inventario = $negocio.imprimirInventario();
+        console.log(inventario);
+    });
+
+    btnFiltrar.addEventListener('click', function(e) {
+        e.preventDefault();
+        const categoria = document.getElementById('categoriaFiltrar').value.trim();
+        if (!categoria) {
+            alert('Introduce una categoría válida para filtrar.');
+            return;
+        }
+        const productosFiltrados = $negocio.filtrarProductosPorCategoria(categoria);
+        console.log(productosFiltrados);
+    });
+
+});
+
+
+
 
 
 
@@ -121,7 +195,3 @@ window.addEventListener('load', function() {
     // // Llamar a la función imprimirInventario y mostrar el inventario
     // const inventarioImpreso = imprimirInventario();
     // console.log("Inventario completo:", inventarioImpreso);
-
-
-
-
