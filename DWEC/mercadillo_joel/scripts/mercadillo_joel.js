@@ -1,7 +1,9 @@
 'use strict'
 
 const $negocio = (function () {
-    let inventario = {};
+    let inventario = {
+        
+    };
 
     function agregarProducto(nombre, cantidad, precio, categoria) {
         if (inventario[nombre]) {
@@ -13,6 +15,7 @@ const $negocio = (function () {
                 categoria: categoria
             };
         }
+        
     }
 
     function eliminarProducto(nombre) {
@@ -93,13 +96,11 @@ window.addEventListener('load', function() {
     const btnImprimirInventario = document.getElementById('btnImprimirInventario');
     const btnFiltrar = document.getElementById('btnFiltrar');
 
-    // Botón Agregar Producto
-    btnAgregar.addEventListener('click', function(e) {
-        e.preventDefault();  // Evita que el formulario se envíe de forma predeterminada
-        const nombre = document.getElementById('nombreAgregar').value.trim();
-        const cantidad = parseInt(document.getElementById('cantidadAgregar').value.trim());
-        const precio = parseFloat(document.getElementById('precioAgregar').value.trim());
-        const categoria = document.getElementById('categoriaAgregar').value.trim();
+    btnAgregar.addEventListener('click', function() {
+        const nombre = document.getElementById('nombreAgregar').value;
+        const cantidad = parseInt(document.getElementById('cantidadAgregar').value);
+        const precio = parseFloat(document.getElementById('precioAgregar').value);
+        const categoria = document.getElementById('categoriaAgregar').value;
 
         if (!nombre || isNaN(cantidad) || isNaN(precio) || !categoria) {
             alert('Por favor, completa todos los campos correctamente');
@@ -111,10 +112,9 @@ window.addEventListener('load', function() {
         
     });
 
-    // Otros botones
-    btnEliminar.addEventListener('click', function(e) {
-        e.preventDefault();
-        const nombre = document.getElementById('nombreEliminar').value.trim();
+
+    btnEliminar.addEventListener('click', function() {
+        const nombre = document.getElementById('nombreEliminar').value;
         if (!nombre) {
             alert('Introduce un nombre de producto válido para eliminar.');
             return;
@@ -122,9 +122,8 @@ window.addEventListener('load', function() {
         $negocio.eliminarProducto(nombre);
     });
 
-    btnBuscar.addEventListener('click', function(e) {
-        e.preventDefault();
-        const nombre = document.getElementById('nombreBuscar').value.trim();
+    btnBuscar.addEventListener('click', function() {
+        const nombre = document.getElementById('nombreBuscar').value;
         if (!nombre) {
             alert('Introduce un nombre de producto válido para buscar.');
             return;
@@ -133,10 +132,9 @@ window.addEventListener('load', function() {
         console.log(producto);
     });
 
-    btnActualizar.addEventListener('click', function(e) {
-        e.preventDefault();
-        const nombre = document.getElementById('nombreActualizar').value.trim();
-        const cantidad = parseInt(document.getElementById('cantidadActualizar').value.trim());
+    btnActualizar.addEventListener('click', function() {
+        const nombre = document.getElementById('nombreActualizar').value;
+        const cantidad = parseInt(document.getElementById('cantidadActualizar').value);
         if (!nombre || isNaN(cantidad)) {
             alert('Introduce un nombre y cantidad válidos para actualizar.');
             return;
@@ -144,21 +142,18 @@ window.addEventListener('load', function() {
         $negocio.actualizarInventario(nombre, cantidad);
     });
 
-    btnOrdenarPorPrecio.addEventListener('click', function(e) {
-        e.preventDefault();
+    btnOrdenarPorPrecio.addEventListener('click', function() {
         const productosOrdenados = $negocio.ordenarProductoPorPrecio();
         console.log(productosOrdenados);
     });
 
-    btnImprimirInventario.addEventListener('click', function(e) {
-        e.preventDefault();
+    btnImprimirInventario.addEventListener('click', function() {
         const inventario = $negocio.imprimirInventario();
         console.log(inventario);
     });
 
-    btnFiltrar.addEventListener('click', function(e) {
-        e.preventDefault();
-        const categoria = document.getElementById('categoriaFiltrar').value.trim();
+    btnFiltrar.addEventListener('click', function() {
+        const categoria = document.getElementById('categoriaFiltrar').value;
         if (!categoria) {
             alert('Introduce una categoría válida para filtrar.');
             return;
