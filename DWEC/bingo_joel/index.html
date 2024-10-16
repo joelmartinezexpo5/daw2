@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo en JavaScript</title>
+    <link rel="stylesheet" href="./css/estilos.css">
     <script src="./scripts/bingo_joel.js" defer></script>
-    <title>Juego de Bingo</title>
 </head>
 <body>
-    <h1>Juego de Bingo</h1>
-    
-    <label for="tiempoInput">Tiempo por bola (1-10 segundos):</label>
-    <input type="number" id="tiempoInput" min="1" max="10" value="3">
-    <button id="comenzarBtn">Comenzar</button>
+    <h1>Bingo en JavaScript</h1>
+    <label for="tiempoInput">Segundos: </label>
+    <input type="number" id="tiempoInput" value="3" min="1" max="10">
+    <button id="comenzarBtn">Comenzar partida</button>
 
-    <h2>Resumen de puntuaciones</h2>
+    <h2>Resumen Jugadores</h2>
     <div id="resumenPuntuaciones"></div>
 
-    <h2>Bolas sacadas</h2>
+    <h2>Bolas Sacadas</h2>
     <div id="listaBolas"></div>
 
-    <h2>Tu cartón</h2>
+    <h2>Cartones de los Jugadores</h2>
+    <div id="cartonesJugadores"></div>
+
+    <h2>Cartón Jugador Humano</h2>
     <div id="cartonHumano"></div>
 
     <button id="cantarLineaBtn">Cantar Línea</button>
     <button id="cantarBingoBtn">Cantar Bingo</button>
-
-    <script src="bingo.js"></script>
 </body>
 </html>

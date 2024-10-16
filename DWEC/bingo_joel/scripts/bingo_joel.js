@@ -1,11 +1,5 @@
-'use strict'
-const $bingo = (function(){
-
-    let cartones= [];
-    let marcador = [];
+const $bingo = (function() {
+    let cartones = [];
     let bolasSacadas = [];
-
-    function inicializarBingo(){
-        
-    }
+    let marcador = [];
 });
