@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/libreria.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <form id="agregarLibro">
+        <h2>Agregar Liibro</h2>
+        <input type="text" id="nombreAgregar" placeholder="Nombre" required>
+        <input type="number" id="cantidadAgregar" placeholder="Cantidad" required>
+        <input type="number" step="0.01" id="precioAgregar" placeholder="Precio" required>
+        <input type="text" id="generoAgregar" placeholder="Genero" required>
+        <input type="text" id="autorAgregar" placeholder="autor" required>
+        <button type="button" id="btnAgregar">Agregar</button>
+    </form>
+
+    <form id="eliminarProducto">
+        <h2>Eliminar producto</h2>
+        <input type="text" id="nombreEliminar" placeholder="nombre" required>
+        <button type="button" id="btnEliminar">Eliminar</button>
+    </form>
+
+    <form id="buscarProducto">
+        <h2>Buscar Producto</h2>
+        <input type="text" id="nombreBuscar" placeholder="nombre" required>
+        <button type="button" id="btnBuscar">Buscar</button>
+    </form>
+
+    <form id="actualizar">
+        <h2>Actualizar Inventario</h2>
+        <input type="text" id="nombreActualizar" placeholder="nombre" required>
+        <input type="number" id="cantidadActualizar" placeholder="cantidad">
+        <button type="button" id="btnActualizar">Actualizar</button>
+    </form>
+    <br>
+
+    <button id="btnOrdenarPorPrecio">Ordenar Productos por Precio</button>
+    <button id="btnImprimirInventario">Imprimir Inventario</button>
+
+    <form id="formFiltrar">
+        <h2>Filtrar Productos por Categoría</h2>
+        <input type="text" id="generoAgregar" placeholder="Genero" required>
+        <button type="button" id="btnFiltrar">Filtrar</button>
+    </form>
+</body>
+</html>

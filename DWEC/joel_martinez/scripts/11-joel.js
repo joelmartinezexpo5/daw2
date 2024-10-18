@@ -17,25 +17,29 @@ function esPrimo(numero){
 }
 
 function evaluarRango(inicio, fin){
-    for(let i = inicio; i < fin; ++i){
+    for (let i = inicio; i < fin; ++i) {
         let multiplo3 = (i % 3 === 0);
         let multiplo5 = (i % 5 === 0);
         let numeroPrimo = esPrimo(i);
-    }
 
-    if(multiplo3 || multiplo5 || numeroPrimo){
-        let mensaje = `Numero ${i}`;
-        if(multiplo3){
-            mensaje += 'Multiplo de 3'
-        } else if(multiplo5){
-            mensaje += 'Multiplo de 5';
-        }else{
-            
+        if (multiplo3 || multiplo5 || numeroPrimo) {
+            let mensaje = `Numero ${i}: `; // Mensaje inicial con el número.
+
+            if (multiplo3) {
+                mensaje += 'Multiplo de 3 ';
+            }
+            if (multiplo5) {
+                mensaje += 'Multiplo de 5 ';
+            }
+            if (numeroPrimo) {
+                mensaje += 'Es primo ';
+            }
+
+            console.log(mensaje); // Mostrar el mensaje.
         }
-        if(multiplo5) mensaje += 'Multiplo de 5';
-        if(numeroPrimo) mensaje += 'Es primo';
     }
 }
 
 numero = 5;
 console.log(esPrimo(numero));
+console.log(evaluarRango(1,25));
