@@ -10,6 +10,8 @@
 
         $fecha = new DateTime();
         $fecha->setTimezone(new DateTimeZone('Europe/Madrid'));
+
+        echo $fecha->format('d/m/Y');
         
         echo $fecha->format('l, d M Y');
     ?>
