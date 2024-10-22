@@ -12,37 +12,44 @@ const $bingo = (function () {
 
         for (let col = 0; col < 9; ++col) {
             let numerosColumna = [];
-            let min = col * (10 + 1); 
-            let max = col === 8 ? 90 : (col + 1) * 10; 
+            let min = col * (10 + 1);
+            let max = col === 8 ? 90 : (col + 1) * 10;
 
-            // Generar 3 números únicos para cada columna
             while (numerosColumna.length < 3) {
                 let numero = generarNumeroAleatorio(min, max);
-                // // Comprobar que el número no esté ya en el array
-                // if (!numerosColumna.includes(numero)) {
-                    numerosColumna.push(numero);
-                // }
+                numerosColumna.push(numero);
             }
 
-            // Ordenar los números en la columna
             numerosColumna.sort((a, b) => a - b);
 
-            // Asignar los números a las filas del cartón
             for (let fila = 0; fila < 3; ++fila) {
-                carton[fila][col] = numerosColumna[fila] || null; // Colocar null si no hay número
+                carton[fila][col] = numerosColumna[fila] || null;
             }
         }
 
-        console.log(carton); // Muestra el cartón en formato tabla
+        for (let col = 0; col < 9; ++col) {
+            let indice = generarNumeroAleatorio(0, 2);
+            if(carton[indice][col] === null){
+                --col
+            }else{
+                carton[indice][col] = null;
+            }
+            
+        }
+
+
+
+
+        console.log(carton);
         return carton;
     }
 
     function inicializarJuego() {
-        for (let i = 0; i < 3; ++i) { // Generar 3 cartones
+        for (let i = 0; i < 3; ++i) {
             cartones.push(generarCartones());
         }
         console.log("Cartones generados:");
-        console.log(cartones); // Muestra todos los cartones generados
+        console.log(cartones)
     }
 
     return {
@@ -51,8 +58,20 @@ const $bingo = (function () {
     };
 })();
 
-// Llamar a la función inicializarJuego para ejecutar el código
-$bingo.inicializarJuego();
+//$bingo.inicializarJuego();
+
+window.addEventListener('load', function () {
+
+    const comenzarBtn = document.getElementById('comenzarBtn');
+    const cantarLineaBtn = document.getElementById('cantarLineaBtn');
+    const cantarBingoBtn = document.getElementById('cantarBingoBtn');
+
+    comenzarBtn.addEventListener('click', function () {
+        //const tiempo = document.getElementById('tiempoInput')
+        $bingo.inicializarJuego();
+
+    })
+})
 
 
 
