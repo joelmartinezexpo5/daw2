@@ -1,0 +1,14 @@
+{
+    "name": "joel/ejercicio3",
+    "description": "Ejercicio 3 del examen de Joel",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Joel"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "fakerphp/faker": "^1.23"
+    }
+}
