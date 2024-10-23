@@ -12,7 +12,7 @@ const $bingo = (function () {
 
         for (let col = 0; col < 9; ++col) {
             let numerosColumna = [];
-            let min = col * (10 + 1);
+            let min = col * 10 + 1;
             let max = col === 8 ? 90 : (col + 1) * 10;
 
             while (numerosColumna.length < 3) {
@@ -28,26 +28,82 @@ const $bingo = (function () {
         }
 
         for (let col = 0; col < 9; ++col) {
-            let indice = generarNumeroAleatorio(0, 2);
-            if(carton[indice][col] === null){
-                --col
-            }else{
-                carton[indice][col] = null;
-            }
-            
+            let fila = generarNumeroAleatorio(0, 2);
+            carton[fila][col] = null;
         }
 
-
-
+        for (let fila = 0; fila < 3; ++fila) {
+            let indiceCol = generarNumeroAleatorio(0, 8);
+            let indiceFila = generarNumeroAleatorio(0, 2);
+            if (carton[indiceFila][indiceCol] === null) {
+                --fila;
+            } else {
+                carton[indiceFila][indiceCol] = null;
+            }
+        }
 
         console.log(carton);
         return carton;
+    }
+
+    function pintarCartones() {
+        const cartonesJugadores = document.getElementById('cartonesJugadores');
+        const cartonHumano = document.getElementById('cartonHumano');
+
+        for (let c = 0; c < 2; ++c) {
+            const tabla = document.createElement('table');
+            tabla.setAttribute('border', '1');
+            for (let i = 0; i < 3; i++) {
+                const fila = document.createElement('tr');
+
+                for (let j = 0; j < 9; j++) {
+                    const celda = document.createElement('td');
+                    celda.textContent = cartones[c][i][j];
+                    fila.appendChild(celda);
+                }
+                tabla.appendChild(fila);
+            }
+
+            cartonesJugadores.appendChild(tabla);
+        }
+
+        const tabla = document.createElement('table');
+        tabla.setAttribute('border', '1');
+
+        for (let i = 0; i < 3; i++) {
+
+            const fila = document.createElement('tr');
+
+            for (let j = 0; j < 9; j++) {
+                const celda = document.createElement('td');
+                celda.textContent = cartones[2][i][j];
+                fila.appendChild(celda);
+            }
+
+            tabla.appendChild(fila);
+        }
+
+        cartonHumano.appendChild(tabla);
+    }
+
+    function sacarBolas(){
+        const listaBolas = document.getElementById('listaBolas');
+        const parrafo = document.createElement('p')
+        for(let bola=1;bola<=99;++bola){
+            let bolas = [];
+            let numero =generarNumeroAleatorio(1,99);
+            bolas[bola] = numero;
+            parrafo.textContent = bolas[bola];
+        }
+        listaBolas.appendChild(parrafo);
     }
 
     function inicializarJuego() {
         for (let i = 0; i < 3; ++i) {
             cartones.push(generarCartones());
         }
+        pintarCartones();
+        sacarBolas();
         console.log("Cartones generados:");
         console.log(cartones)
     }
@@ -55,6 +111,8 @@ const $bingo = (function () {
     return {
         generarCartones,
         inicializarJuego,
+        pintarCartones,
+        sacarBolas
     };
 })();
 
@@ -67,9 +125,7 @@ window.addEventListener('load', function () {
     const cantarBingoBtn = document.getElementById('cantarBingoBtn');
 
     comenzarBtn.addEventListener('click', function () {
-        //const tiempo = document.getElementById('tiempoInput')
         $bingo.inicializarJuego();
-
     })
 })
 
