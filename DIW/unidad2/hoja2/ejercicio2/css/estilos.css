@@ -1,0 +1,136 @@
+/*a*/
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    color: #333333;
+}
+
+/*b*/
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    color: #1a5eab;
+}
+
+/*c*/
+p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    color: #444444;
+}
+
+/*d*/
+.categories{
+    margin: 20px 0;
+}
+
+/*e*/
+#main-header{
+    background-color: #f8f8f8;
+}
+
+/*f*/
+article header{
+    margin: 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/*g*/
+section > article{
+    padding: 20px;
+}
+
+/*h*/
+.categories:hover{
+    color: #ff0000;
+}
+
+/*i*/
+section table{
+    background-color: rgb(224, 240, 6);
+}
+table tr:nth-child(odd){
+    color: #770ca1;
+}
+
+/*j*/
+p ::first-letter{
+    font-size: 22px;
+    color: #1a5eab;
+}
+
+/*k*/
+article > header h2::before{
+    content: "-";
+}
+
+/*l*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-- l --*/
+/* .categories li::before {
+    content: "•";
+    color: #1a5eab; 
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+section > article:hover {
+    background-color: #f0f0f0; 
+    transition: background-color 0.3s ease;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+table tr:hover {
+    background-color: #e0e0e0; 
+    transition: background-color 0.3s ease;
+}
+
+article h2::before {
+    content: "- ";
+    color: #1a5eab; 
+} */
+
