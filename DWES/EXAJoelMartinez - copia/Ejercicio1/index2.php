@@ -11,7 +11,7 @@
     <?php
     require 'validaciones.php';
 
-    $contactos = isset($_POST['contactos']) ? $_POST['contactos'] : [
+    $contactos = [
         "indice" => [
             "nombre" => "Juan Pérez",
             "email" => "juan.perez@gmail.com",
@@ -28,10 +28,11 @@
         $nom = $_POST['nombre'];
         $email = $_POST['email'];
         $tel = $_POST['telefono'];
-        
+
         $validaciones = new validaciones();
         $mensaje = '';
 
+        // Validar datos
         if ($validaciones->validaNombre($nom) && 
             $validaciones->validaEmail($email) && 
             $validaciones->validaTelefono($tel)) {
@@ -50,7 +51,7 @@
         } else if (!$validaciones->validaEmail($email)) {
             $mensaje = 'Error: el Correo electrónico no es válido';
         } else {
-            $mensaje = 'Error: el teléfono debe tener exactamente 9 dígitos numéricos';
+            $mensaje = 'Error: el código tiene que tener exactamente 9 dígitos numéricos';
         }
     }
     ?>
@@ -58,27 +59,19 @@
     <form action="" method="post">
         <label>
             Nombre:
-            <input type="text" name="nombre" required>
+            <input type="text" name="nombre" required value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>">
         </label><br>
         <label>
             Correo Electrónico:
-            <input type="text" name="email" required>
+            <input type="text" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
         </label><br>
         <label>
             Teléfono:
-            <input type="text" name="telefono" required>
+            <input type="text" name="telefono" required value="<?php echo isset($_POST['telefono']) ? htmlspecialchars($_POST['telefono']) : ''; ?>">
         </label><br>
         <br>
         <button type="submit" name="agregar">Agregar Contacto</button>
         <br>
-
-        <?php
-        foreach ($contactos as $indice => $contacto) {
-            echo "<input type='hidden' name='contactos[$indice][nombre]' value='" . htmlspecialchars($contacto['nombre']) . "'>";
-            echo "<input type='hidden' name='contactos[$indice][email]' value='" . htmlspecialchars($contacto['email']) . "'>";
-            echo "<input type='hidden' name='contactos[$indice][telefono]' value='" . htmlspecialchars($contacto['telefono']) . "'>";
-        }
-        ?>
     </form>
 
     <?php
