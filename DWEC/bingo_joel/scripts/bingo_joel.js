@@ -86,15 +86,23 @@ const $bingo = (function () {
         cartonHumano.appendChild(tabla);
     }
 
-    function sacarBolas(){
+    function sacarBolas() {
         const listaBolas = document.getElementById('listaBolas');
-        const parrafo = document.createElement('p')
-        for(let bola=1;bola<=99;++bola){
-            let bolas = [];
-            let numero =generarNumeroAleatorio(1,99);
-            bolas[bola] = numero;
-            parrafo.textContent = bolas[bola];
+        listaBolas.innerHTML = '';
+    
+        const bolas = new Set();
+        let textoBolas = '';
+    
+        while (bolas.size < 99) { 
+            let numero = generarNumeroAleatorio(1, 99);
+            if (!bolas.has(numero)) {
+                bolas.add(numero);
+                textoBolas += numero + ' ';
+            }
         }
+    
+        const parrafo = document.createElement('p');
+        parrafo.textContent = textoBolas.trim();
         listaBolas.appendChild(parrafo);
     }
 
