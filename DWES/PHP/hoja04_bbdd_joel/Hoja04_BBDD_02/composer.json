@@ -1,6 +1,6 @@
 {
-    "name": "joel/hoja04_bbdd_01",
-    "description": "Hoja 1 de BBDD",
+    "name": "joel/hoja04_bbdd_02",
+    "description": "Hoja 2 BBDD",
     "type": "project",
     "authors": [
         {
@@ -11,13 +11,5 @@
     "minimum-stability": "stable",
     "require": {
         "vlucas/phpdotenv": "^5.6"
-    },
-    "scripts": {
-        "start": "php -S localhost:8001 -t public"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/Classes/"
-        }
     }
 }
