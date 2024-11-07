@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Document</title>
+</head>
+
+<body class="body-form">
+    <div class="formulario">
+        <div class="titulos">
+            <h1>¡¡Sorteamos una Cafetera Nespresso + 1 año de capsulas!!</h1>
+            <h3>Rellena los siguientes datos y ... ¡mucha suerte!</h3>
+            <h3>Fecha del sorteo: 28/02/2022</h3>
+        </div>
+
+        <form action="" method="post">
+            <fieldset>
+                <label for="nombre" id="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre">
+
+                <label for="apellidos" id="apellido">Apellidos:</label>
+                <input type="text" name="apellidos" id="apellidos">
+
+                <br><br>
+
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" id="correo">
+
+                <br><br>
+
+                <fieldset>
+                    <legend>¿Cuantos cafes tomas al dia?</legend>
+                    <input type="radio" name="cantidad">
+                    <label for="cantidad">Ninguno</label>
+
+                    <input type="radio" name="cantidad">
+                    <label for="cantidad">1 o 2</label>
+
+                    <input type="radio" name="cantidad">
+                    <label for="cantidad">Entre 2 y 5</label>
+
+                    <input type="radio" name="cantidad">
+                    <label for="cantidad">Más de 5</label>
+                </fieldset>
+
+                <br><br>
+
+                <fieldset>
+                    <legend>¿Qué tipo de café prefieres?</legend>
+                    <input type="checkbox" name="tipo">
+                    <label for="tipo">Solo</label>
+
+                    <input type="checkbox" name="tipo">
+                    <label for="tipo">Cortado</label>
+
+                    <input type="checkbox" name="tipo">
+                    <label for="tipo">Con leche</label>
+
+                    <input type="checkbox" name="tipo">
+                    <label for="tipo">Americano</label>
+                </fieldset>
+
+                <br><br>
+
+                <textarea name="" id=""
+                    placeholder="Indicanos cual es la marca de tu cafetera actual y cuanto hace que la tienes." rows="3"
+                    cols="90"></textarea>
+                <br><br>
+                <button type="submit">Enviar</button>
+                <button type="reset">Borrar formulario</button>
+            </fieldset>
+        </form>
+        <div class="pie-formulario">
+            <h4>Formulario para sorteo realizado por Joel</h4>
+            <p><a href="./index.html">Volver a la pagina principal</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

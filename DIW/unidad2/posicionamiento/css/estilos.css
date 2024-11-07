@@ -1,0 +1,13 @@
+header, main, footer{
+    padding: 3em;
+    width: 3em;
+    border: 1px solid grey;
+}
+
+header, footer{
+    background-color: aquamarine;
+}
+
+main{
+    background-color: orange;
+}
