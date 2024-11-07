@@ -1,5 +1,4 @@
 /* Fuente global */
-
 body {
     font-family: Arial, sans-serif;
     font-size: 18px;
@@ -13,7 +12,6 @@ header h1,h3{
 }
 
 .contenedor {
-    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -22,9 +20,23 @@ header h1,h3{
     background-color: #F3C892;
     color: #000;
     text-align: center;
-    border: 1px solid #FFFFFF;
+    border: 3px solid #FFFFFF;
     padding: 10px;
     margin: 25px 50px 25px 50px;
+    display: flex;
+    align-items: center;
+}
+
+.imagen-cabecera{
+    display: flex;
+    width: 200px;
+    height: 200px;
+}
+
+.titulares{
+    align-items: center;
+    align-content: center;
+    padding-left: 700px;
 }
 
 /* Menú de navegación */
@@ -32,44 +44,119 @@ header h1,h3{
     background-color: #A3DA8D;
     text-align: center;
     padding: 10px;
+    border-collapse: collapse;
     border: 1px solid black;
     margin: 3px 5px 3px 5px;
+    width: 1000px;
+    height: 50px;
 }
 
-.menu-navegacion ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-navegacion ul li {
-    display: inline;
-    margin: 0 15px;
-    
+.menu-navegacion td{
+    border: 1px solid black;
 }
 
 /* Contenido principal */
+.contenedor{
+    display: flex;
+}
 .contenido-principal {
+    text-align: justify;
     background-color: #F3C892;
     padding: 15px;
     text-align: justify;
 }
 
+.introduccion{
+    display: flex;
+}
+
+.introduccion img{
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.uso{
+    display: flex;
+}
+
+.uso img{
+    width: 500px;
+    height: 200px;
+    margin-left: 20px;
+}
+
+h2{
+    color: #146356;
+}
+
 /* Lateral izquierdo */
 .lateral-izquierdo {
+    color: white;
     text-align: center;
+    margin-left: 50px;
+    width: 1500px;
 }
 
 /* Lateral derecho */
+.lateral-derecho{
+    margin-right: 50px;
+    margin-left: 50px;
+    width: 1200px;
+}
+
 .lateral-derecho img {
     border: 1px solid #FFFFFF;
-    width: 100%;
+    width: 300px;
+    height: 400px;
 }
 
 /* Pie de página */
 .pie {
-    background-color: #333;
     color: #FFFFFF;
     text-align: center;
     padding: 10px;
+}
+
+/* ###########################
+##############################*/
+
+/* Formulario */
+.body-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #146356;
+}
+
+.formulario {
+    width: 90%;
+    max-width: 800px;
+    background-color: #F3C892;
+    border: 10px solid white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.titulos{
+    text-align: center;
+    color: #146356;
+}
+
+.pie-formulario{
+    text-align: center;
+}
+
+#apellido{
+    margin-left: 20px;
+}
+
+#apellidos{
+    width: 350px;
+}
+
+#correo{
+    width: 500px;
 }
