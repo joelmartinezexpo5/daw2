@@ -1,9 +1,9 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once __DIR__ .  '/../vendor/autoload.php';
 
-use App\Classes\FuncionesBD;
+use App\Classes\funcionesBD;
 
-$equipos = FuncionesBD::getEquipos();
+$equipos = funcionesBD::getEquipos();
 $jugadores = [];
 $pesos = [];
 $jugadorSeleccionado = '';
@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $posicionNueva = $_POST['nuevaPosicion'] ?? '';
 
     // Cargar los jugadores para el equipo seleccionado
-    $resultados = FuncionesBD::getJugadoresPorEquipo($equipoSeleccionado);
+    $resultados = funcionesBD::getJugadoresPorEquipo($equipoSeleccionado);
     $jugadores = $resultados['jugadores'];
     $pesos = $resultados['pesos'];
 
     // Si se ha seleccionado un jugador y se han ingresado nuevos datos, realizar el UPDATE
     if ($jugadorSeleccionado && $nombreNuevo && $pesoNuevo) {
         try {
-            FuncionesBD::actualizarJugador($jugadorSeleccionado, $nombreNuevo, $procedenciaNueva, $alturaNueva, $pesoNuevo, $posicionNueva);
+            funcionesBD::actualizarJugador($jugadorSeleccionado, $nombreNuevo, $procedenciaNueva, $alturaNueva, $pesoNuevo, $posicionNueva);
             $mensaje = 'Datos del jugador actualizados con éxito.';
         } catch (Exception $e) {
             $mensaje = 'Error: ' . $e->getMessage();
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,18 +53,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         table {
             width: 50%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 2px solid black;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
@@ -130,22 +138,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </select>
         <br><br>
         <h3>Datos del nuevo jugador:</h3>
-        <label for="nombre_jugador">Nombre:</label>
-        <input type="text" name="nombre_jugador" id="nombre_jugador">
+        <label for="nuevoNombre">Nombre:</label>
+        <input type="text" name="nuevoNombre" id="nuevoNombre">
         <br><br>
-        <label for="procedencia">Procedencia:</label>
-        <input type="text" name="procedencia" id="procedencia">
+
+        <label for="nuevaProcedencia">Procedencia:</label>
+        <input type="text" name="nuevaProcedencia" id="nuevaProcedencia">
         <br><br>
-        <label for="altura">Altura:</label>
-        <input type="text" name="altura" id="altura">
+
+        <label for="nuevaAltura">Altura:</label>
+        <input type="text" name="nuevaAltura" id="nuevaAltura">
         <br><br>
-        <label for="peso">Peso:</label>
-        <input type="text" name="peso" id="peso">
+
+        <label for="nuevoPeso">Peso:</label>
+        <input type="text" name="nuevoPeso" id="nuevoPeso">
         <br><br>
-        <label for="posicion">Posicion:</label>
-        <input type="text" name="posicion" id="posicion">
+
+        <label for="nuevaPosicion">Posicion:</label>
+        <input type="text" name="nuevaPosicion" id="nuevaPosicion">
+
         <br><br>
         <input type="submit" value="Realizar Traspaso">
     </form>
 </body>
+
 </html>
