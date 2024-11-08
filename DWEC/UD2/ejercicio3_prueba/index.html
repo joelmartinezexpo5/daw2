@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Factura</title>
+</head>
+
+<body>
+
+    <h1>Gestión de Factura</h1>
+
+    <div class="form-section">
+        <h3>Datos Básicos de Factura</h3>
+        <label for="clienteNIF">NIF del Cliente:</label>
+        <input type="text" id="clienteNIF">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha">
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora">
+        <label>
+            <input type="checkbox" id="pagada"> Pagada
+        </label>
+        <button onclick="actualizarFactura()">Actualizar Factura</button>
+    </div>
+
+    <div class="form-section">
+        <h3>Gestión de Líneas de Factura</h3>
+        <label for="concepto">Concepto:</label>
+        <input type="text" id="concepto">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" min="1">
+        <label for="precio">Precio Unitario:</label>
+        <input type="number" id="precio" step="0.01" min="0">
+        <button onclick="agregarLinea()">Agregar Línea</button>
+        <button onclick="eliminarLinea()">Eliminar Última Línea</button>
+    </div>
+
+    <div class="form-section">
+        <h3>Serialización y Deserialización</h3>
+        <label for="entrada">Entrada JSON:</label>
+        <textarea id="entrada" rows="4"></textarea>
+        <button onclick="deserializarFactura()">Deserializar Factura</button>
+        <label for="salida">Salida JSON:</label>
+        <textarea id="salida" rows="4" readonly></textarea>
+        <button onclick="serializarFactura()">Serializar Factura</button>
+    </div>
+
+    <div class="form-section">
+        <h3>Impresión de Factura</h3>
+        <div class="factura-output" id="facturaImpresion"></div>
+    </div>
