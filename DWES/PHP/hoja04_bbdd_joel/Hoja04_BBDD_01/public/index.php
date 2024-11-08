@@ -6,23 +6,16 @@ use App\Classes\funcionesBD;
 $equipos = funcionesBD::getEquipos();
 $jugadores = [];
 $pesos = [];
-$jugadorSeleccionado = '';
-$nombreNuevo = '';
-$procedenciaNueva = '';
-$alturaNueva = '';
-$pesoNuevo = '';
-$posicionNueva = '';
-$mensaje = '';
 
 // Si el formulario ha sido enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $equipoSeleccionado = $_POST['equipo'];
-    $jugadorSeleccionado = $_POST['jugador'] ?? '';
-    $nombreNuevo = $_POST['nuevoNombre'] ?? '';
-    $procedenciaNueva = $_POST['nuevaProcedencia'] ?? '';
-    $alturaNueva = $_POST['nuevaAltura'] ?? '';
-    $pesoNuevo = $_POST['nuevoPeso'] ?? '';
-    $posicionNueva = $_POST['nuevaPosicion'] ?? '';
+    $equipoSeleccionado = isset($_POST['equipo']) ? $_POST['equipo'] : '';
+    $jugadorSeleccionado = isset($_POST['jugador']) ? $_POST['jugador'] : '';
+    $nombreNuevo = isset($_POST['nuevoNombre']) ? $_POST['nuevoNombre'] : '';
+    $procedenciaNueva = isset($_POST['nuevaProcedencia']) ? $_POST['nuevaProcedencia'] : '';
+    $alturaNueva = isset($_POST['nuevaAltura']) ? $_POST['nuevaAltura'] : '';
+    $pesoNuevo = isset($_POST['nuevoPeso']) ? $_POST['nuevoPeso'] : '';
+    $posicionNueva = isset($_POST['nuevaPosicion']) ? $_POST['nuevaPosicion'] : '';
 
     // Cargar los jugadores para el equipo seleccionado
     $resultados = funcionesBD::getJugadoresPorEquipo($equipoSeleccionado);
@@ -30,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pesos = $resultados['pesos'];
 
     // Si se ha seleccionado un jugador y se han ingresado nuevos datos, realizar el UPDATE
-    if ($jugadorSeleccionado && $nombreNuevo && $pesoNuevo) {
+    if ($jugadorSeleccionado && $nombreNuevo && $procedenciaNueva && $alturaNueva && $pesoNuevo && $posicionNueva) {
         try {
             funcionesBD::actualizarJugador($jugadorSeleccionado, $nombreNuevo, $procedenciaNueva, $alturaNueva, $pesoNuevo, $posicionNueva);
             $mensaje = 'Datos del jugador actualizados con éxito.';

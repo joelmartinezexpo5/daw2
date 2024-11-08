@@ -25,6 +25,7 @@ final class ConnectionPDODotenv
                     username: $_ENV['DB_USERNAME'],
                     password: $_ENV['DB_PASSWORD'],
                 );
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (PDOException $e) {
             echo match ($e->getCode()) {
