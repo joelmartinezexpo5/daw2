@@ -51,24 +51,15 @@ class funcionesBD
     $conexion = ConnectionPDODotenv::getConnection();
 
     try {
-        // Iniciar la transacción
-        $conexion->beginTransaction();
-
-        // Realizar el UPDATE para el nombre y peso del jugador
-        $stmt = $conexion->prepare('UPDATE jugadores SET nombre = :nuevoNombre, procedencia = :nuevaProcedencia, altura = :nuevaAltura, peso = :nuevoPeso, posicion = :nuevaPosicion WHERE nombre = :jugador');
+        $stmt = $conexion->prepare('UPDATE jugadores SET nombre = :nuevoNombre, procedencia = :nuevaProcedencia, altura = :nuevaAltura, peso = :nuevaPeso, posicion = :nuevaPosicion WHERE nombre = :jugador');
         $stmt->bindParam(':jugador', $jugador);
         $stmt->bindParam(':nuevoNombre', $nuevoNombre);
         $stmt->bindParam(':nuevaProcedencia', $nuevaProcedencia);
         $stmt->bindParam(':nuevaAltura', $nuevaAltura);
-        $stmt->bindParam(':nuevoPeso', $nuevoPeso);
+        $stmt->bindParam(':nuevaPeso', $nuevoPeso);
         $stmt->bindParam(':nuevaPosicion', $nuevaPosicion);
         $stmt->execute();
-
-        // Confirmar la transacción
-        $conexion->commit();
     } catch (PDOException $e) {
-        // Si hay error, deshacer todo
-        $conexion->rollBack();
         throw new Exception('Error al actualizar el jugador: ' . $e->getMessage());
     }
 }
