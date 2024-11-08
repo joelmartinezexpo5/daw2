@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Factura</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script type="module" src="./scripts/Factura.js" defer></script>
+</head>
+
+<body>
+    <h1>Gestión de Factura</h1>
+
+    <!-- Formulario de Datos Básicos de la Factura -->
+    <div class="form-container">
+        <h2>Datos de la Factura</h2>
+        <input type="text" id="clienteNIF" placeholder="Cliente NIF" />
+        <input type="date" id="fecha" />
+        <input type="time" id="hora" />
+        <label for="pagada">Pagada:</label>
+        <input type="checkbox" id="pagada" />
+        <button id="btnActualizar">Actualizar</button>
+    </div>
+
+    <!-- Formulario para Agregar Líneas de la Factura
+    <div class="form-container">
+        <h2>Agregar Línea</h2>
+        <input type="text" id="concepto" placeholder="Concepto" />
+        <input type="number" id="cantidad" placeholder="Cantidad" />
+        <input type="number" id="precio" placeholder="Precio" />
+        <button>Agregar Línea</button>
+        <button>Eliminar Última Línea</button>
+    </div>
+
+     Formulario de Serialización/Deserialización
+    <div class="form-container">
+        <h2>Serialización / Deserialización</h2>
+        <textarea id="entrada" placeholder="Ingrese JSON aquí" rows="4" cols="50"></textarea><br>
+        <button>Serializar Factura</button>
+        <button>Deserializar Factura</button>
+        <textarea id="salida" placeholder="Salida JSON" rows="4" cols="50" readonly></textarea>
+    </div>
+
+     Impresión de la Factura 
+    <div class="factura-print" id="facturaImpresion">
+         Aquí se mostrará la factura impresa -->
+    </div>
+
+
+</body>
+
+</html>
