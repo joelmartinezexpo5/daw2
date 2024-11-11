@@ -1,6 +1,4 @@
 <?php
-// ConnectionPDODotenv.php
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
@@ -17,9 +15,9 @@ final class ConnectionPDODotenv
         try {
             if (!self::$connection) {
                 self::$connection = new PDO(
-                    $_ENV['DB_DSN'],
-                    $_ENV['DB_USERNAME'],
-                    $_ENV['DB_PASSWORD']
+                    dsn: $_ENV['DB_DSN'],
+                    username: $_ENV['DB_USERNAME'],
+                    password: $_ENV['DB_PASSWORD']
                 );
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
@@ -38,3 +36,4 @@ final class ConnectionPDODotenv
 
     private function __clone() {}
 }
+?>
