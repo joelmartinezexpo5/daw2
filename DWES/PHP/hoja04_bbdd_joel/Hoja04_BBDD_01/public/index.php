@@ -126,29 +126,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="jugador">Baja de jugador:</label>
         <select name="jugador" id="jugador">
             <?php foreach ($jugadores as $jugador): ?>
-                <option value="<?= htmlspecialchars($jugador) ?>"><?= htmlspecialchars($jugador) ?></option>
+                <option><?= htmlspecialchars($jugador) ?></option>
             <?php endforeach; ?>
         </select>
         <br><br>
         <h3>Datos del nuevo jugador:</h3>
         <label for="nuevoNombre">Nombre:</label>
-        <input type="text" name="nuevoNombre" id="nuevoNombre">
+        <input type="text" name="nuevoNombre" id="nuevoNombre" required>
         <br><br>
 
         <label for="nuevaProcedencia">Procedencia:</label>
-        <input type="text" name="nuevaProcedencia" id="nuevaProcedencia">
+        <input type="text" name="nuevaProcedencia" id="nuevaProcedencia" required>
         <br><br>
 
         <label for="nuevaAltura">Altura:</label>
-        <input type="text" name="nuevaAltura" id="nuevaAltura">
+        <input type="text" name="nuevaAltura" id="nuevaAltura" required>
         <br><br>
 
         <label for="nuevoPeso">Peso:</label>
-        <input type="text" name="nuevoPeso" id="nuevoPeso">
+        <input type="text" name="nuevoPeso" id="nuevoPeso" required>
         <br><br>
 
         <label for="nuevaPosicion">Posicion:</label>
-        <input type="text" name="nuevaPosicion" id="nuevaPosicion">
+        <input type="text" name="nuevaPosicion" id="nuevaPosicion" required>
 
         <br><br>
         <input type="submit" value="Realizar Traspaso">
