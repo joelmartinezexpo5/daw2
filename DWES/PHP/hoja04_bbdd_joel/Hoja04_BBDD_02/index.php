@@ -5,25 +5,17 @@
     <title>Libros</title>
 </head>
 <body>
-    <h1>Formulario de libros</h1>
+    <h1>Registrar Libro</h1>
     <form action="libros_guardar.php" method="post">
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" required><br>
-
-        <label for="anio">Año de Edición:</label>
-        <input type="number" name="anio" min="1000" max="9999" required><br>
-
-        <label for="precio">Precio:</label>
-        <input type="number" name="precio" step="0.01" required><br>
-
-        <label for="fecha">Fecha de Adquisición:</label>
-        <input type="date" name="fecha" required><br>
-
-        <input type="submit" value="Guardar">
+        <label>Título: <input type="text" name="titulo" required></label><br>
+        <label>Año de Edición: <input type="number" name="anyo_edicion" required></label><br>
+        <label>Precio: <input type="number" name="precio" step="0.01" required></label><br>
+        <label>Fecha de Adquisición: <input type="date" name="fecha_adquisicion" required></label><br>
+        <button type="submit">Guardar</button>
     </form>
-
-    <form action="libros_datos.php" method="get">
-        <input type="submit" value="Ver todos los libros">
+    <br>
+    <form action="libros_datos.php">
+        <button type="submit">Ver todos los libros</button>
     </form>
 </body>
 </html>
