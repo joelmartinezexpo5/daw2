@@ -1,81 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Biblioteca</title>
-    <!-- Importamos el archivo de JavaScript principal -->
-    <script type="module" src="scripts/gestorBiblioteca.js" defer></script>
+    <script src="./scripts/" defer></script>
+    <title>Gestion de Biblioteca</title>
 </head>
 <body>
-    <header>
-        <h1>Gestión de Biblioteca</h1>
-        <nav>
-            <button id="listarAutores">Autores</button>
-            <button id="listarLibros">Libros</button>
-            <button id="listarBibliotecas">Bibliotecas</button>
-        </nav>
-    </header>
+    <h1>Gestion de Biblioteca</h1>
+    <nav>
+        <ul>
+            <li>Listado de Autores</li>
+            <li>Listado de Libros</li>
+            <li>Listado de Bibliotecas</li>
+        </ul>
+    </nav>
 
-    <main>
-        <!-- Buscador -->
-        <section id="buscador">
-            <input type="text" id="buscar" placeholder="Buscar...">
-            <select id="tipoBusqueda">
-                <option value="libros">Libros</option>
-                <option value="autores">Autores</option>
-            </select>
-            <button id="botonBuscar">Buscar</button>
-        </section>
+    <form action="" method="">
+        <input type="text">
+        <button>Buscar libro</button>
+        <button>Buscar autor</button>
+    </form>
 
-        <!-- Contenedor para cargar contenido dinámico -->
-        <section id="app">
-            <!-- Aquí se insertarán los formularios y listas dinámicamente -->
-        </section>
-    </main>
+    <div id="app">
 
-    <footer>
-        <p>&copy; 2024 Gestión de Biblioteca</p>
-    </footer>
+    </div>
 
-    <script type="module">
-        import $biblio from './scripts/gestorBiblioteca.js';
-
-        // Event listeners para el menú
-        document.getElementById('listarAutores').addEventListener('click', () => {
-            $biblio.generarHTMLListadoAutores();
-        });
-
-        document.getElementById('listarLibros').addEventListener('click', () => {
-            $biblio.generarHTMLListadoLibros();
-        });
-
-        document.getElementById('listarBibliotecas').addEventListener('click', () => {
-            $biblio.generarHTMLListadoBibliotecas();
-        });
-
-        // Event listener para el botón de búsqueda
-        document.getElementById('botonBuscar').addEventListener('click', () => {
-            const query = document.getElementById('buscar').value;
-            const tipo = document.getElementById('tipoBusqueda').value;
-
-            if (tipo === 'libros') {
-                $biblio.generarHTMLResultadoBuscador(query, 'libros');
-            } else if (tipo === 'autores') {
-                $biblio.generarHTMLResultadoBuscador(query, 'autores');
-            }
-        });
-
-        // Manejador de eventos para préstamos y devoluciones en el contenedor #app
-        document.querySelector('#app').addEventListener('click', (event) => {
-            if (event.target.matches('.prestar-libro')) {
-                const libroId = parseInt(event.target.dataset.libroId, 10);
-                $biblio.crearPrestamo(libroId);
-            } else if (event.target.matches('.devolver-libro')) {
-                const libroId = parseInt(event.target.dataset.libroId, 10);
-                $biblio.devolverPrestamo(libroId);
-            }
-        });
-    </script>
+    <form action="">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id">
+        <br><br>
+        <label for="nombreAutor">Nombre:</label>
+        <input type="text" id="nombreAutor" name="nombreAutor">
+        <label for="nacionalidad">Nacionalidad:</label>
+        <input type="text" id="nacionalidad" name="nacionalidad">
+        <label for="biografia">Biografia:</label>
+        <input type="text" id="biografia" name="biografia">
+        <label for="libros">Libros:</label>
+        <input type="text" id="libros" name="libros">
+        <button type="button">Crear Autor</button>
+        
+    </form>
 </body>
 </html>
