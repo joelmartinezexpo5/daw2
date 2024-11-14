@@ -1,0 +1,17 @@
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+li{
+    background-color: rgb(136, 75, 0);
+    flex: 1;
+}
+
+a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
