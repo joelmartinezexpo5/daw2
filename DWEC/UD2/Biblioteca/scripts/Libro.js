@@ -33,8 +33,29 @@ class Libro {
     }
 
     generarHTMLEdicion(){
-        
+        return `
+            <form id="editarLibro">
+                <label>Título: <input type="text" id="titulo" value="${this.titulo}"></label>
+                <label>ISBN: <input type="text" id="isbn" value="${this.ISBN}"></label>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        `;
     }
 
-    generarHTMLPrestamos(){}
+    generarHTMLPrestamos(){
+        if (this.prestamos.length === 0) {
+            return `<p>Este libro no tiene préstamos registrados.</p>`;
+        }
+
+        return `
+            <div class="prestamos">
+                <h3>Préstamos para ${this.titulo}</h3>
+                <ul>
+                    ${this.prestamos.map(p => `
+                        <li>Fecha Préstamo: ${p.fechaPrestamo}, Fecha Devolución: ${p.fechaDevolucion || "No devuelto"}</li>
+                    `).join("")}
+                </ul>
+            </div>
+        `;
+    }
 }
