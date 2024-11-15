@@ -11,34 +11,38 @@ class Autor {
 
     generarHTMLCreacion() {
         return `
-            <div class="crearAutor">
-                <form>
-                    <label for="id">ID:</label>
-                    <input type="text" id="id" name="id">
-                    <br><br>
-                    <label for="nombreAutor">Nombre:</label>
-                    <input type="text" id="nombreAutor" name="nombreAutor">
-                    <br><br>
-                    <label for="nacionalidad">Nacionalidad:</label>
-                    <input type="text" id="nacionalidad" name="nacionalidad">
-                    <br><br>
-                    <label for="biografia">Biografia:</label>
-                    <input type="text" id="biografia" name="biografia">
-                    <br><br>
-                    <label for="libros">Libros:</label>
-                    <input type="text" id="libros" name="libros">
-                    <br><br>
-                    <button type="button">Crear Autor</button>
-                </form>
-            </div>
-        `
+            <form id="crearAutor">
+                <label>Nombre: <input type="text" id="nombre"></label>
+                <label>Nacionalidad: <input type="text" id="nacionalidad"></label>
+                <label>Biografía: <textarea id="biografia"></textarea></label>
+                <button type="submit">Crear Autor</button>
+            </form>
+        `;
     }
 
     generarHTMLPropiedades() {
         return `
-            
-        `
+            <div class="autor">
+                <h2>${this.nombre}</h2>
+                <p>Nacionalidad: ${this.nacionalidad}</p>
+                <p>Biografía: ${this.biografia}</p>
+                <h3>Libros Publicados</h3>
+                <ul>
+                    ${this.libros.map(libro => `<li>${libro}</li>`).join('')}
+                </ul>
+                <button class="agregar-libro" data-autor-id="${this.autorId}">Añadir Libro</button>
+            </div>
+        `;
     }
 
-    generarHTMLEdicion() { }
+    generarHTMLEdicion() {
+        return `
+            <form id="editarAutor">
+                <label>Nombre: <input type="text" id="nombre" value="${this.nombre}"></label>
+                <label>Nacionalidad: <input type="text" id="nacionalidad" value="${this.nacionalidad}"></label>
+                <label>Biografía: <textarea id="biografia">${this.biografia}</textarea></label>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        `;
+    }
 }
