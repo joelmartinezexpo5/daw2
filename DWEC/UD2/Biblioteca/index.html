@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./scripts/" defer></script>
+    <script src="./scripts/gestorBiblioteca.js" type="module" defer></script>
     <title>Gestion de Biblioteca</title>
 </head>
 <body>
     <h1>Gestion de Biblioteca</h1>
     <nav>
         <ul>
-            <li>Listado de Autores</li>
-            <li>Listado de Libros</li>
-            <li>Listado de Bibliotecas</li>
+            <li><a href="#" id="listarAutores">Listado de Autores</a></li>
+            <li><a href="#" id="listarLibros">Listado de Libros</a></li>
+            <li><a href="#" id="listarBibliotecas">Listado de Bibliotecas</a></li>
         </ul>
     </nav>
 
@@ -26,10 +26,11 @@
 
     </div>
 
-    <form action="">
+    <br><br><br>
+
+    <!-- <form action="">
         <label for="id">ID:</label>
         <input type="text" id="id" name="id">
-        <br><br>
         <label for="nombreAutor">Nombre:</label>
         <input type="text" id="nombreAutor" name="nombreAutor">
         <label for="nacionalidad">Nacionalidad:</label>
@@ -40,6 +41,6 @@
         <input type="text" id="libros" name="libros">
         <button type="button">Crear Autor</button>
         
-    </form>
+    </form> -->
 </body>
 </html>
