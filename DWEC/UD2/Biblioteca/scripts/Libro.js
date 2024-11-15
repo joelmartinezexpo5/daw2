@@ -1,3 +1,5 @@
+
+
 class Libro {
     constructor(libroId, titulo, ISBN, autorId, bibliotecaId, prestamos = []) {
         this.libroId = libroId;
@@ -59,3 +61,4 @@ class Libro {
         `;
     }
 }
+export default Libro;

@@ -1,3 +1,5 @@
+
+
 class Biblioteca{
     constructor(bibliotecaId, nombre, ubicacion){
         this.bibliotecaId = bibliotecaId;
@@ -35,3 +37,4 @@ class Biblioteca{
     }
     
 }
+export default Biblioteca;

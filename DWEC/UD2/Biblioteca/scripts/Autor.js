@@ -1,5 +1,3 @@
-export default Autor;
-
 class Autor {
     constructor(autorId, nombre, nacionalidad, biografia, libros = []) {
         this.autorId = autorId;
@@ -46,3 +44,4 @@ class Autor {
         `;
     }
 }
+export default Autor;
