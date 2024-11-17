@@ -2,22 +2,20 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$categorias = obtenerCategorias();
+use App\DB;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $categoriaId = (int)$_POST['categoria'];
-    $productos = obtenerProductosPorCategoria($categoriaId);
+// Crear una instancia de la clase DB
+$db = new DB();
 
-    foreach ($productos as $producto) {
-        echo $producto . "<br>";
-    }
-} else {
-    echo '<form method="POST">';
-    echo '<select name="categoria">';
-    foreach ($categorias as $categoria) {
-        echo "<option value='{$categoria->getId()}'>{$categoria->getNombre()}</option>";
-    }
-    echo '</select>';
-    echo '<button type="submit">Filtrar</button>';
-    echo '</form>';
+// Obtener todas las categorías
+$categorias = $db->getCategorias();
+
+// Mostrar el desplegable de categorías
+echo '<form method="GET" action="productos_por_categoria.php">';
+echo '<select name="categoria_id">';
+foreach ($categorias as $categoria) {
+    echo "<option value=\"{$categoria['id']}\">{$categoria['nombre']}</option>";
 }
+echo '</select>';
+echo '<button type="submit">Ver productos</button>';
+echo '</form>';
