@@ -7,7 +7,7 @@
             "App\\": "src/"
         },
         "files": [
-            "src/FuncionesMySQL.php"
+            "src/DB.php"
         ]
     },
     "scripts": {
