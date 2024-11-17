@@ -1,0 +1,26 @@
+{
+    "name": "joel/hoja04_bbdd_04",
+    "description": "Hoja 4 de BBDD",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\Classes\\": "app/Classes/"
+        },
+        "files": [
+            "FuncionesMySQL.php"
+        ]
+    },
+    "scripts": {
+        "start": "php -S localhost:8001 -t public"
+    },
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
