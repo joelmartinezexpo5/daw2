@@ -1,46 +1,56 @@
 <?php
 
-use App\Classes\ConexionBD;
-use App\Classes\FuncionesBD;
+namespace App;
 
-function obtenerCategorias(): array
-{
-    $connection = ConexionBD::getConnection();
-    $stmt = $connection->query("SELECT * FROM categorias");
-    $categoriasData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return FuncionesBD::construirCategorias($categoriasData);
-}
+use App\Classes\Categoria;
+use App\Classes\Producto;
+use App\Alimentacion;
+use App\Electronica;
 
-function obtenerProductos(): array
+class FuncionesMySQL
 {
-    $connection = ConexionBD::getConnection();
-    $stmt = $connection->query("
-        SELECT p.*, c.nombre as categoria_nombre, 
-               a.mes_caducidad, a.anio_caducidad, 
-               e.plazo_garantia
-        FROM productos p 
-        JOIN categorias c ON p.categoria_id = c.id
-        LEFT JOIN alimentaciones a ON p.id = a.producto_id
-        LEFT JOIN electronicas e ON p.id = e.producto_id
-    ");
-    $productosData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return FuncionesBD::construirProductos($productosData);
-}
+    public static function construirCategorias(array $categoriasData): array
+    {
+        $categorias = [];
+        foreach ($categoriasData as $data) {
+            $categorias[] = new Categoria($data['id'], $data['nombre']);
+        }
+        return $categorias;
+    }
 
-function obtenerProductosPorCategoria(int $categoriaId): array
-{
-    $connection = ConexionBD::getConnection();
-    $stmt = $connection->prepare("
-        SELECT p.*, c.nombre as categoria_nombre, 
-               a.mes_caducidad, a.anio_caducidad, 
-               e.plazo_garantia
-        FROM productos p 
-        JOIN categorias c ON p.categoria_id = c.id
-        LEFT JOIN alimentaciones a ON p.id = a.producto_id
-        LEFT JOIN electronicas e ON p.id = e.producto_id
-        WHERE p.categoria_id = :categoria_id
-    ");
-    $stmt->execute(['categoria_id' => $categoriaId]);
-    $productosData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return FuncionesBD::construirProductos($productosData);
+    public static function construirProductos(array $productosData): array
+    {
+        $productos = [];
+        foreach ($productosData as $data) {
+            if ($data['mes_caducidad'] && $data['anio_caducidad']) {
+                // Producto de tipo Alimentación
+                $productos[] = new Alimentacion(
+                    $data['codigo'],
+                    $data['precio'],
+                    $data['nombre'],
+                    $data['mes_caducidad'],
+                    $data['anio_caducidad'],
+                    $data['categoria_nombre']
+                );
+            } elseif ($data['plazo_garantia']) {
+                // Producto de tipo Electrónica
+                $productos[] = new Electronica(
+                    $data['codigo'],
+                    $data['precio'],
+                    $data['nombre'],
+                    $data['plazo_garantia'],
+                    $data['categoria_nombre']
+                );
+            } else {
+                // Producto genérico
+                $productos[] = new Producto(
+                    $data['codigo'],
+                    $data['precio'],
+                    $data['nombre'],
+                    $data['categoria_nombre']
+                );
+            }
+        }
+        return $productos;
+    }
 }
