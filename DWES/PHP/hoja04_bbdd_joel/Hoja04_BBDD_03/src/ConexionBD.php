@@ -4,44 +4,37 @@ namespace App;
 
 use PDO;
 use PDOException;
-//use Dotenv\Dotenv;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Cargar variables de entorno desde el archivo .env
-$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__,1));
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 final class ConexionBD
 {
     private static ?PDO $connection = null;
 
-    final private function __construct() {}
+    private function __construct() {}
 
-    final public static function getConnection(): ?PDO
+    public static function getConnection(): ?PDO
     {
         try {
             if (!self::$connection) {
                 self::$connection = new PDO(
-                    $_ENV['DB_DSN'],
-                    $_ENV['DB_USERNAME'],
-                    $_ENV['DB_PASSWORD'],
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    ]
+                    dsn: $_ENV['DB_DSN'],
+                    username: $_ENV['DB_USERNAME'],
+                    password: $_ENV['DB_PASSWORD']
                 );
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (PDOException $e) {
             echo match ($e->getCode()) {
                 1049 => 'Base de datos no encontrada',
                 1045 => 'Acceso denegado',
                 2002 => 'Conexión rechazada',
-                default => 'Error desconocido: ' . $e->getMessage(),
+                default => 'Error desconocido',
             };
-            return null;
         }
-
         return self::$connection;
     }
 

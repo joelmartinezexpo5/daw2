@@ -14,5 +14,5 @@ $db = new DB();
 $productos = $db->getProductosPorCategoria($categoriaId);
 
 foreach ($productos as $producto) {
-    echo "Producto: {$producto['nombre']} - Precio: {$producto['precio']} - Categoría: {$producto['categoria']}<br>";
+    echo "Producto: {$producto['nombre']} - Precio: {$producto['precio']}€ - Categoría: {$producto['categoria']}<br>";
 }

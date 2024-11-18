@@ -1,5 +1,5 @@
 <?php
-namespace App\Classes;
+namespace App;
 class Categoria{
     private $id;
     private $nombre;
