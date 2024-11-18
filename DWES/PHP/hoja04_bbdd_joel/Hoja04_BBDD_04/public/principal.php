@@ -4,13 +4,14 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\DB;
 
-// Crear una instancia de la clase DB
 $db = new DB();
+$categorias = $db->getCategorias();
 
-// Obtener todos los productos
-$productos = $db->getProductos();
-
-// Mostrar los productos
-foreach ($productos as $producto) {
-    echo "Producto: {$producto['nombre']} - Precio: {$producto['precio']} - Categoría: {$producto['categoria']}<br>";
+echo '<form method="GET" action="categorias.php">';
+echo '<select name="categoria_id">';
+foreach ($categorias as $categoria) {
+    echo "<option value=\"{$categoria['id']}\">{$categoria['nombre']}</option>";
 }
+echo '</select>';
+echo '<button type="submit">Ver productos</button>';
+echo '</form>';
