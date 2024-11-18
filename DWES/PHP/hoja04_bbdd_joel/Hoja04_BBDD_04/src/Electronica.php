@@ -1,27 +1,27 @@
 <?php
-class Categoria {
-    private $id;
-    private $nombre;
 
-    public function __construct($id, $nombre) {
-        $this->id = $id;
-        $this->nombre = $nombre;
+namespace App;
+
+class Electronica extends Producto {
+    private $plazoGarantia;
+
+    public function __construct($codigo, $precio, $nombre, $categoria, $plazoGarantia) {
+        parent::__construct($codigo, $precio, $nombre, $categoria); // Llamada al constructor de Producto
+        $this->plazoGarantia = $plazoGarantia;
     }
 
-    public function getId() {
-        return $this->id;
+    // Getter para plazo de garantía
+    public function getPlazoGarantia() {
+        return $this->plazoGarantia;
     }
 
-    public function getNombre() {
-        return $this->nombre;
+    // Setter para plazo de garantía
+    public function setPlazoGarantia($plazoGarantia) {
+        $this->plazoGarantia = $plazoGarantia;
     }
 
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
+    // Método para mostrar la información del producto
+    public function toString() {
+        return parent::toString() . ", Plazo de Garantía: " . $this->plazoGarantia . " meses";
     }
 }
-

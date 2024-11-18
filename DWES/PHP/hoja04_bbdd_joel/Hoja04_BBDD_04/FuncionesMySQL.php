@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Classes\Categoria;
-use App\Classes\Producto;
+use App\Categoria;
+use App\Producto;
 use App\Alimentacion;
 use App\Electronica;
 

@@ -1,4 +1,5 @@
 <?php
+namespace App;
 class Producto {
     protected $codigo;
     protected $precio;
@@ -45,6 +46,6 @@ class Producto {
     }
 
     public function toString() {
-        return "Código: " . $this->codigo . ", Nombre: " . $this->nombre . ", Precio: " . $this->precio . ", Categoría: " . $this->categoria;
+        return "Código: " . $this->codigo . ", Nombre: " . $this->nombre . ", Precio: " . $this->precio . "€, Categoría: " . $this->categoria;
     }
 }
