@@ -1,0 +1,60 @@
+header {
+    grid-area: cabecera;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+}
+
+#menu {
+    grid-area: menu;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+}
+
+main {
+    grid-area: principal;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+}
+
+#derecha {
+    grid-area: derecha;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+}
+
+footer {
+    grid-area: pie;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-areas: 
+    "cabecera cabecera cabecera cabecera cabecera cabecera"
+    "menu principal principal principal principal derecha"
+    "menu pie pie pie pie pie"
+    ;
+    gap: 10px;
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+    padding: 10px;
+    min-height: 100vh;
+}
+
+
+/* ------------------------------ */
+
+.container{
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+    grid-template-rows: 50px 1fr 1fr;
+    width: 400px;
+    border: 1px solid black;
+}
+
+.container > div{
+    border: 1px solid saddlebrown;
+    background-color: chocolate;
+    
+}
