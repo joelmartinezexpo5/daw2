@@ -1,0 +1,13 @@
+ul{
+    display: flex; 
+    justify-content:center; 
+    gap: 10px;
+    padding: 0; 
+    list-style: none;
+}
+
+li{
+    flex: 1;
+    background-color: lightblue; 
+    padding: 20px;
+}

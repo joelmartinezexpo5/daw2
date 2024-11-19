@@ -1,0 +1,42 @@
+.tarjetas {
+    display: flex; /* Distribuir en fila */
+    justify-content: space-around; /* Espacio uniforme entre y a los lados */
+    gap: 20px; /* Espacio entre tarjetas */
+    padding: 20px;
+}
+
+/* Estilo de cada tarjeta */
+.tarjeta {
+    display: flex;
+    flex-direction: column; /* Para alinear título, cuerpo y pie verticalmente */
+    width: 200px; /* Ancho fijo */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de la tarjeta */
+.tarjeta-titulo {
+    height: 40px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    line-height: 40px; /* Centrado vertical */
+    font-weight: bold;
+}
+
+/* Cuerpo de la tarjeta */
+.tarjeta-cuerpo {
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 10px;
+    text-align: justify;
+    background-color: white;
+}
+
+/* Pie de la tarjeta */
+.tarjeta-pie {
+    height: 30px;
+    background-color: rgb(134, 133, 133);
+    text-align: center;
+    line-height: 30px; /* Centrado vertical */
+}
