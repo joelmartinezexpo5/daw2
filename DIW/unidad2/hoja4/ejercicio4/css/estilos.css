@@ -1,0 +1,17 @@
+div{
+    display: flex; 
+    gap: 2px; 
+    height: 100vh;
+}
+
+aside{
+    background-color: lightgray; 
+    flex: 1; 
+    padding: 12px 24px;
+}
+
+main{
+    background-color: white; 
+    flex: 4; 
+    padding: 12px 24px;
+}
