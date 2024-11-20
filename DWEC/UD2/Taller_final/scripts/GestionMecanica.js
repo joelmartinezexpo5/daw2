@@ -47,7 +47,7 @@ class GestionMecanica {
                     <input type="text" id="matricula" name="matricula" placeholder="Ej: 1234ABC">
                     <label for="telefono">Teléfono:</label>
                     <input type="text" id="telefono" name="telefono" placeholder="Ej: 600123456">
-                    <button id="buscar-btn" type="submit">Buscar</button>
+                    <button type="submit">Buscar</button>
                 </form>
                 <div id="resultados-busqueda"></div>
             </section>
@@ -61,10 +61,6 @@ class GestionMecanica {
 
         document.querySelector('#vehiculos-btn').addEventListener('click', () => {
             this.#mostrarVehiculos();
-        });
-        
-        document.querySelector('#buscar-btn').addEventListener('click', () => {
-            this.#asignarEventoBusqueda();
         });
 
     }
@@ -104,56 +100,44 @@ class GestionMecanica {
             event.preventDefault();
             const matricula = form.matricula.value.trim();
             const telefono = form.telefono.value.trim();
-            let resultados = [];
-    
-            if (matricula && telefono) {
-                const vehiculosPorMatricula = this.#clienteBD.obtenerVehiculo('matricula', matricula);
-                const vehiculosPorTelefono = this.#clienteBD.obtenerVehiculo('telefono', telefono);
-                
-                resultados.push(...vehiculosPorMatricula);
-                resultados.push(...vehiculosPorTelefono);
+            const resultados = [];
+
+            if (matricula) {
+                resultados.push(
+                    ...this.#clienteBD.obtenerVehiculo('matricula', matricula)
+                );
             }
-            else if (matricula || telefono) {
-                if (matricula) {
-                    resultados.push(...this.#clienteBD.obtenerVehiculo('matricula', matricula));
-                }
-    
-                if (telefono) {
-                    resultados.push(...this.#clienteBD.obtenerVehiculo('telefono', telefono));
-                }
+
+            if (telefono) {
+                resultados.push(
+                    ...this.#clienteBD.obtenerVehiculo('telefono', telefono)
+                );
             }
-    
             console.log('Resultados encontrados:', resultados);
             this.#mostrarResultadosBusqueda(resultados);
         });
     }
-    
+
     #mostrarResultadosBusqueda(vehiculos) {
         const contenedorResultados = document.querySelector('#resultados-busqueda');
         if (vehiculos.length === 0) {
             contenedorResultados.innerHTML = '<p>No se encontraron vehículos.</p>';
             return;
         }
-    
+
         contenedorResultados.innerHTML = `
             <ul>
                 ${vehiculos
                 .map(
                     vehiculo => `
                     <li>${vehiculo.marca} ${vehiculo.modelo} (${vehiculo.matricula})</li>
-                    <ul>
-                        <li>Año: ${vehiculo.año}</li>
-                        <li>Motor: ${vehiculo.motor}</li>
-                        <li>Propietario: ${vehiculo.propietario.nombre}</li>
-                        <li>Telefono: ${vehiculo.propietario.telefono}</li>
-                        <li>Email: ${vehiculo.propietario.email}</li>
-                    </ul>
-                `)
+                `
+                )
                 .join('')}
             </ul>
         `;
     }
-}     
+}
 
 const gestion = new GestionMecanica();
 gestion.iniciarApp('#app-container');
