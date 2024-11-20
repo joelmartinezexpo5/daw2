@@ -1,0 +1,18 @@
+{
+    "name": "joel/hoja04_bbdd_05",
+    "description": "Hoja 5 de BBDD",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Joel\\Hoja04Bbdd05\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
