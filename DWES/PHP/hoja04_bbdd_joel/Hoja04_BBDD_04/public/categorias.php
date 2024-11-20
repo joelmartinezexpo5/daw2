@@ -16,3 +16,5 @@ $productos = $db->getProductosPorCategoria($categoriaId);
 foreach ($productos as $producto) {
     echo "Producto: {$producto['nombre']} - Precio: {$producto['precio']}€ - Categoría: {$producto['categoria']}<br>";
 }
+
+echo "<a href='./principal.php'>Inicio</a>";

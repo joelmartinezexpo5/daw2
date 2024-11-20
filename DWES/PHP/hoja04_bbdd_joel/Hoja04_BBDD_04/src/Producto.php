@@ -1,6 +1,6 @@
 <?php
 namespace App;
-class Producto {
+abstract class Producto {
     protected $codigo;
     protected $precio;
     protected $nombre;
