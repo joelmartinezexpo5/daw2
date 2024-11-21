@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+span{
+    color: aqua;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1px;
+    background-color: #ccc;
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c63ff;
+    color: white;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.cabecera {
+    grid-column: 1 / 4;
+    background-color: black;
+    color: white;
+}
+
+.user{
+    background-color: blue;
+}
+
+.persona{
+    background: url(./../images/persona.jpg);
+    background-size: cover;
+}
+
+.teclado{
+    background: url(./../images/teclado.jpg);
+    background-size: cover;
+}
+
+.clipboard{
+    background-color: rgb(66, 120, 236);
+}
+
+.check{
+    background-color: aqua;
+}
+
+.all{
+    background: url(./../images/all.jpg);
+    background-size: cover;
+}
+
+.mail{
+    background-color: yellow;
+}
+
+
+.message{
+    background-color: blue;
+}
+
+.empleo {
+    grid-column: 1 / 3;
+    background: url(./../images/empleo.jpg);
+    background-size: cover;
+}
+
+.redes{
+    grid-column: 4/6;
+    background: url(./../images/redes.jpg);
+    background-size: cover;
+}
