@@ -7,6 +7,9 @@
             "App\\": "src/"
         }
     },
+    "scripts": {
+        "start": "php -S localhost:8001 -t public"
+    },
     "authors": [
         {
             "name": "joelmartinezexpo5",

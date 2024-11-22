@@ -1,6 +1,6 @@
 <?php
-include 'ConexionBD.php';
-include 'DB.php';
+require_once '../vendor/autoload.php';
+use App\DB;
 
 
 $db = new DB();
