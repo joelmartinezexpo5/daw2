@@ -3,9 +3,10 @@ namespace App;
 
 use PDO;
 use PDOException;
-require_once __DIR__ . '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+// Cargar variables de entorno desde el archivo .env
+$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__,1));
 $dotenv->load();
 
 final class ConexionBD
