@@ -25,4 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+?>
+
+<a href="index.php">Inicio</a><br>
+<a href="medicosFamilia.php">Ver médicos de familia por pacientes</a>
 
