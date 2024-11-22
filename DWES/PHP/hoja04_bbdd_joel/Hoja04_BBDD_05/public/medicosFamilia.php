@@ -40,3 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+<a href="index.php">Inicio</a><br>
+<a href="turnos.php">Ver médicos por turno</a>
