@@ -62,7 +62,7 @@ class GestionMecanica {
         document.querySelector('#vehiculos-btn').addEventListener('click', () => {
             this.#mostrarVehiculos();
         });
-        
+
         document.querySelector('#buscar-btn').addEventListener('click', () => {
             this.#asignarEventoBusqueda();
         });
@@ -105,41 +105,42 @@ class GestionMecanica {
             const matricula = form.matricula.value.trim();
             const telefono = form.telefono.value.trim();
             let resultados = [];
-    
+
             if (matricula && telefono) {
                 const vehiculosPorMatricula = this.#clienteBD.obtenerVehiculo('matricula', matricula);
                 const vehiculosPorTelefono = this.#clienteBD.obtenerVehiculo('telefono', telefono);
-                
-                resultados.push(...vehiculosPorMatricula);
-                resultados.push(...vehiculosPorTelefono);
-            }
-            else if (matricula || telefono) {
-                if (matricula) {
-                    resultados.push(...this.#clienteBD.obtenerVehiculo('matricula', matricula));
+                if(vehiculosPorMatricula.vehiculoId != vehiculosPorTelefono.vehiculoId){
+                    resultados.push(...vehiculosPorMatricula);
+                    resultados.push(...vehiculosPorTelefono);
+                }else{
+                    resultados.push(...vehiculosPorMatricula);
                 }
-    
-                if (telefono) {
-                    resultados.push(...this.#clienteBD.obtenerVehiculo('telefono', telefono));
-                }
+                console.log(vehiculosPorMatricula);
+                console.log(vehiculosPorTelefono);
             }
-    
-            console.log('Resultados encontrados:', resultados);
-            this.#mostrarResultadosBusqueda(resultados);
-        });
+            // else if (matricula) {
+            //     resultados.push(...this.#clienteBD.obtenerVehiculo('matricula', matricula));
+            // }else if (telefono) {
+            //     resultados.push(...this.#clienteBD.obtenerVehiculo('telefono', telefono));
+            // }
+        
+        console.log('Resultados encontrados:', resultados);
+        this.#mostrarResultadosBusqueda(resultados);
+    });
+}
+
+#mostrarResultadosBusqueda(vehiculos) {
+    const contenedorResultados = document.querySelector('#resultados-busqueda');
+    if (vehiculos.length === 0) {
+        contenedorResultados.innerHTML = '<p>No se encontraron vehículos.</p>';
+        return;
     }
-    
-    #mostrarResultadosBusqueda(vehiculos) {
-        const contenedorResultados = document.querySelector('#resultados-busqueda');
-        if (vehiculos.length === 0) {
-            contenedorResultados.innerHTML = '<p>No se encontraron vehículos.</p>';
-            return;
-        }
-    
-        contenedorResultados.innerHTML = `
+
+    contenedorResultados.innerHTML = `
             <ul>
                 ${vehiculos
-                .map(
-                    vehiculo => `
+            .map(
+                vehiculo => `
                     <li>${vehiculo.marca} ${vehiculo.modelo} (${vehiculo.matricula})</li>
                     <ul>
                         <li>Año: ${vehiculo.año}</li>
@@ -149,11 +150,11 @@ class GestionMecanica {
                         <li>Email: ${vehiculo.propietario.email}</li>
                     </ul>
                 `)
-                .join('')}
+            .join('')}
             </ul>
         `;
-    }
-}     
+}
+}
 
 const gestion = new GestionMecanica();
 gestion.iniciarApp('#app-container');
