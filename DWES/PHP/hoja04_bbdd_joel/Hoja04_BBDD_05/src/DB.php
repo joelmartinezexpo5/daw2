@@ -12,44 +12,51 @@ class DB {
 
     // Método para obtener todos los médicos
     public function getMedicos() {
-        // Consultamos todos los médicos de la base de datos
         $stmt = $this->pdo->query('SELECT * FROM medicos');
         $medicos = [];
 
-        // Iteramos sobre los médicos obtenidos
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Obtenemos el turno del médico
-            $turnoStmt = $this->pdo->prepare('SELECT * FROM turnos WHERE id = ?');
-            $turnoStmt->execute([$row['turno_id']]);
-            $turnoRow = $turnoStmt->fetch(PDO::FETCH_ASSOC);
-            $turno = new Turno($turnoRow['id'], $turnoRow['nombre']); // Creamos un objeto Turno
+            // Obtener turno del médico
+            $turno = $this->getTurnoById($row['turno_id']);
 
-            // Verificamos el tipo de médico (Familia o Urgencia)
+            // Determinar el tipo de médico
             if ($row['tipo'] === 'Familia') {
-                // Si es de Familia, obtenemos los datos específicos de la tabla familia
-                $familiaStmt = $this->pdo->prepare('SELECT * FROM familia WHERE medico_id = ?');
-                $familiaStmt->execute([$row['id']]);
-                $familiaRow = $familiaStmt->fetch(PDO::FETCH_ASSOC);
-                // Creamos un objeto Familia con los datos del médico y los de familia
-                $medicos[] = new Familia($row['codigo'], $row['nombre'], $row['edad'], $turno, $familiaRow['numPacientes'], $familiaRow['unidad']);
+                $datosFamilia = $this->getDatosFamilia($row['id']);
+                $medicos[] = new Familia($row['codigo'], $row['nombre'], $row['edad'], $turno, $datosFamilia['numPacientes'], $datosFamilia['unidad']);
             } else {
-                // Si es de Urgencias, obtenemos los datos específicos de la tabla urgencias
-                $urgenciaStmt = $this->pdo->prepare('SELECT * FROM urgencias WHERE medico_id = ?');
-                $urgenciaStmt->execute([$row['id']]);
-                $urgenciaRow = $urgenciaStmt->fetch(PDO::FETCH_ASSOC);
-                // Creamos un objeto Urgencia con los datos del médico y los de urgencia
-                $medicos[] = new Urgencia($row['codigo'], $row['nombre'], $row['edad'], $turno, $urgenciaRow['unidad']);
+                $datosUrgencia = $this->getDatosUrgencia($row['id']);
+                $medicos[] = new Urgencia($row['codigo'], $row['nombre'], $row['edad'], $turno, $datosUrgencia['unidad']);
             }
         }
 
-        return $medicos; // Retornamos el array con los médicos
+        return $medicos;
+    }
+
+    // Método auxiliar para obtener un turno por su ID
+    private function getTurnoById($turnoId) {
+        $stmt = $this->pdo->prepare('SELECT * FROM turnos WHERE id = ?');
+        $stmt->execute([$turnoId]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Turno($row['id'], $row['nombre']);
+    }
+
+    // Método auxiliar para obtener los datos de la tabla familia
+    private function getDatosFamilia($medicoId) {
+        $stmt = $this->pdo->prepare('SELECT * FROM familia WHERE medico_id = ?');
+        $stmt->execute([$medicoId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Método auxiliar para obtener los datos de la tabla urgencias
+    private function getDatosUrgencia($medicoId) {
+        $stmt = $this->pdo->prepare('SELECT * FROM urgencias WHERE medico_id = ?');
+        $stmt->execute([$medicoId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Método para obtener todos los turnos disponibles
     public function getTurnos() {
-        // Consultamos todos los turnos de la base de datos
         $stmt = $this->pdo->query('SELECT * FROM turnos');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retornamos todos los turnos en formato asociativo
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-?>
