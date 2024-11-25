@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+
+  /* formulario de variables para el proyecto */
+
+  /* Colores
+    jade: verde
+    punch: rojo
+    mariner: azul
+  */
+  --jade-50: rgb(239, 254, 247);
+  --jade-100: rgb(218, 254, 239);
+  --jade-200: rgb(184, 250, 221);
+  --jade-300: rgb(129, 244, 195);
+  --jade-400: rgb(67, 229, 160);
+  --jade-500: rgb(26, 205, 129);
+  --jade-600: rgb(15, 169, 104);
+  --jade-700: rgb(16, 133, 84);
+  --jade-800: rgb(18, 105, 69);
+  --jade-900: rgb(17, 86, 58);
+  --jade-950: rgb(3, 48, 31);
+
+  --punch-600: #e42121;
+
+  --mariner-600: #2585eb;
+
+  /* formulario de los valores del redondeo*/
+
+  /* Redondeo
+
+    rounded-sm: pequeño    
+    rounded: normal
+    rounded-md: mediano
+    rounded-lg: largo
+    rounded-xl: grande
+    rounded-2xl: grande X2
+    rounded-3xl: grande X3
+    rounded-full: entero
+  */
+
+  --rounded-sm: 0.125rem;
+  --rounded: 0.25rem;
+  --rounded-md: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-xl: 0.75rem;
+  --rounded-2xl: 1rem;
+  --rounded-3xl: 1.5rem;
+  --rounded-full: 9999px;
+}
+
+.products-title {
+  background: linear-gradient(
+    90deg,
+    var(--jade-700) 20%,
+    var(--jade-600) 50%,
+    var(--jade-700) 80%
+  );
+  color: var(--jade-50);
+}
+
+.products-title div {
+  display: flex;
+  padding-block: 2svh;
+  justify-content: center;
+  margin: 0 20%;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+main {
+  margin-block-start: 5svh;
+  margin-inline: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 3svh 0;
+}
+
+.products-message {
+  border: 0.5rem solid var(--jade-500);
+  border-radius: var(--rounded-lg);
+}
+
+.products-message h3 {
+  background-color: var(--jade-500);
+  color: var(--jade-950);
+  padding-block-end: 1svh;
+}
+
+.products-message span {
+  padding-inline-start: 0.7svw;
+  font-size: 1.2rem;
+}
+
+.form-content {
+  margin-block-start: 1svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2svh 0;
+}
+
+.form-content label {
+  border: 0.2rem solid var(--jade-950);
+}
+
+.form-content input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0.5svh 0.25svw;
+  font-size: 1.5rem;
+}
+
+.form-content input[type=submit]{
+    color: var(--jade-200);
+    background-color: var(--jade-800);
+    border-radius: var(--rounded-lg);
+    padding-block: 1svh;
+    cursor: pointer;
+    transition: color 0.5s,background-color 0.5s;
+}
+
+.form-content input[type=submit]:hover{
+  color: var(--jade-50);
+  background-color: var(--jade-700);
+}
+
+.form-content textarea {
+  border: 0.2rem solid var(--jade-950);
+  font-size: 1rem;
+  padding: 0.5svh 0.25svw;
+  resize: none;
+}
