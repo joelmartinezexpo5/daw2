@@ -1,3 +1,12 @@
+/* Estilos generales */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para la cabecera */
 header{
     display: flex;
     flex-direction: column;
@@ -5,17 +14,28 @@ header{
 
 .cabecera {
     background-image: url(./../img/img1.jpg);
-    align-items: center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 200px;
     color: white;
     width: 100%;
 }
 
-.cabecera > h1{
-    align-items: center;
+.cabecera > a > div {
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: cornflowerblue;
+    padding: 10px;
+    width: 200px;
+    display: flex;
     justify-content: center;
+}
+
+#enlace {
+    text-decoration: none;
     color: white;
 }
 
@@ -23,21 +43,105 @@ header{
     background-color:cornflowerblue;
 }
 
-.menu > ul > li{
+.menu > ul > li {
     display: inline-block;
     margin: 5px;
     padding: 5px;
-    color: yellow;
+    width: 100px;
+}
+
+#enlace-menu {
+    text-decoration: none;
+    color: gold;
     
 }
 
+/* Estilos del main */
 .pisos{
     display: flex;
     justify-content: space-around;
+    padding: 50px;
 }
 
+/* Estilos del footer */
 footer{
     display: flex;
     justify-content: space-around;
+    padding: 5px;
     background-color: cornflowerblue;
 }
+
+footer > div > h2 {
+    color: gold;
+    border-bottom: 1px solid gold;
+}
+
+.formulario > label {
+    display:inline-block;
+    width: 70px;
+}
+
+.siguenos > div > a {
+    padding: 15px;
+}
+
+.politicas{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.politicas a {
+    text-decoration: none;
+    color: gold;
+}
+
+/* Media queries para diseño responsive */
+
+/* Estilos para pantallas pequeñas (máximo 767px) */
+@media (max-width: 767px) {
+    .cabecera {
+        height: 150px;
+        text-align: center;
+    }
+
+    .cabecera > a > div {
+        width: 150px;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .menu > ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .menu > ul > li {
+        width: auto;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .pisos {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer > div > h2 {
+        text-align: center;
+    }
+
+    .politicas {
+        align-items: center;
+        text-align: center;
+    }
+}
+
