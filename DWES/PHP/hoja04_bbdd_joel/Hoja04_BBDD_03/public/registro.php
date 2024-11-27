@@ -23,9 +23,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $stmt->bindParam(':password', $contraseñaEncriptada, PDO::PARAM_STR);
             $stmt->execute();
 
-            $message = "El usuario ha sido registrado correctamente.";
+            $mensaje = "El usuario ha sido registrado correctamente.";
         } catch (PDOException $e) {
-                $message = "Error al registrar el usuario: " . $e->getMessage();
+                $mensaje = "Error al registrar el usuario: " . $e->getMessage();
         }
     }
 }
@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <button type="submit">Registrar</button>
     </form>
 
-    <p><?php echo htmlspecialchars($message); ?></p>
+    <p><?php echo htmlspecialchars($mensaje); ?></p>
 
 </body>
 
