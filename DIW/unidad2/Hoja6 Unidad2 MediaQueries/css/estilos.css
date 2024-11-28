@@ -96,7 +96,6 @@ footer > div > h2 {
     color: gold;
 }
 
-/* Media queries para diseño responsive */
 
 /* Estilos para pantallas pequeñas (máximo 767px) */
 @media (max-width: 767px) {

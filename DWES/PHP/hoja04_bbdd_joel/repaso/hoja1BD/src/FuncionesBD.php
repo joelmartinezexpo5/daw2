@@ -19,7 +19,7 @@ class FuncionesBD{
         $conexion = ConexionBD::getConnection();
         $jugadores = [];
 
-        $resultado = $conexion->prepare('SELECT nombre FROM jugadores WHERE nombre_equipo = :nombre_equipo');
+        $resultado = $conexion->prepare('SELECT codigo, nombre FROM jugadores WHERE nombre_equipo = :nombre_equipo');
         $resultado->bindParam(':nombre_equipo', $equipo);
         $resultado->execute();
 
@@ -28,6 +28,21 @@ class FuncionesBD{
         }
 
         return $jugadores;
+    }
+
+    public static function getPesos($equipo){
+        $conexion = ConexionBD::getConnection();
+        $pesos = [];
+
+        $resultado = $conexion->prepare('SELECT peso FROM jugadores WHERE nombre_equipo= :nombre_equipo');
+        $resultado->bindParam(':nombre_equipo', $equipo);
+        $resultado->execute();
+        
+        while($registro = $resultado->fetch()){
+            $pesos[] = $registro['peso'];
+        }
+
+        return $pesos;
     }
 }
 ?>
