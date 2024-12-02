@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/ConexionBD.php';
+require_once __DIR__ . '/../app/Classes/ConexionBD.php';
 
 use App\ConexionBD;
 
@@ -29,6 +29,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -59,5 +61,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <p><?php echo htmlspecialchars($mensaje); ?></p>
 
 </body>
-
 </html>
+
