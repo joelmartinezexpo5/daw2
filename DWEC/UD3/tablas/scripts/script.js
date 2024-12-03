@@ -1,55 +1,80 @@
-import { alumnos } from "./datos";
+import { alumnos } from "./datos.js";
 
-function crearVistaDetalles() {
-    const contentDiv = document.getElementById('content');
+// Elementos del DOM
+const contenido = document.getElementById("contenido");
+const btnTabla = document.getElementById("vista-tabla");
+const btnFichas = document.getElementById("vista-fichas");
 
-    const container = document.createElement('div');
-    container.className = 'detalles-container';
+// Función para mostrar la vista de tabla
+function mostrarTabla() {
+    contenido.innerHTML = ""; // Limpia el contenido
 
-    // Crear encabezados
-    const header = document.createElement('div');
-    header.className = 'detalle-row detalle-header';
-    ['Nombre', 'Curso', 'Teléfono', 'Email'].forEach(text => {
-        const headerDiv = document.createElement('div');
-        headerDiv.textContent = text;
-        header.appendChild(headerDiv);
-    });
-    container.appendChild(header);
+    const table = document.createElement("div");
+    table.classList.add("table");
 
-    // Crear filas dinámicamente para cada alumno
-    alumnos.forEach(alumno => {
-        const row = document.createElement('div');
-        row.className = 'detalle-row';
-        row.addEventListener('click', () => seleccionarElemento(row));
-
-        const nombreDiv = document.createElement('div');
-        nombreDiv.className = 'truncated';
-        nombreDiv.textContent = alumno.nombre;
-
-        const cursoDiv = document.createElement('div');
-        cursoDiv.className = 'truncated';
-        cursoDiv.textContent = alumno.curso;
-
-        const telefonoDiv = document.createElement('div');
-        telefonoDiv.textContent = alumno.telefono;
-
-        const emailDiv = document.createElement('div');
-        emailDiv.className = 'truncated';
-        emailDiv.textContent = alumno.email;
-
-        row.appendChild(nombreDiv);
-        row.appendChild(cursoDiv);
-        row.appendChild(telefonoDiv);
-        row.appendChild(emailDiv);
-
-        container.appendChild(row);
+    // Crear encabezado
+    ["Nombre", "Curso", "Teléfono", "Email"].forEach((header) => {
+        const cell = document.createElement("div");
+        cell.classList.add("cell", "cell-header");
+        cell.textContent = header;
+        table.appendChild(cell);
     });
 
-    contentDiv.appendChild(container);
+    // Crear filas
+    alumnos.forEach((alumno) => {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        row.innerHTML = `
+            <div class="cell">${alumno.nombre}</div>
+            <div class="cell">${alumno.curso}</div>
+            <div class="cell">${alumno.telefono}</div>
+            <div class="cell">${alumno.email}</div>
+        `;
+
+        row.addEventListener("click", () => seleccionarFila(row));
+
+        table.appendChild(row);
+    });
+
+    contenido.appendChild(table);
 }
 
-document.getElementById('btnDetalles').addEventListener('click', crearVistaDetalles);
-document.getElementById('btnFichas').addEventListener('click', crearVistaFichas);
+// Función para mostrar la vista de fichas
+function mostrarFichas() {
+    contenido.innerHTML = ""; // Limpia el contenido
+    alumnos.forEach((alumno) => {
+        const ficha = document.createElement("div");
+        ficha.classList.add("ficha");
+        ficha.innerHTML = `
+            <h3>${alumno.nombre}</h3>
+            <p><strong>DNI:</strong> ${alumno.dni}</p>
+            <p><strong>Curso:</strong> ${alumno.curso}</p>
+            <p><strong>Asignaturas:</strong> ${alumno.asignaturas.join(", ")}</p>
+            <p><strong>Teléfono:</strong> ${alumno.telefono}</p>
+            <p><strong>Email:</strong> ${alumno.email}</p>
+        `;
 
-// Inicializar con la vista de detalles
-crearVistaDetalles();
+        ficha.addEventListener("click", () => seleccionarFicha(ficha));
+
+        contenido.appendChild(ficha);
+    });
+}
+
+// Función para resaltar una fila seleccionada
+function seleccionarFila(row) {
+    document.querySelectorAll(".row.selected").forEach((r) => r.classList.remove("selected"));
+    row.classList.add("selected");
+}
+
+// Función para resaltar una ficha seleccionada
+function seleccionarFicha(ficha) {
+    document.querySelectorAll(".ficha.seleccionada").forEach((f) => f.classList.remove("seleccionada"));
+    ficha.classList.add("seleccionada");
+}
+
+// Eventos de los botones
+btnTabla.addEventListener("click", mostrarTabla);
+btnFichas.addEventListener("click", mostrarFichas);
+
+// Mostrar vista inicial
+mostrarTabla();

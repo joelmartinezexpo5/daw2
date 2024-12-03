@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.cabecera {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: #ccc;
+}
+
+.table-header, .table-row {
+    display: contents;
+}
+
+.cell {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.cell-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.row:hover {
+    background-color: #f0f0f0;
+}
+
+.row.selected {
+    background-color: #d0f0d0;
+}
+
+.ficha {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.ficha:hover {
+    background-color: #f0f0f0;
+}
+
+.ficha.seleccionada {
+    background-color: #d0f0d0;
+}
