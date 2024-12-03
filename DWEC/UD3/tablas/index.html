@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="./scripts/script.js"></script>
-    <title>Document</title>
+    <title>Vista de Alumnos</title>
+    <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
-    <header>
-        <button id="btnDetalles">Vista detalles</button>
-        <button id="btnFichas">Vista Fichas</button>
-    </header>
-
-    <div id="contenido" class="container">
-
+    <div class="cabecera">
+        <button id="vista-tabla">Vista Detalles</button>
+        <button id="vista-fichas">Vista Fichas</button>
     </div>
+    <div class="contenedor" id="contenido"></div>
+    <!-- Usa type="module" para habilitar import/export -->
+    <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
