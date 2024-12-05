@@ -1,0 +1,335 @@
+/*Reseteo básico de márgenes, paddings y box-sizing para
+dar uniformidad*/
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*Estilo general para la fuente del documento y definición
+de variables de color*/
+html {
+    font-family: system-ui, sans-serif;
+    font-size: .9em;
+
+    /*Definición de una paleta de colores en tonos verdes*/
+    /* https://uicolors.app/create */
+    --green-50: #e7ffe4;
+    --green-100: #c9ffc4;
+    --green-200: #98ff90;
+    --green-300: #56ff50;
+    --green-400: #00ff00;
+    --green-500: #00e606;
+    --green-600: #00b809;
+    --green-700: #008b07;
+    --green-800: #076d0d;
+    --green-900: #0b5c11;
+    --green-950: #003406;
+}
+
+/* Estilos de la cabecera*/
+header.cabecera {
+    background-color: var(--green-600);
+    height: 50px;
+}
+
+/*Configuración de diseño flexible para distribuir elementos*/
+header.cabecera>div {
+    margin: 0 15%;
+    background-color: var(--green-500);
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 0 0 5px 5px;
+    align-items: end;
+}
+
+/*Logo del menú de navegación: alineación y tamaño*/
+#logoNav {
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/*Tamaño proporcional a su elemento contenedor
+con la unidad em, se hace proporcional al elemento
+que lo contiene que es el div del header*/
+#logoNav img {
+    width: 2.5em;
+    margin-right: 0.5em;
+}
+
+/*Estilos para los enlaces del menú de navegación*/
+nav a {
+    text-decoration: none;
+    color: currentColor; /*Para aplicar a un elemento el colo de texto actualmente
+    definido en la propiedad color de su estilo*/
+}
+
+
+/*Estilos para la lista del menú de navegación*/
+nav ul {
+    list-style-type: none; /*Sin viñetas, con el type se especifica solo el marcador*/
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+nav ul li {
+    /*display: inline;*/
+    padding: 5px;
+}
+
+/*Estilo hover para los items de navegación*/
+nav ul li:hover {
+    outline-style: solid;
+    outline-width: 1px;
+    background-color: var(--green-400);
+    border-radius: 5px;
+    color: var(--green-600);
+}
+
+/* Contenedor principal con diseño flexible, aquí están la section 
+(dentro tiene más section) y el aside*/
+main {
+    margin: 10px 15%;
+    display: flex;
+    flex-direction: row; /*Los hijos se alinean en fila*/
+}
+
+/*Aquí están las section donde hay artículos*/
+#contenidoPrincipal {
+    display: flex;
+    flex-wrap: wrap;
+    /*Permite que los elementos pasen a la siguiente línea*/
+}
+
+/* Menú lateral: diseño y estilo visual */
+aside {
+    background-color: var(--green-50);
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* Borde sutil */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    align-self: flex-start;
+    margin-left: 5px;
+}
+
+/*Estilo para las listas del aside*/
+aside ul {
+    list-style-type: none;
+    line-height: 2em; /* Mejora la legibilidad */
+}
+
+aside h3 {
+    text-decoration: underline; /*Destaca el encabezado, lo subraya*/
+}
+
+aside a {
+    text-decoration: none; /*Quita la decoración de los enlaces*/
+    color: currentColor;
+}
+
+aside a:hover {
+    text-decoration: underline overline var(--green-600);
+}
+
+#menuIcono {
+    display: none;
+}
+
+/* Formato contenido principal */
+#contenidoPrincipal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* es para grid pero lo hace bien */
+    /* Espacio entre artículos */
+}
+
+#contenidoPrincipal article {
+    flex: 0 0 200px; 
+    /*Las tres propiedades de flex, flex-grow, flex-shrink y flex-basis*/
+    /*flex-grow: 0; el artículo no crecerá para llenar el espacio disponible
+    Si hay espacio extra en el contenedor, el artículo no se expandirá para aprovecharlo*/
+    /*flex-shrink: 0; el artículo no se reducirá si hay espacio insuficiente. 
+    El artículo no se comprimirá más allá del tamaño definido*/
+    /*flex-basis: tamaño base del artículo, 200px*/
+    /*Ancho fijo*/
+    /* margin: 0 10px 10px 0; */
+    /* Ancho fijo de 200px */
+    background-color: #f8f8f8;
+    /* Fondo claro para el artículo */
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* Borde sutil */
+    border-radius: 5px;
+}
+
+#contenidoPrincipal article h2 {
+    margin-top: 0;
+}
+
+#contenidoPrincipal article p {
+    text-align: justify;
+}
+
+
+/* Pie de página: diseño flexible y estilo */
+footer {
+    margin: 0 15%;
+    background-color: var(--green-600);
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+}
+
+footer section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    flex-basis: 45%; /*Toma el 45% del espacio disponible*/
+    background-color: var(--green-500);
+}
+
+footer header h2 {
+    margin: 0 0 10px 0;
+}
+
+footer address {
+    font-style: normal;
+}
+
+.alumno-nombre,
+.alumno-telefono {
+    font-weight: bold;
+}
+
+
+/* Media query para pantallas intermedias */
+@media (max-width: 800px) {
+    #contenidoPrincipal {
+        flex-direction: column;
+    }
+
+    #menuNav {
+        display: block;
+    }
+
+    /* Ajustes para main, header, etc. */
+    header.cabecera>div {
+        margin: 0 5%;
+    }
+
+    main {
+        margin: 10px 5%;
+    }
+
+    aside {
+        width: 100%;
+        /*        margin-left: 5px;
+        margin-top: 0px; */
+    }
+
+    footer {
+        margin: 10px 5%;
+    }
+
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 500px) {
+    #menuNav {
+        display: none;
+
+        /*         background-color: red; */
+        /* flex-direction: column; */
+        position: relative;
+    }
+
+    #menuNav ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        margin: 0;
+        top: 50px;
+        left: 0;
+
+        width: 98vw;
+        text-align: center;
+        background-color: var(--green-500);
+    }
+
+    #menuNav li {
+        border: 1px solid black;
+        padding: 20px 0;
+    }
+
+    #menuIcono {
+        display: block;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    aside {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    /* Otros ajustes */
+    /*    footer{
+        margin: 10px 5%;
+    } */
+
+    footer div {
+        /* margin: 10px 0%; */
+        width: 30%;
+    }
+
+}
+
+
+/* Estilos del submenú */
+/* Estilo general de las opciones del menú principal */
+nav ul li {
+    display: inline-block;
+    position: relative; /* Necesario para posicionar el submenú */
+    padding: 5px 15px; /* Aumenta el espacio dentro de cada opción */
+    margin-right: 10px; /* Espacio entre las opciones del menú principal */
+}
+
+/* Estilo del submenú */
+nav ul li .submenu {
+    display: none; /* El submenú está oculto por defecto */
+    position: absolute;
+    top: 100%; /* El submenú se coloca justo debajo del li */
+    left: 0;
+    background-color: var(--green-500); /* Fondo del submenú */
+    padding: 0;
+    list-style: none;
+    border-radius: 5px;
+    margin: 0; /* Eliminar márgenes */
+    width: 150px; /* Ajuste de ancho */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    z-index: 10; /* Asegura que el submenú se superponga */
+}
+
+/* Mostrar submenú al pasar el ratón */
+nav ul li:hover .submenu {
+    display: block;
+}
+
+/* Estilo de los elementos dentro del submenú */
+nav .submenu li {
+    padding: 10px 15px; /* Espaciado de los elementos del submenú */
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre los elementos */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+}
