@@ -1,0 +1,273 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 150px;
+    height: 100px;
+}
+
+.menu{
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.menu ul li {
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px; 
+    margin-right: 10px;
+}
+
+.menu > ul > li > a{
+    text-decoration: none;
+    color: rgb(46, 58, 128);
+}
+
+.menu > ul > li{
+    display: inline-block;
+    justify-content: center;
+    margin: 0px 10px;
+    color: rgb(46, 58, 128);
+}
+
+.submenu{
+    display: none;
+    position: absolute;
+    top: 100%; 
+    background-color: black;
+    left: 0;
+    padding: 0;
+    list-style: none;
+    border-radius: 5px;
+    margin: 0; 
+    width: 150px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    z-index: 10; 
+}
+
+.submenu > li > a{
+    text-decoration: none;
+    color: white;
+}
+
+.submenu > li:hover {
+    border-bottom: 1px solid red;
+}
+
+.menu > ul > li:hover .submenu{
+    display: block;
+}
+
+.inicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.promociones{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+    margin: 0px 20px;
+    gap: 10px;
+}
+
+.promocion1{
+    background: url(./../img/friday.jpg);
+    width: 40%;
+    background-size: cover;
+    background-repeat: round;
+}
+
+.promocion1 > h2{
+    width: 200px;
+    background-color: white;
+    color: rgb(46, 58, 128);
+    margin: 10px 0px 0px 10px;
+}
+
+.promocion1 > ul {
+    list-style-type: none;
+}
+
+.promocion1 > ul > li{
+    background-color: white;
+    color: rgb(46, 58, 128);
+    width: 100px;
+    margin: 10px 0px 0px 10px;
+}
+
+.promocion2{
+    background: url(./../img/promo1.jpg);
+    width: 40%;
+    background-size:cover;
+    background-repeat: round;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.promocion2 > h2 {
+    width: 250px;
+    background-color: white;
+    color: rgb(46, 58, 128);
+    margin: 10px 10px 0px 0px;
+}
+
+.promocion2 > p{
+    width: 350px;
+    background-color: white;
+    color: rgb(46, 58, 128);
+    margin: 10px 10px 0px 0px;
+}
+
+.promocion2 > h3{
+    width: 250px;
+    background-color: white;
+    color: rgb(46, 58, 128);
+    margin: 10px 10px 0px 0px;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+aside{
+    display: block;
+    background-color: #f9f9f9;
+    color: rgb(46, 58, 128);
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-right: 10px;
+    height: 100px;
+    width: 300px;
+}
+
+.zapatillas{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.zapatilla{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    border: 1px solid #ddd;
+}
+
+.zapatilla > p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.zapatilla:hover{
+    background-color: rgb(194, 42, 0);
+    color: white;
+}
+
+.fotozapa{
+    width: 200px;
+    height: 300px;
+    padding: 5px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    background-color: rgb(68, 66, 66);
+    color: white;
+}
+
+footer > div{
+    width: 25%;
+    margin: 5px 20px;
+}
+
+footer > div > h2{
+    margin: 10px 0px;
+}
+
+.nosotros > div{
+    display: flex;
+}
+
+.pedidos > ul {
+    list-style-type: none;
+}
+
+.atencion > ul {
+    list-style-type: none;
+}
+
+footer > div > ul > li >a{
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilos para pantallas pequeñas (máximo 767px) */
+@media (max-width: 767px) {
+    .header {
+        height: 150px;
+        text-align: center;
+    }
+
+    .header > a > div {
+        width: 150px;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .menu > ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .menu > ul > li {
+        width: auto;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .zapatillas {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer > div > h2 {
+        text-align: center;
+    }
+
+    .atencion {
+        align-items: center;
+        text-align: center;
+    }
+}
