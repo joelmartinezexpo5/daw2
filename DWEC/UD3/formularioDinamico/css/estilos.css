@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#formulario {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.contenedor-tablas {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.columna {
+    width: 30%;
+}
+
+.tabla {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    overflow-y: auto;
+}
+
+.tabla div {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.tabla div.selected {
+    background-color: #ddd;
+}
+
+#acciones {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#resultado {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
+}
