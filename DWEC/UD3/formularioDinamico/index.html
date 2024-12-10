@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="formulario">
+        <h1>Formulario Dinámico</h1>
+        <div>
+            <label for="ciclo">Ciclo: </label>
+            <select id="ciclo">
+                <option value="Todos">Todos</option>
+                <option value="DAM">DAM</option>
+                <option value="DAW">DAW</option>
+                <option value="ASIR">ASIR</option>
+            </select>
+        </div>
+        <div class="contenedor-tablas">
+            <div class="columna" id="columna-izquierda">
+                <h3>Alumnos disponibles</h3>
+                <div class="tabla" id="tabla-izquierda"></div>
+            </div>
+            <div class="columna" id="columna-central">
+                <button id="mover-derecha">❯</button>
+                <button id="mover-izquierda">❮</button>
+            </div>
+            <div class="columna" id="columna-derecha">
+                <h3>Alumnos seleccionados</h3>
+                <div class="tabla" id="tabla-derecha"></div>
+            </div>
+        </div>
+        <div id="acciones">
+            <button id="enviar">Enviar</button>
+            <div id="resultado"></div>
+        </div>
+    </div>
+    <script src="./scripts/app.js"></script>
+</body>
+</html>
