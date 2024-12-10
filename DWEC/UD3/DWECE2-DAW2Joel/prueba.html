@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+
+    <title>EXA2 - Gestión de tareas</title>
+</head>
+
+<body>
+    <main>
+
+        <div id="app"></div>
+        Barra superior
+        <div class="barra">
+            <input placeholder="Filtro..." />
+            <button>Nueva</button>
+        </div>
+
+        <!-- Contenido -->
+        <div class="contenido">
+            <!-- Tabla -->
+            <div class="columna">
+                <h3>Lista de tareas</h3>
+                <div class="tabla">
+                    <div class="tabla-cabecera">
+                        <div>Título</div>
+                        <div>Prioridad</div>
+                        <div>Límite</div>
+                        <div></div>
+                    </div>
+                    <div class="tabla-cuerpo">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario -->
+            <div class="columna">
+                <h3>Crear/Editar tarea</h3>
+                <form name="frmTarea" data-componente="propiedades">
+					<!-- Identificador -->
+                    <input  type="hidden" name="tareaId" value="${this.tareaId}"/>
+
+                    <label for="titulo">Título</label>
+                    <input type="text" minlength="5" required/>
+                    <span></span>
+
+                    <label for="prioridad">Prioridad</label>
+                    <select required>
+                        
+                    </select>
+                    <span></span>
+
+                    <label for="fechaRegistro">Fecha de Registro</label>
+                    <input  required/>
+                    <span></span>
+
+                    <label for="fechaLimite">Fecha Límite</label>
+                    <input type="date" id="fechaLimite" required />
+                    <span></span>
+
+                    <label for="descripcion">Descripción</label>
+                    <textarea></textarea>
+
+                    <label for="responsable">Responsable</label>
+                    <!-- No pilla acentos -->
+                    <input minlength="3" pattern="[a-zA-Z\s]+" required/>
+                    <span></span>
+
+                    <label for="completada">Completada <input></label>
+
+                    <div class="acciones">
+                        <button type="submit">Guardar</button>
+                        <button type="reset">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script type="module" src="./scripts/ListaTareas.js"></script>
+    </main>
+</body>
+
+</html>
