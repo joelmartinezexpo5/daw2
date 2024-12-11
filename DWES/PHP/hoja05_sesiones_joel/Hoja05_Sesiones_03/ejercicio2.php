@@ -16,10 +16,10 @@ if (!isset($_SESSION['visitas'])) {
 }
 
 // Almacenar el instante de la visita actual
-$currentVisit = date('Y-m-d H:i:s'); // Formato de fecha y hora actual
-$_SESSION['visitas'][] = $currentVisit; // Añadir el instante a la lista de visitas
+$ultimaVisita = date('d-m-Y H:i:s'); // Formato de fecha y hora actual
+$_SESSION['visitas'][] = $ultimaVisita; // Añadir el instante a la lista de visitas
 
 // Mostrar el instante de la visita actual
-echo "Tu última visita fue: " . $currentVisit;
+echo "Tu última visita fue: " . $ultimaVisita;
 ?>
 
