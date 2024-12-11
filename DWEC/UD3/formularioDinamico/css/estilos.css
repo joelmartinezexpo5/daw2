@@ -51,3 +51,8 @@ button {
     padding: 10px;
     background: #f9f9f9;
 }
+
+.seleccionada {
+    background-color: #cde8ff;
+    cursor: pointer;
+}
