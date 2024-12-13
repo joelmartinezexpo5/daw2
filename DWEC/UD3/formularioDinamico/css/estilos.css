@@ -1,58 +1,165 @@
+/* General */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 #formulario {
     max-width: 800px;
-    margin: auto;
-    text-align: center;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Títulos */
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Select */
+select {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Contenedor de tablas */
 .contenedor-tablas {
     display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
+    justify-content: space-between; /* Espacio entre las columnas */
+    align-items: center; /* Centra verticalmente las columnas */
+    gap: 20px; /* Espacio entre las columnas */
 }
 
 .columna {
-    width: 30%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+#columna-central {
+    flex: 0 0 auto; /* No se redimensiona */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Botones centrales */
+#columna-central button {
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#columna-central button:hover {
+    background-color: #0056b3;
+}
+
+/* Tablas */
 .tabla {
-    border: 1px solid #ccc;
-    padding: 10px;
+    width: 100%;
+    max-width: 300px;
     min-height: 200px;
-    overflow-y: auto;
-}
-
-.tabla div {
-    padding: 5px;
-    cursor: pointer;
-}
-
-.tabla div.selected {
-    background-color: #ddd;
-}
-
-#acciones {
-    margin-top: 20px;
-}
-
-button {
-    margin: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-#resultado {
-    margin-top: 10px;
     border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fdfdfd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Permite desplazamiento si el contenido excede */
     padding: 10px;
-    background: #f9f9f9;
 }
 
-.seleccionada {
-    background-color: #cde8ff;
+.tabla .fila {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s;
+}
+
+.tabla .fila:last-child {
+    border-bottom: none;
+}
+
+.tabla .fila:hover {
+    background-color: #f5f5f5;
     cursor: pointer;
+}
+
+/* Estilo de la selección */
+.tabla .fila.seleccionada {
+    background-color: #d1ecf1;
+    border-left: 4px solid #007bff;
+}
+
+/* Botones de acción */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mover{
+    margin: 0px 3px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:active {
+    background-color: #1e7e34;
+}
+
+#enviar {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #17a2b8;
+}
+
+#enviar:hover {
+    background-color: #117a8b;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
+    color: #495057;
 }
