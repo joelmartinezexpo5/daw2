@@ -1,0 +1,90 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabecera */
+.header {
+    background-color: #002244;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+/* Menú de navegación */
+.navegacion ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    background-color: #004488;
+    margin: 0;
+}
+
+.navegacion ul li {
+    margin: 0 1em;
+}
+
+.navegacion ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Contenido principal */
+main {
+    padding: 2em;
+}
+
+.seccion-atributos .atributo {
+    margin-bottom: 1.5em;
+}
+
+.seccion-atributos img, .seccion-extra img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.seccion-extra {
+    margin-top: 2em;
+    text-align: center;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #002244;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+.contacto label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.contacto input, .contacto textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contacto button {
+    background-color: #004488;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contacto button:hover {
+    background-color: #003366;
+}
