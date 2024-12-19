@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de ejemplo para demostrar accesibilidad web nivel AA">
+    <title>Accesibilidad Web</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+    <!-- Cabecera -->
+    <header class="header">
+        <h1>Accesibilidad Web</h1>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav class="navegacion">
+        <ul>
+            <li><a href="">Enlace 1</a></li>
+            <li><a href="">Enlace 2</a></li>
+            <li><a href="">Enlace 3</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Primera sección -->
+        <section class="seccion-atributos">
+            <h2>Características Principales</h2>
+            <div class="atributo">
+                <h3>Título 1</h3>
+                <img src="imagen1.jpg" alt="Descripción de la imagen 1">
+                <p>Texto descriptivo para el atributo 1.</p>
+            </div>
+            <div class="atributo">
+                <h3>Título 2</h3>
+                <img src="imagen2.jpg" alt="Descripción de la imagen 2">
+                <p>Texto descriptivo para el atributo 2.</p>
+            </div>
+            <div class="atributo">
+                <h3>Título 3</h3>
+                <img src="imagen3.jpg" alt="Descripción de la imagen 3">
+                <p>Texto descriptivo para el atributo 3.</p>
+            </div>
+            <div class="atributo">
+                <h3>Título 4</h3>
+                <img src="imagen4.jpg" alt="Descripción de la imagen 4">
+                <p>Texto descriptivo para el atributo 4.</p>
+            </div>
+        </section>
+
+        <!-- Segunda sección -->
+        <section class="seccion-extra">
+            <h2>Sección Adicional</h2>
+            <img src="imagen_extra.jpg" alt="Descripción de la imagen adicional">
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <form class="contacto" action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </footer>
+</body>
+</html>
