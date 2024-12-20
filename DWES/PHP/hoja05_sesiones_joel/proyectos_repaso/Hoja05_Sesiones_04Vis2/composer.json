@@ -1,0 +1,21 @@
+{
+    "name": "usuario/hoja05_sesiones_04vis2",
+    "description": "Ejercicio de práctica",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\": "App/"
+        },
+        "files": ["helper.php"]
+    },
+    "authors": [
+        {
+            "name": "Rodroq",
+            "email": "rodrigoruizdecos@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
