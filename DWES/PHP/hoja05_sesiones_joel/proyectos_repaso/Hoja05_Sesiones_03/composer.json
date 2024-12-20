@@ -1,0 +1,19 @@
+{
+    "name": "usuario/hoja05_sesiones_03",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ejercicio03\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "nin",
+            "email": "nestor.sernavaquero@iesmiguelherrero.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
