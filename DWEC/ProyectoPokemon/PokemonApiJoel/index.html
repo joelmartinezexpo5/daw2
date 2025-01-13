@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Equipo Pokémon</title>
+  <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Pokémon Team Builder</h1>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="container">
+      <div id="equipo">
+        <h2>Tu Equipo</h2>
+        <div class="cuadros">
+          <div class="cuadro" data-index="0">Seleccionar</div>
+          <div class="cuadro" data-index="1">Seleccionar</div>
+          <div class="cuadro" data-index="2">Seleccionar</div>
+          <div class="cuadro" data-index="3">Seleccionar</div>
+          <div class="cuadro" data-index="4">Seleccionar</div>
+          <div class="cuadro" data-index="5">Seleccionar</div>
+        </div>
+      </div>
+      <hr>
+      <form action="">
+        <button>Equipo Aleatorio</button>
+        <input type="radio">
+        <label for="">Humano</label>
+        <input type="radio">
+        <label for="">Maquina</label>
+        <button>Guardar</button>
+      </form>
+    </div>
+
+    <!-- Seleccionar Pokémon -->
+    <div id="pokedex" class="hidden">
+      <h3>Selecciona un Pokémon</h3>
+      <div id="listaPokemon" class="lista-pokemon"></div>
+      <button id="cerrarPokedex">Cerrar</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Desarrollado por  - Basado en PokéAPI</p>
+  </footer>
+
+  <script src="./scripts/equipo.js"></script>
+</body>
+</html>
