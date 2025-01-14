@@ -1,0 +1,12 @@
+.animacion_parpadeo{
+    animation-name: texto_parpadeo;
+    animation-duration: 0.00001s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite ;
+}
+
+@keyframes texto_parpadeo {
+    0%{color: red;}
+    50%{color: purple;}
+    100%{color: yellow;}
+}
