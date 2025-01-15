@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    @extends('layouts.plantilla')
+    @section('titulo', 'Zoologico')
+    @section('contenido')
     <h1 class="text-3xl font-bold underline">Pagina principal</h1>
+    @endsection
 </body>
 </html>
