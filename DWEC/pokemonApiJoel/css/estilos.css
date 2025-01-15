@@ -8,19 +8,44 @@ body {
     min-height: 100vh;
 }
 
-header,
-footer {
-    background-color: red;
+header{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    justify-content: center;
+    display: flex;
+    background: linear-gradient(90deg, #ff0000, #0000ff); /* Gradiente de colores */
+}
+header h1{
+    font-size: 3rem; 
+    justify-content: center;
+    display: flex;
     padding: 20px;
-    text-align: center;
+    margin: 20px 0; /* Espaciado */    
+    text-align: center; /* Centrado */
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra de texto para darle profundidad */
+    font-weight: bold;
+    
+}
+header a {
+
+    text-decoration: none;
+}
+header img{
+    width: 20%;
+    max-width: 140px;
+    transition: color 0.3s ease;
 }
 
-header h1,
-footer p {
-    margin: 0;
+#header-title:hover {
+    color: #ffeb3b;
 }
 
 main {
+    background: url(../images/fondo.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     flex: 1;
     padding: 20px;
     display: flex;
@@ -29,7 +54,7 @@ main {
 }
 
 section {
-    background: white;
+    background: rgba(255, 255, 255, 0.685);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);

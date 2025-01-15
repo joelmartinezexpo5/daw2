@@ -9,8 +9,6 @@ const cerrarVentanaEmergenteBtn = document.getElementById('cerrarVentanaEmergent
 const paginadorAnterior = document.getElementById('anterior');
 const paginadorSiguiente = document.getElementById('siguiente');
 const filtroGeneracion = document.getElementById('filtro-generacion');
-const generarAleatorioBtn = document.getElementById('generarAleatorio');
-const limpiarEquipoBtn = document.getElementById('limpiarEquipo');
 
 let equipoActual = new Equipo();
 let cuadroSeleccionado = null;
@@ -184,6 +182,7 @@ function mostrarEquiposGuardados() {
     document.getElementById(`editarBtn${index}`).addEventListener('click', () => editarEquipo(index));
     document.getElementById(`eliminarBtn${index}`).addEventListener('click', () => eliminarEquipo(index));
   });
+  console.log(equiposGuardados);
 }
 
 function editarEquipo(index) {
