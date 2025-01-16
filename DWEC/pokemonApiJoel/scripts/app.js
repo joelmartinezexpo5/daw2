@@ -1,4 +1,5 @@
 // app.js
+
 import { obtenerPokemonPorGeneracion, obtenerDetallesPokemon } from './api.js';
 import { Pokemon, Equipo } from './pokemon.js';
 
@@ -10,7 +11,7 @@ const paginadorAnterior = document.getElementById('anterior');
 const paginadorSiguiente = document.getElementById('siguiente');
 const filtroGeneracion = document.getElementById('filtro-generacion');
 
-let equipoActual = new Equipo();
+let equipoActual = new Equipo(Date.now());  // Usamos el timestamp como ID único para el equipo
 let cuadroSeleccionado = null;
 let paginaActual = 1;
 let totalPokemons = 0;
@@ -43,7 +44,7 @@ async function cargarPokemon(pagina) {
 
     const tarjeta = document.createElement('div');
     tarjeta.classList.add('tarjeta-pokemon');
-    tarjeta.innerHTML = `
+    tarjeta.innerHTML = ` 
       <img src="${detalles.sprites.front_default}" alt="${detalles.name}">
       <h4>${detalles.name}</h4>
     `;
@@ -65,10 +66,14 @@ function seleccionarPokemon(pokemon) {
 
   // Crear un objeto de Pokémon con todos los detalles (nombre, sprite y URL)
   const pokemonDetalle = {
+    id: pokemon.id,  // Asegúrate de que estás usando el ID correcto
     nombre: pokemon.name,
     sprite: pokemon.sprites.front_default,
     url: pokemon.url
   };
+
+  // Actualiza el Pokémon en el equipo actual en el cuadro correspondiente
+  equipoActual.pokemon[cuadroSeleccionado] = pokemonDetalle;  // Reemplazamos el Pokémon en el equipo
 
   // Mostrar la imagen y el nombre del Pokémon en el cuadro seleccionado
   cuadro.innerHTML = `
@@ -76,12 +81,10 @@ function seleccionarPokemon(pokemon) {
     <span>${pokemonDetalle.nombre}</span>
   `;
 
-  // Agregar el Pokémon al equipo
-  equipoActual.agregarPokemon(pokemonDetalle);
-  
   // Ocultar la ventana emergente
   ventanaEmergente.classList.add('hidden');
 }
+
 
 function mostrarVentanaEmergente(index) {
   cuadroSeleccionado = index;
@@ -90,18 +93,15 @@ function mostrarVentanaEmergente(index) {
   ventanaEmergente.classList.remove('hidden');
 }
 
-paginadorAnterior.addEventListener('click', () => cargarPokemon(--paginaActual));
-paginadorSiguiente.addEventListener('click', () => cargarPokemon(++paginaActual));
-
 async function generarEquipoAleatorio() {
   const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=898');
   const datos = (await respuesta.json()).results.sort(() => 0.5 - Math.random()).slice(0, 6);
 
-  equipoActual = new Equipo(); // Reiniciar el equipo actual
+  equipoActual = new Equipo(Date.now()); // Reiniciar el equipo con un nuevo ID único
 
   datos.forEach(async (pokemon, index) => {
     const detalles = await obtenerDetallesPokemon(pokemon.url);
-    const pokemonInstancia = new Pokemon(detalles.name, detalles.sprites.front_default, pokemon.url);
+    const pokemonInstancia = new Pokemon(detalles.id, detalles.name, detalles.sprites.front_default, pokemon.url);
 
     // Mostrar Pokémon en los cuadros
     cuadros[index].innerHTML = `
@@ -116,7 +116,7 @@ async function generarEquipoAleatorio() {
 
 function limpiarEquipo() {
   cuadros.forEach(c => (c.innerHTML = 'Seleccionar'));
-  equipoActual = new Equipo();
+  equipoActual = new Equipo(Date.now()); // Crear un nuevo equipo con ID único
 }
 
 function guardarEquipo() {
@@ -132,10 +132,12 @@ function guardarEquipo() {
     return;
   }
 
-  // Guardamos los detalles completos de cada Pokémon (nombre, sprite y URL)
+  // Guardamos los detalles completos de cada Pokémon (nombre, sprite y URL) junto con el ID del equipo
   const equipoParaGuardar = {
+    id: equipoActual.id,  // Guardamos el ID único del equipo
     nombre: nombreEquipo,
     pokemons: equipoActual.pokemon.map(pokemon => ({
+      id: pokemon.id,  // Guardamos el ID del Pokémon
       nombre: pokemon.nombre,
       sprite: pokemon.sprite,
       url: pokemon.url
@@ -172,22 +174,22 @@ function mostrarEquiposGuardados() {
           <img src="${pokemon.sprite}" alt="${pokemon.nombre}" title="${pokemon.nombre}">
         `).join('')}
       </div>
-      <button id="editarBtn${index}">Editar</button>
-      <button id="eliminarBtn${index}">Eliminar</button>
+      <button id="editarBtn${equipo.id}">Editar</button>
+      <button id="eliminarBtn${equipo.id}">Eliminar</button>
     `;
     
     listaEquipos.appendChild(item);
 
     // Añadir los eventos para los botones de editar y eliminar
-    document.getElementById(`editarBtn${index}`).addEventListener('click', () => editarEquipo(index));
-    document.getElementById(`eliminarBtn${index}`).addEventListener('click', () => eliminarEquipo(index));
+    document.getElementById(`editarBtn${equipo.id}`).addEventListener('click', () => editarEquipo(equipo.id));
+    document.getElementById(`eliminarBtn${equipo.id}`).addEventListener('click', () => eliminarEquipo(equipo.id));
   });
   console.log(equiposGuardados);
 }
 
-function editarEquipo(index) {
+function editarEquipo(id) {
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
-  const equipo = equiposGuardados[index];
+  const equipo = equiposGuardados.find(equipo => equipo.id === id);
 
   // Asignamos el nombre del equipo al input de nombre
   document.getElementById('nombreEquipo').value = equipo.nombre;
@@ -201,12 +203,12 @@ function editarEquipo(index) {
   });
 
   // Creamos un nuevo equipo con los Pokémon editados
-  equipoActual = new Equipo(equipo.nombre);
+  equipoActual = new Equipo(equipo.id, equipo.nombre);
   equipo.pokemons.forEach(pokemon => equipoActual.agregarPokemon(pokemon));
 
   // Actualizamos el botón para guardar cambios
   document.getElementById('guardarEquipo').textContent = 'Guardar cambios';
-  document.getElementById('guardarEquipo').onclick = () => guardarCambiosEquipo(index);
+  document.getElementById('guardarEquipo').onclick = () => guardarCambiosEquipo(id);
 }
 
 function guardarCambiosEquipo(index) {
@@ -223,7 +225,15 @@ function guardarCambiosEquipo(index) {
   }
 
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
-  equiposGuardados[index] = { nombre: nombreEquipo, pokemons: equipoActual.pokemon };
+
+  // Encontrar el equipo original por su id y actualizarlo
+  const equipoEditado = equiposGuardados.find(equipo => equipo.id === equiposGuardados[index].id);
+
+  // Actualizamos el equipo editado con el nuevo nombre y Pokémon
+  equipoEditado.nombre = nombreEquipo;
+  equipoEditado.pokemons = equipoActual.pokemon;
+
+  // Guardar el equipo editado en el localStorage
   localStorage.setItem('equiposPokemon', JSON.stringify(equiposGuardados));
 
   alert(`Equipo "${nombreEquipo}" actualizado con éxito.`);
@@ -235,8 +245,9 @@ function guardarCambiosEquipo(index) {
   document.getElementById('guardarEquipo').onclick = guardarEquipo;
 }
 
-function eliminarEquipo(index) {
+function eliminarEquipo(id) {
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
+  const index = equiposGuardados.findIndex(equipo => equipo.id === id);
   equiposGuardados.splice(index, 1); // Eliminar el equipo seleccionado
   localStorage.setItem('equiposPokemon', JSON.stringify(equiposGuardados));
 
