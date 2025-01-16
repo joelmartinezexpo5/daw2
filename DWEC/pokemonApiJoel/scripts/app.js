@@ -18,23 +18,28 @@ let totalPokemons = 0;
 const limitePorPagina = 20;
 
 async function cargarPokemon(pagina) {
-  const generacion = filtroGeneracion.value; // Obtener generación seleccionada
+  const generacion = filtroGeneracion.value; // Obtener la generación seleccionada
   listaPokemon.innerHTML = ''; // Limpiar la lista de Pokémon
-  let pokemonData = [];
 
+  let pokemonData = [];
+  
   if (generacion) {
-    // Obtener todos los Pokémon de la generación seleccionada
+    // Obtener los Pokémon de la generación seleccionada
     const datos = await obtenerPokemonPorGeneracion(generacion);
     pokemonData = datos.pokemon_species;
 
+    // Calcular el total de Pokémon de la generación
+    totalPokemons = pokemonData.length;
+
     // Dividir los Pokémon de la generación en páginas
     const inicio = (pagina - 1) * limitePorPagina;
-    const fin = inicio + limitePorPagina;
+    const fin = Math.min(inicio + limitePorPagina, totalPokemons);
     pokemonData = pokemonData.slice(inicio, fin);
   } else {
-    // Obtener Pokémon globales con paginación
+    // Obtener los Pokémon globales con paginación
     const datos = await obtenerPokemonPorGeneracion(null, pagina, limitePorPagina);
     pokemonData = datos.results;
+    totalPokemons = 898; // Total de Pokémon globales disponibles
   }
 
   // Mostrar tarjetas de Pokémon
@@ -53,13 +58,34 @@ async function cargarPokemon(pagina) {
   }
 
   // Configurar botones de paginación
-  const totalPokemons = generacion 
-    ? (await obtenerPokemonPorGeneracion(generacion)).pokemon_species.length
-    : 898; // Total de Pokémon globales disponibles
-
   paginadorAnterior.disabled = pagina === 1;
-  paginadorSiguiente.disabled = (pagina * limitePorPagina) >= totalPokemons;
+  paginadorSiguiente.disabled = pagina * limitePorPagina >= totalPokemons;
 }
+
+// Llamar a la función para cargar los Pokémon con la página 1 al cambiar la generación
+filtroGeneracion.addEventListener('change', () => {
+  paginaActual = 1; // Reiniciar a la primera página
+  cargarPokemon(paginaActual); // Cargar la página con los Pokémon correspondientes
+});
+
+// Eventos para los botones de paginación
+paginadorAnterior.addEventListener('click', () => {
+  if (paginaActual > 1) {
+    paginaActual--;
+    cargarPokemon(paginaActual); // Cargar la página anterior
+  }
+});
+
+paginadorSiguiente.addEventListener('click', () => {
+  if (paginaActual * limitePorPagina < totalPokemons) {
+    paginaActual++;
+    cargarPokemon(paginaActual); // Cargar la siguiente página
+  }
+});
+
+// Inicialización para la carga de Pokémon al cargar la página
+document.addEventListener('DOMContentLoaded', () => cargarPokemon(paginaActual));
+
 
 function seleccionarPokemon(pokemon) {
   const cuadro = cuadros[cuadroSeleccionado];
@@ -84,7 +110,6 @@ function seleccionarPokemon(pokemon) {
   // Ocultar la ventana emergente
   ventanaEmergente.classList.add('hidden');
 }
-
 
 function mostrarVentanaEmergente(index) {
   cuadroSeleccionado = index;
@@ -174,27 +199,40 @@ function mostrarEquiposGuardados() {
           <img src="${pokemon.sprite}" alt="${pokemon.nombre}" title="${pokemon.nombre}">
         `).join('')}
       </div>
-      <button id="editarBtn${equipo.id}">Editar</button>
-      <button id="eliminarBtn${equipo.id}">Eliminar</button>
+      <button id="editarBtn${index}">Editar</button>
+      <button id="eliminarBtn${index}">Eliminar</button>
     `;
     
     listaEquipos.appendChild(item);
 
     // Añadir los eventos para los botones de editar y eliminar
-    document.getElementById(`editarBtn${equipo.id}`).addEventListener('click', () => editarEquipo(equipo.id));
-    document.getElementById(`eliminarBtn${equipo.id}`).addEventListener('click', () => eliminarEquipo(equipo.id));
+    document.getElementById(`editarBtn${index}`).addEventListener('click', () => editarEquipo(index));
+    document.getElementById(`eliminarBtn${index}`).addEventListener('click', () => eliminarEquipo(index));
   });
   console.log(equiposGuardados);
 }
 
-function editarEquipo(id) {
+function editarEquipo(index) {
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
-  const equipo = equiposGuardados.find(equipo => equipo.id === id);
 
-  // Asignamos el nombre del equipo al input de nombre
+  // Verificar que el índice es válido
+  if (index < 0 || index >= equiposGuardados.length) {
+    console.error('Índice de equipo no válido:', index);
+    return;
+  }
+
+  const equipo = equiposGuardados[index];
+
+  // Verificar que el equipo es válido
+  if (!equipo || !equipo.nombre || !equipo.pokemons) {
+    console.error('Equipo no válido:', equipo);
+    return;
+  }
+
+  // Asignar el nombre del equipo al input de nombre
   document.getElementById('nombreEquipo').value = equipo.nombre;
 
-  // Restauramos las imágenes y nombres de los Pokémon
+  // Restaurar las imágenes y nombres de los Pokémon
   equipo.pokemons.forEach((pokemon, i) => {
     cuadros[i].innerHTML = `
       <img src="${pokemon.sprite}" alt="${pokemon.nombre}">
@@ -202,48 +240,53 @@ function editarEquipo(id) {
     `;
   });
 
-  // Creamos un nuevo equipo con los Pokémon editados
-  equipoActual = new Equipo(equipo.id, equipo.nombre);
+  // Asignar el equipo actual con los datos del equipo a editar
+  equipoActual = new Equipo(equipo.nombre);
   equipo.pokemons.forEach(pokemon => equipoActual.agregarPokemon(pokemon));
+  
+  // Mantener el ID original del equipo para editarlo correctamente
+  equipoActual.id = equipo.id;
 
-  // Actualizamos el botón para guardar cambios
+  // Cambiar el botón para guardar los cambios
   document.getElementById('guardarEquipo').textContent = 'Guardar cambios';
-  document.getElementById('guardarEquipo').onclick = () => guardarCambiosEquipo(id);
+
+  // Al guardar, actualizar el equipo en su índice correspondiente
+  document.getElementById('guardarEquipo').onclick = () => {
+    guardarCambiosEquipo(index);
+  };
+}
+
+function reiniciarFormulario() {
+  equipoActual = null;
+  document.getElementById('nombreEquipo').value = '';
+  cuadros.forEach(cuadro => (cuadro.innerHTML = ''));
+  document.getElementById('guardarEquipo').textContent = 'Crear equipo';
+  document.getElementById('guardarEquipo').onclick = guardarEquipo;
 }
 
 function guardarCambiosEquipo(index) {
-  const nombreEquipo = document.getElementById('nombreEquipo').value.trim();
-
-  if (!nombreEquipo) {
-    alert('Por favor, asigna un nombre al equipo antes de guardarlo.');
-    return;
-  }
-
-  if (!equipoActual.esValido()) {
-    alert('Tu equipo debe tener 6 Pokémon antes de guardarlo.');
-    return;
-  }
-
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
 
-  // Encontrar el equipo original por su id y actualizarlo
-  const equipoEditado = equiposGuardados.find(equipo => equipo.id === equiposGuardados[index].id);
+  // Actualizar el equipo en su índice correspondiente
+  equiposGuardados[index] = {
+    id: equipoActual.id, // Mantener el ID del equipo
+    nombre: document.getElementById('nombreEquipo').value, // Actualizar el nombre
+    pokemons: equipoActual.pokemon, // Actualizar los Pokémon
+  };
 
-  // Actualizamos el equipo editado con el nuevo nombre y Pokémon
-  equipoEditado.nombre = nombreEquipo;
-  equipoEditado.pokemons = equipoActual.pokemon;
-
-  // Guardar el equipo editado en el localStorage
+  // Guardar los cambios en el localStorage
   localStorage.setItem('equiposPokemon', JSON.stringify(equiposGuardados));
 
-  alert(`Equipo "${nombreEquipo}" actualizado con éxito.`);
-  limpiarEquipo(); // Limpiar los cuadros
-  mostrarEquiposGuardados(); // Volver a mostrar los equipos actualizados
+  //Eliminar el equipo viejo
+  eliminarEquipo(equipoActual.id);
 
-  // Restaurar el texto del botón a 'Guardar Equipo'
-  document.getElementById('guardarEquipo').textContent = 'Guardar Equipo';
-  document.getElementById('guardarEquipo').onclick = guardarEquipo;
+  // Actualizar la lista de equipos en la UI
+  mostrarEquiposGuardados();
+
+  // Reiniciar el formulario
+  reiniciarFormulario();
 }
+
 
 function eliminarEquipo(id) {
   const equiposGuardados = JSON.parse(localStorage.getItem('equiposPokemon')) || [];
@@ -260,6 +303,7 @@ document.getElementById('guardarEquipo').addEventListener('click', guardarEquipo
 document.getElementById('limpiarEquipo').addEventListener('click', limpiarEquipo);
 document.getElementById('generarAleatorio').addEventListener('click', generarEquipoAleatorio);
 document.addEventListener('DOMContentLoaded', mostrarEquiposGuardados);
+document.addEventListener('DOMContentLoaded', () => cargarPokemon(paginaActual));
 
 cuadros.forEach((cuadro, index) => cuadro.addEventListener('click', () => mostrarVentanaEmergente(index)));
 cerrarVentanaEmergenteBtn.addEventListener('click', () => ventanaEmergente.classList.add('hidden'));
