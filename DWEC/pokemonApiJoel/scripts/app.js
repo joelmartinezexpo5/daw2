@@ -34,7 +34,7 @@ async function cargarPokemon(pagina) {
     // Dividir los Pokémon de la generación en páginas
     const inicio = (pagina - 1) * limitePorPagina;
     const fin = Math.min(inicio + limitePorPagina, totalPokemons);
-    pokemonData = pokemonData.slice(inicio, fin);
+    pokemonData = pokemonData.slice(inicio, fin); // Solo cargar el bloque de la página actual
   } else {
     // Obtener los Pokémon globales con paginación
     const datos = await obtenerPokemonPorGeneracion(null, pagina, limitePorPagina);
@@ -62,13 +62,13 @@ async function cargarPokemon(pagina) {
   paginadorSiguiente.disabled = pagina * limitePorPagina >= totalPokemons;
 }
 
-// Llamar a la función para cargar los Pokémon con la página 1 al cambiar la generación
+// Evento de cambio de generación
 filtroGeneracion.addEventListener('change', () => {
-  paginaActual = 1; // Reiniciar a la primera página
-  cargarPokemon(paginaActual); // Cargar la página con los Pokémon correspondientes
+  paginaActual = 1; // Reiniciar siempre la página al cambiar de generación
+  cargarPokemon(paginaActual); // Cargar la primera página para la nueva generación
 });
 
-// Eventos para los botones de paginación
+// Configurar botones de paginación
 paginadorAnterior.addEventListener('click', () => {
   if (paginaActual > 1) {
     paginaActual--;
@@ -79,11 +79,11 @@ paginadorAnterior.addEventListener('click', () => {
 paginadorSiguiente.addEventListener('click', () => {
   if (paginaActual * limitePorPagina < totalPokemons) {
     paginaActual++;
-    cargarPokemon(paginaActual); // Cargar la siguiente página
+    cargarPokemon(paginaActual); // Cargar la página siguiente
   }
 });
 
-// Inicialización para la carga de Pokémon al cargar la página
+// Inicialización
 document.addEventListener('DOMContentLoaded', () => cargarPokemon(paginaActual));
 
 
@@ -112,10 +112,10 @@ function seleccionarPokemon(pokemon) {
 }
 
 function mostrarVentanaEmergente(index) {
-  cuadroSeleccionado = index;
-  paginaActual = 1;
-  cargarPokemon(paginaActual);
-  ventanaEmergente.classList.remove('hidden');
+  cuadroSeleccionado = index; // Seleccionar el cuadro actual
+  paginaActual = 1; // Reiniciar siempre a la primera página al abrir
+  cargarPokemon(paginaActual); // Cargar Pokémon de la primera página
+  ventanaEmergente.classList.remove('hidden'); // Mostrar la ventana emergente
 }
 
 async function generarEquipoAleatorio() {
