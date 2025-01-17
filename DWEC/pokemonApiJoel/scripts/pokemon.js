@@ -17,10 +17,11 @@ export class Pokemon {
 }
 
 export class Equipo {
-  constructor(id, nombre = '') {
+  constructor(id, nombre = '', jugador) {
     this.id = id;  // ID único para el equipo
     this.nombre = nombre;
     this.pokemon = [];
+    this.jugador=jugador;
   }
 
   agregarPokemon(pokemon) {

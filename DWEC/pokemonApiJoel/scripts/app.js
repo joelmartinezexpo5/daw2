@@ -10,7 +10,8 @@ const cerrarVentanaEmergenteBtn = document.getElementById('cerrarVentanaEmergent
 const paginadorAnterior = document.getElementById('anterior');
 const paginadorSiguiente = document.getElementById('siguiente');
 const filtroGeneracion = document.getElementById('filtro-generacion');
-
+const buscadorPokemon = document.getElementById('buscador-pokemon');
+const limpiarDatos = document.getElementById('limpiarDatos');
 let equipoActual = new Equipo(Date.now());  // Usamos el timestamp como ID único para el equipo
 let cuadroSeleccionado = null;
 let paginaActual = 1;
@@ -22,7 +23,7 @@ async function cargarPokemon(pagina) {
   listaPokemon.innerHTML = ''; // Limpiar la lista de Pokémon
 
   let pokemonData = [];
-  
+
   if (generacion) {
     // Obtener los Pokémon de la generación seleccionada
     const datos = await obtenerPokemonPorGeneracion(generacion);
@@ -60,6 +61,22 @@ async function cargarPokemon(pagina) {
   // Configurar botones de paginación
   paginadorAnterior.disabled = pagina === 1;
   paginadorSiguiente.disabled = pagina * limitePorPagina >= totalPokemons;
+
+  //Evento para el buscador
+  buscadorPokemon.addEventListener('input', (e) => {
+    const terminoBusqueda = e.target.value.toLowerCase();
+    const tarjetasPokemon = document.querySelectorAll('.tarjeta-pokemon');
+
+    tarjetasPokemon.forEach((tarjeta) => {
+      const nombre = tarjeta.querySelector('h4').textContent.toLowerCase();
+      // Mostrar u ocultar tarjetas según el término de búsqueda
+      if (nombre.includes(terminoBusqueda)) {
+        tarjeta.style.display = ''; // Mostrar tarjeta
+      } else {
+        tarjeta.style.display = 'none'; // Ocultar tarjeta
+      }
+    });
+  });
 }
 
 // Evento de cambio de generación
@@ -166,7 +183,8 @@ function guardarEquipo() {
       nombre: pokemon.nombre,
       sprite: pokemon.sprite,
       url: pokemon.url
-    }))
+    })),
+    jugador: 'humano',
   };
 
   // Guardamos el equipo en el localStorage
@@ -191,8 +209,9 @@ function mostrarEquiposGuardados() {
   }
 
   equiposGuardados.forEach((equipo, index) => {
-    const item = document.createElement('li');
-    item.innerHTML = `
+    if (equipo.jugador === 'humano') {
+      const item = document.createElement('li');
+      item.innerHTML = `
       <h4>${equipo.nombre}</h4>
       <div>
         ${equipo.pokemons.map(pokemon => `
@@ -202,12 +221,25 @@ function mostrarEquiposGuardados() {
       <button id="editarBtn${index}">Editar</button>
       <button id="eliminarBtn${index}">Eliminar</button>
     `;
-    
-    listaEquipos.appendChild(item);
 
-    // Añadir los eventos para los botones de editar y eliminar
-    document.getElementById(`editarBtn${index}`).addEventListener('click', () => editarEquipo(index));
-    document.getElementById(`eliminarBtn${index}`).addEventListener('click', () => eliminarEquipo(index));
+      listaEquipos.appendChild(item);
+
+      // Añadir los eventos para los botones de editar y eliminar
+      document.getElementById(`editarBtn${index}`).addEventListener('click', () => editarEquipo(index));
+      document.getElementById(`eliminarBtn${index}`).addEventListener('click', () => eliminarEquipo(index));
+    } else {
+      const item = document.createElement('li');
+      item.innerHTML = `
+      <h4>${equipo.nombre} (Equipo CPU)</h4>
+      <div>
+        ${equipo.pokemons.map(pokemon => `
+          <img src="${pokemon.sprite}" alt="${pokemon.nombre}" title="${pokemon.nombre}">
+        `).join('')}
+      </div>
+    `;
+
+      listaEquipos.appendChild(item);
+    }
   });
   console.log(equiposGuardados);
 }
@@ -243,7 +275,7 @@ function editarEquipo(index) {
   // Asignar el equipo actual con los datos del equipo a editar
   equipoActual = new Equipo(equipo.nombre);
   equipo.pokemons.forEach(pokemon => equipoActual.agregarPokemon(pokemon));
-  
+
   // Mantener el ID original del equipo para editarlo correctamente
   equipoActual.id = equipo.id;
 
@@ -304,6 +336,16 @@ document.getElementById('limpiarEquipo').addEventListener('click', limpiarEquipo
 document.getElementById('generarAleatorio').addEventListener('click', generarEquipoAleatorio);
 document.addEventListener('DOMContentLoaded', mostrarEquiposGuardados);
 document.addEventListener('DOMContentLoaded', () => cargarPokemon(paginaActual));
+document.getElementById('limpiarDatos').addEventListener('click', () => {
+  const confirmacion = confirm('¿Estas seguro de que deseas borrar todos los datos? Esta accion no se puede deshacer');
+
+  if (confirmacion) {
+    localStorage.clear();
+    mostrarEquiposGuardados();
+  } else {
+    alert('Operacion cancelada');
+  }
+})
 
 cuadros.forEach((cuadro, index) => cuadro.addEventListener('click', () => mostrarVentanaEmergente(index)));
 cerrarVentanaEmergenteBtn.addEventListener('click', () => ventanaEmergente.classList.add('hidden'));
