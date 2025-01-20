@@ -21,14 +21,22 @@ const limitePorPagina = 20;
 
 async function cargarPokemon(pagina) {
   const generacion = filtroGeneracion.value; // Obtener la generación seleccionada
+  console.log('Generación seleccionada:', generacion);
   listaPokemon.innerHTML = ''; // Limpiar la lista de Pokémon
 
   let pokemonData = [];
+  const todosLosPokemon = JSON.parse(localStorage.getItem('pokemons')) || [];
 
   if (generacion) {
     // Obtener los Pokémon de la generación seleccionada
-    const datos = await obtenerPokemonPorGeneracion(generacion);
-    pokemonData = datos.pokemon_species;
+    const generaciones = JSON.parse(localStorage.getItem('generaciones')) || [];
+    const generacionSeleccionada = generaciones.find(gen => gen.id == generacion);
+    if (generacionSeleccionada && generacionSeleccionada.pokemons) {
+      const pokemonIds = Object.values(generacionSeleccionada.pokemons);
+      pokemonData = todosLosPokemon.filter(pokemon => pokemonIds.includes(pokemon.id));
+    } else {
+      console.error('No se encontraron Pokémon para la generación seleccionada');
+    }
 
     // Calcular el total de Pokémon de la generación
     totalPokemons = pokemonData.length;
@@ -39,25 +47,20 @@ async function cargarPokemon(pagina) {
     pokemonData = pokemonData.slice(inicio, fin); // Solo cargar el bloque de la página actual
   } else {
     // Obtener todos los Pokémon globales
-    if (todosLosPokemon.length === 0) {
-      const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=898');
-      const datos = await respuesta.json();
-      todosLosPokemon = datos.results;
-    }
     pokemonData = todosLosPokemon.slice((pagina - 1) * limitePorPagina, pagina * limitePorPagina);
     totalPokemons = todosLosPokemon.length;
+    console.log(pokemonData);
   }
 
   // Mostrar tarjetas de Pokémon
   for (const pokemon of pokemonData) {
-    const urlPokemon = generacion ? pokemon.url.replace('-species', '') : pokemon.url;
-    const detalles = await obtenerDetallesPokemon(urlPokemon);
+    const detalles = await obtenerDetallesPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
 
     const tarjeta = document.createElement('div');
     tarjeta.classList.add('tarjeta-pokemon');
     tarjeta.innerHTML = ` 
-      <img src="${detalles.sprites.front_default}" alt="${detalles.name}">
-      <h4>${detalles.name}</h4>
+      <img src="${detalles.sprites.front_default}" alt="${pokemon.name}">
+      <h4>${pokemon.name}</h4>
     `;
     tarjeta.onclick = () => seleccionarPokemon(detalles);
     listaPokemon.appendChild(tarjeta);
@@ -68,6 +71,12 @@ async function cargarPokemon(pagina) {
   paginadorSiguiente.disabled = pagina * limitePorPagina >= totalPokemons;
 }
 
+// Evento para el filtro de generación
+filtroGeneracion.addEventListener('change', () => {
+  paginaActual = 1; // Reiniciar siempre la página al cambiar de generación
+  cargarPokemon(paginaActual); // Cargar la primera página para la nueva generación
+});
+
 // Evento para el buscador
 buscadorPokemon.addEventListener('input', async (e) => {
   const terminoBusqueda = e.target.value.toLowerCase();
@@ -75,29 +84,38 @@ buscadorPokemon.addEventListener('input', async (e) => {
   let pokemonData = [];
 
   if (generacion) {
-    const datos = await obtenerPokemonPorGeneracion(generacion);
-    pokemonData = datos.pokemon_species.filter(pokemon => pokemon.name.includes(terminoBusqueda));
+    const generaciones = JSON.parse(localStorage.getItem('generaciones')) || [];
+    const generacionSeleccionada = generaciones.find(gen => gen.id == generacion);
+    if (generacionSeleccionada && generacionSeleccionada.pokemons) {
+      const pokemonIds = Object.values(generacionSeleccionada.pokemons);
+      pokemonData = JSON.parse(localStorage.getItem('pokemons')).filter(pokemon => pokemonIds.includes(pokemon.id));
+    }
   } else {
-    pokemonData = todosLosPokemon.filter(pokemon => pokemon.name.includes(terminoBusqueda));
+    pokemonData = JSON.parse(localStorage.getItem('pokemons')) || [];
   }
 
+  const resultados = pokemonData.filter(pokemon => pokemon.name.toLowerCase().includes(terminoBusqueda));
   listaPokemon.innerHTML = ''; // Limpiar la lista de Pokémon
 
-  // Mostrar tarjetas de Pokémon filtradas
-  for (const pokemon of pokemonData) {
-    const urlPokemon = generacion ? pokemon.url.replace('-species', '') : pokemon.url;
-    const detalles = await obtenerDetallesPokemon(urlPokemon);
+  for (const pokemon of resultados) {
+    const detalles = await obtenerDetallesPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
 
     const tarjeta = document.createElement('div');
     tarjeta.classList.add('tarjeta-pokemon');
     tarjeta.innerHTML = ` 
-      <img src="${detalles.sprites.front_default}" alt="${detalles.name}">
-      <h4>${detalles.name}</h4>
+      <img src="${detalles.sprites.front_default}" alt="${pokemon.name}">
+      <h4>${pokemon.name}</h4>
     `;
     tarjeta.onclick = () => seleccionarPokemon(detalles);
     listaPokemon.appendChild(tarjeta);
   }
 });
+
+// Inicializar la carga de Pokémon
+cargarPokemon(paginaActual);
+
+// Inicializar la carga de Pokémon
+cargarPokemon(paginaActual);
 
 // Evento de cambio de generación
 filtroGeneracion.addEventListener('change', () => {
@@ -360,7 +378,7 @@ limpiarDatos.addEventListener('click', () => {
   const confirmacion = confirm('¿Estas seguro de que deseas borrar todos los datos? Esta accion no se puede deshacer');
 
   if (confirmacion) {
-    localStorage.clear();
+    localStorage.removeItem('equiposPokemon');
     mostrarEquiposGuardados();
   } else {
     alert('Operacion cancelada');
