@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
     @section('titulo', 'Create')
     @section('contenido')
-    <form>
+    <form action="{{route('animales.store')}}">
         <label for="especie">Especie:</label>
         <input type="text" id="especie" name="especie" class="border rounded p-2 w-full">
 
