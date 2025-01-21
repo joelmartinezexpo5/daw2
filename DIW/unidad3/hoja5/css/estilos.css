@@ -1,0 +1,113 @@
+@keyframes cambiarColor {
+    0% {background-color: #ff9999;}
+    25% {background-color: #ffcc99;}
+    50% {background-color: #ffff99;}
+    75% {background-color: #ccff99;}
+    100% {background-color: #99ff99;}
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    color: black;
+    line-height: 1.6;
+}
+
+header {
+    animation: cambiarColor 10s infinite;
+    text-align: center;
+    padding: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: black;
+    padding: 15px 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    color: #ffcc99;
+}
+
+main{
+    padding: 40px;
+    max-width: 1100px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.anim1 {
+    animation: crecerImagen 3s infinite;
+}
+
+.anim2 {
+    animation: aparecer 3s infinite;
+}
+
+.anim3 {
+    animation: rotacion 3s infinite;
+}
+
+.anim4 {
+    animation: cambiarBorde 3s infinite
+}
+
+@keyframes crecerImagen {
+    0%, 100% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+}
+
+@keyframes aparecer {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0;}
+}
+
+@keyframes rotacion {
+    0%, 100% {transform: rotate(0deg);}
+    50% {transform: rotate(10deg);}
+}
+
+@keyframes cambiarBorde {
+    0%, 100% {border-radius: 50%;}
+    50% {border-radius: 0;}
+}
+
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid black;
+    width: 0;
+    animation: typing 4s steps(24,jump-end) infinite, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {width: 0;}
+    to {width: 100%;}
+}
+
+@keyframes blink {
+    
+}
+
+img {
+    width: 200px;
+}
