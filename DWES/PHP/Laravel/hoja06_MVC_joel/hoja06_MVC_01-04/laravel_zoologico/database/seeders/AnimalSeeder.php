@@ -28,7 +28,6 @@ class AnimalSeeder extends Seeder
             'alimentacion' => 'herbívoro',
             'descripcion' => 'El elefante africano es el mayor mamífero...'
         ]
-        // Agrega aquí más animales según sea necesario
     ];
 
     /**

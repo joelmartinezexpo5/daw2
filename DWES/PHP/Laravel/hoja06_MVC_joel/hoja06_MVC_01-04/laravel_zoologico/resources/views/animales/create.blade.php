@@ -1,7 +1,8 @@
 @extends('layouts.plantilla')
     @section('titulo', 'Create')
     @section('contenido')
-    <form action="{{route('animales.store')}}">
+    <form action="{{ route('animales.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <label for="especie">Especie:</label>
         <input type="text" id="especie" name="especie" class="border rounded p-2 w-full">
 
@@ -27,3 +28,13 @@
     </form>
 
     @endsection
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

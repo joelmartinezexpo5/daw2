@@ -17,4 +17,4 @@ Route::get('/animales/{animal}/editar', [AnimalController::Class,'edit'])->name(
 
 Route::post('animales', [AnimalController::class, 'store'])->name(('animales.store'));
 
-Route::put('/animales/{animal}', [AnimalController::class, 'update'])->name('update');
+Route::put('/animales/{animal}', [AnimalController::class, 'update'])->name('animales.update');
