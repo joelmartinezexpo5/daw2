@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CrearAnimalRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Animal;
 
 class AnimalController extends Controller
@@ -117,16 +117,19 @@ class AnimalController extends Controller
     {
         $animal = new Animal();
         $animal->especie = $request->especie;
-        $animal->slug = \Str::slug($request->especie);
+        $animal->slug = Str::slug($request->especie);
         $animal->peso = $request->peso;
         $animal->altura = $request->altura;
         $animal->fechaNacimiento = $request->fechaNacimiento;
 
         // Subir la imagen
         if ($request->hasFile('imagen')) {
-            $imagenPath = $request->file('imagen')->store('images', 'public');
-            $animal->imagen = $imagenPath;
+            $imagen = $request->file('imagen');
+            $nombreImagen = $imagen->getClientOriginalName();
+            $imagen->move(public_path('assets/imagenes'), $nombreImagen);
+            $animal->imagen = $nombreImagen;
         }
+
 
         $animal->alimentacion = $request->alimentacion;
         $animal->descripcion = $request->descripcion;
@@ -165,15 +168,17 @@ class AnimalController extends Controller
     public function update(CrearAnimalRequest $request, Animal $animal)
     {
         $animal->especie = $request->especie;
-        $animal->slug = \Str::slug($request->especie);
+        $animal->slug = Str::slug($request->especie);
         $animal->peso = $request->peso;
         $animal->altura = $request->altura;
         $animal->fechaNacimiento = $request->fechaNacimiento;
 
-        // Subir la imagen si se proporciona una nueva
+        // Subir la imagen
         if ($request->hasFile('imagen')) {
-            $imagenPath = $request->file('imagen')->store('images', 'public');
-            $animal->imagen = $imagenPath;
+            $imagen = $request->file('imagen');
+            $nombreImagen = $imagen->getClientOriginalName(); // Guardar el nombre original
+            $imagen->move(public_path('assets/imagenes'), $nombreImagen);
+            $animal->imagen = $nombreImagen;
         }
 
         $animal->alimentacion = $request->alimentacion;
