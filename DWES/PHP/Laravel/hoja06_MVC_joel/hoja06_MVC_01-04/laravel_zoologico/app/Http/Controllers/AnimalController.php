@@ -8,7 +8,7 @@ use App\Models\Animal;
 
 class AnimalController extends Controller
 {
-//     private $animales = array(
+    //     private $animales = array(
 // 		array(
 // 			'especie' => 'Bisonte',
 // 			'peso' => 1000,
@@ -67,7 +67,7 @@ class AnimalController extends Controller
 // La alimentación del león se basa en la captura de gacelas, cebras, ñús y otros antílopes, aunque no desprecian nunca la oportunidad de robar las capturas a otros cazadores menos robustos (hienas, guepardos, leopardos, etc.) o incluso alimentarse de carroña, ya que poseen un bajo porcentaje de éxito en la caza, capturando una presa de cinco intentos.'
 // 		),
 
-// 		array(
+    // 		array(
 // 			'especie' => 'Mono de Gibraltar',
 // 			'peso' => 7,
 // 			'altura' => 62,
@@ -80,7 +80,7 @@ class AnimalController extends Controller
 // Son diurnos y viven preferentemente en el suelo. Forman grupos numerosos que se hallan socialmente bien organizados, liderados por un fuerte macho. Poseen por tanto sus propias jerarquías, hábitos y costumbres.'
 // 		),
 
-// 		array(
+    // 		array(
 // 			'especie' => 'Tigre',
 // 			'peso' => 145,
 // 			'altura' => 95,
@@ -115,7 +115,24 @@ class AnimalController extends Controller
      */
     public function store(CrearAnimalRequest $request)
     {
-        //
+        $animal = new Animal();
+        $animal->especie = $request->especie;
+        $animal->slug = \Str::slug($request->especie);
+        $animal->peso = $request->peso;
+        $animal->altura = $request->altura;
+        $animal->fechaNacimiento = $request->fechaNacimiento;
+
+        // Subir la imagen
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('images', 'public');
+            $animal->imagen = $imagenPath;
+        }
+
+        $animal->alimentacion = $request->alimentacion;
+        $animal->descripcion = $request->descripcion;
+        $animal->save();
+
+        return redirect()->route('animales.show', $animal);
     }
 
     /**
@@ -145,9 +162,25 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CrearAnimalRequest $request, Animal $animal)
     {
-        //
+        $animal->especie = $request->especie;
+        $animal->slug = \Str::slug($request->especie);
+        $animal->peso = $request->peso;
+        $animal->altura = $request->altura;
+        $animal->fechaNacimiento = $request->fechaNacimiento;
+
+        // Subir la imagen si se proporciona una nueva
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('images', 'public');
+            $animal->imagen = $imagenPath;
+        }
+
+        $animal->alimentacion = $request->alimentacion;
+        $animal->descripcion = $request->descripcion;
+        $animal->save();
+
+        return redirect()->route('animales.show', $animal);
     }
 
     /**
