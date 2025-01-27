@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Revision;
 use Illuminate\Database\Eloquent\Model;
 
 class Animal extends Model
@@ -16,5 +17,10 @@ class Animal extends Model
 
     public function getRouteKeyName(){
         return 'slug';
+    }
+
+    public function revisiones()
+    {
+        return $this->hasMany(Revision::class);
     }
 }
