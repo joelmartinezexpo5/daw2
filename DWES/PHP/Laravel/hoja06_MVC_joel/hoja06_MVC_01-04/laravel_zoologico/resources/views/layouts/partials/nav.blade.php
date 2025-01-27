@@ -13,8 +13,17 @@
                 <a href="{{route('animales.create')}}" class="text-white">Nuevo Animal</a>
             </div>
             <div class="flex flex-col text-center lg:flex-row">
-                <a href="#" class="bblanco mb-1 lg:mr-4 lg:mb-0">Iniciar Sesion</a>
-                <a href="#" class="bverde">Regístrate</a>
+                @auth
+                    <p class="bblanco mb-1 lg:mr-4 lg:mb-0">{{ Auth::user()->name }} &nbsp&nbsp</p>
+                    <a href="{{ route('logout') }}" class="bverde" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
+                    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="bblanco mb-1 lg:mr-4 lg:mb-0">Iniciar Sesion</a>
+                    <a href="{{ route('register') }}" class="bverde">Regístrate</a>
+                @endauth
             </div>
         </div>
     </div>

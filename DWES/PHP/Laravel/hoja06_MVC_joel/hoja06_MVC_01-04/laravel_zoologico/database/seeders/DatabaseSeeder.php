@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         DB::table('animales')->delete();
         $this->call(AnimalSeeder::class);
 
+        $this->call([UserSeeder::class]);
+
 
 
         // User::factory(10)->create();
