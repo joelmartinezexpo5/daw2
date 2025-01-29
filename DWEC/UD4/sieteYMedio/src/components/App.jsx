@@ -75,8 +75,8 @@ const App = () => {
           const cartaData = recuperarCarta(carta.id);
           return cartaData ? <Carta key={cartaData.id || index} carta={cartaData} /> : null;
         })}
-        <p>Total: {sumarCartas(manoCrupier)}</p>
       </div>
+      <p>Total: {sumarCartas(manoCrupier)}</p>
 
       <h2>Jugador</h2>
       <div className="mano">
@@ -84,8 +84,8 @@ const App = () => {
           const cartaData = recuperarCarta(carta.id);
           return cartaData ? <Carta key={cartaData.id || index} carta={cartaData} /> : null;
         })}
-        <p>Total: {sumarCartas(manoJugador)}</p>
       </div>
+      <p>Total: {sumarCartas(manoJugador)}</p>
 
       <button onClick={pedirCarta} disabled={!turnoJugador || partidaTerminada}>Dame Carta</button>
       <button onClick={plantarse} disabled={!turnoJugador || partidaTerminada}>Me Planto</button>
