@@ -30,6 +30,10 @@ body {
     cursor: not-allowed;
   }
   
+  .mano{
+    display: flex;
+  }
+
   .carta {
     display: inline-block;
     width: 80px;
