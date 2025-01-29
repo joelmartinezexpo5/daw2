@@ -9,6 +9,7 @@
                     <h2 class="text-xl font-semibold">{{ $animal['especie'] }}</h2>
                     <img src="{{ asset('assets/imagenes/' . $animal->imagen) }}" alt="{{ $animal->imagen }}" class="w-full h-48 object-cover rounded" style="width: 100%; height: 300px; object-fit: cover;">
                     <p>{{ Str::limit($animal->descripcion, 100) }}</p>
+                    <p>Número de revisiones: {{ $animal->revisiones()->count() }}</p>
                     <a href="{{ route('animales.show', $animal) }}" class="text-blue-500 hover:underline">Ver detalles</a>
                 </div>
             @endforeach

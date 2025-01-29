@@ -16,7 +16,26 @@
                 <a href="{{ route('animales.edit', $animal) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Editar</a>
                 <a href="{{ route('animales.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded ml-4">Volver</a>
             </div>
+            <br>
+            <h3>Revisiones del animal</h3>
+            @if ($animal->revisiones->count())
+                <ul>
+                    @foreach ($animal->revisiones as $revision)
+                        <li>
+                            <strong>{{ $revision->fecha }}</strong> - {{ $revision->descripcion }}
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p>No tiene revisiones.</p>
+            @endif
+
+            <a href="{{ route('revisiones.create', $animal->slug) }}">
+                <button class="bverde">Añadir revisión</button>
+            </a>
         </div>
+
+
     </div>
 
     @endsection
