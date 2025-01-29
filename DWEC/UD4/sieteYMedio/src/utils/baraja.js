@@ -1,3 +1,5 @@
+//baraja.js
+
 export const baraja = [
     // Oros
     { id: 1, palo: "oros", numero: 1, valor: 1 },
@@ -47,20 +49,22 @@ export const baraja = [
     { id: 39, palo: "bastos", numero: "caballo", valor: 0.5 },
     { id: 40, palo: "bastos", numero: "rey", valor: 0.5 },
   ];
-
-export function barajarCartas(){
-    return baraja.sort(() => Math.random() - 0.5);
-}
-
-export function sumarCartas(cartas){
+  
+  export function barajarCartas() {
+    return baraja.slice().sort(() => Math.random() - 0.5);
+  }
+  
+  export function sumarCartas(cartas) {
     let total = 0;
-    for(let i = 0; i < cartas.length; ++i){
-        total += cartas[i].valor;
+    for (let i = 0; i < cartas.length; ++i) {
+        if (cartas[i]) { // Evita errores si hay undefined
+            total += cartas[i].valor;
+        }
     }
+    return total; // Esto faltaba
 }
-
-export function recuperarCarta(id){
-    const carta = baraja.find(carta => carta.id === id);
-    
-    return carta;
-}
+  
+  export function recuperarCarta(id) {
+    return baraja.find(carta => carta.id === id);
+  }
+  
