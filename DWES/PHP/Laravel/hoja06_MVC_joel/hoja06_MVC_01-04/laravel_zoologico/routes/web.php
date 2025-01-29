@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\RevisionesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', InicioController::class)->name('inicio');
@@ -18,6 +19,11 @@ Route::get('/animales/{animal}/editar', [AnimalController::Class,'edit'])->name(
 Route::post('animales', [AnimalController::class, 'store'])->name(('animales.store'));
 
 Route::put('/animales/{animal}', [AnimalController::class, 'update'])->name('animales.update');
+
+Route::get('/revisiones/{animal}/crear', [RevisionesController::class, 'create'])->name('revisiones.create');
+
+Route::post('/revisiones/{animal}', [RevisionesController::class, 'store'])->name('revisiones.store');
+
 
 Route::middleware([
     'auth:sanctum',
