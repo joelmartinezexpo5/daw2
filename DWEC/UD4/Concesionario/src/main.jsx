@@ -1,14 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import AppEnrutador from './routers/AppEnrutador'
-import SeguridadProvider from './contexts/SeguridadProvider'
-
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <SeguridadProvider>
-    <AppEnrutador />
-    </SeguridadProvider>
+    <App />
   </StrictMode>,
 )
