@@ -1,0 +1,38 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color .5s, color .5s;
+    text-align: center;
+    margin: 50px;
+}
+
+button{
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#info{
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid grey;
+    display: inline-block;
+    background-color: azure;
+    box-shadow: 2px 2px 2px rgba(211, 211, 211, 0.874);
+}
+
+p{
+    font-size: 20px;
+}
+
+span{
+    font-weight: bold;
+    color: rgb(190, 7, 7);
+}
+
+#textp{
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid black;
+    transition: background-color 0.3s;
+}
