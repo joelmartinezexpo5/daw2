@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scripts/app.js"></script>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mi pagina web</h1>
+    <button class="modoBoton" id="modoBoton">Boton</button>
+
+    <h1>Prueba de eventos de teclado</h1>
+    <p>Pulsa cualquier letra para ver la informacion en tiempo real</p>
+
+    <div id="info">
+        <p>Estado <span id="estado">Esperando...</span></p>
+        <p>Tecla (key): <span id="keyValue">-</span></p>
+        <p>Codigo (code) <span id="codeValue">-</span></p>
+    </div>
+
+    <h1>Prueba de eventos de raton</h1>
+    <p>Mueve el raton sobre el texto y presiona un boton para resaltarlo</p>
+
+    <div id="infoRaton">
+        <p>Estado <span id="estadoRaton">Esperando...</span></p>
+        <p>Boton <span id="boton">-</span></p>
+        <p>Posicion X <span id="xRaton">-</span></p>
+        <p>Posicion Y <span id="yRaton">-</span></p>
+    </div>
+
+    <p id="texto">Pasa el raton sobre esto y prueba a presionar botones</p>
+</body>
+</html>
