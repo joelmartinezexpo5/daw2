@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SeguridadContext } from "../contexts/SeguridadProvider";
+import { Navigate } from "react-router-dom";
 
 function AdministracionPage(){
-    const [tienePermisos, setTienePermisos] = useState(false);
+    //const [tienePermisos, setTienePermisos] = useState(false);
 
-    if(!tienePermisos){
-        return <Navigate to="/" />
+    const { datos } = useContext(SeguridadContext);
+
+    if(!datos.tienePermisos){
+        return <Navigate to="/" />;
     }
 
 
