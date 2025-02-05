@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import $negocio from "../services/negocio";
-
+import datos from "../services/datos";
 const Pacientes = () => {
   const [pacientes, setPacientes] = useState([]);
   const [filtro, setFiltro] = useState("");
