@@ -11,7 +11,6 @@ function AppMenu(){
             <li><Link to="/login">Iniciar sesion</Link></li>
         </ul>
     </nav>
-
     );
 }
 export default AppMenu;
