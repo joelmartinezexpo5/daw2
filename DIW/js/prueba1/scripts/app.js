@@ -47,7 +47,52 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 document.addEventListener('DOMContentLoaded', function(){
-    const estado = document.getElementById('estado');
+    const estadoRaton = document.getElementById('estadoRaton');
     const botonInfo = document.getElementById('boton');
     const coordenadas = document.getElementById('coordenadas');
+    const texto = document.getElementById('texto');
+
+    let resaltando = false;
+
+    document.addEventListener('mousemove', function(event){
+        coordenadas.textContent = `Coordenadas: ${event.clientX}, ${event.clientY}`;
+    });
+
+    texto.addEventListener('mousedown', function(event){
+        resaltando = true;
+
+        let botonPresionado;
+        switch(event.button){
+            case 0:
+                botonPresionado = 'izquierdo';
+                break;
+            case 1:
+                botonPresionado = 'central';
+                break;
+            case 2:
+                botonPresionado = 'derecho';
+                break;
+            default:
+                botonPresionado = 'desconocido';
+        }
+
+        botonInfo.textContent = botonPresionado;
+        estadoRaton.textContent = 'Pulsando';
+        estadoRaton.style.color = 'green';
+
+        texto.style.backgroundColor = 'yellow';
+    });
+
+    texto.addEventListener('mouseup', function(event){
+        resaltando = false;
+
+        estadoRaton.textContent = 'Sin pulsar';
+        estadoRaton.style.color = 'black';
+
+        texto.style.backgroundColor = 'transparent';
+    });
+
+    texto.addEventListener('contextmenu', function(event){
+        event.preventDefault();
+    });
 })
