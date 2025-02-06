@@ -1,0 +1,15 @@
+/* input:invalid, textarea:invalid, select:invalid {
+    border: 2px solid red;
+}
+
+input:focus, textarea:focus, select:focus {
+    background-color: lightyellow;
+}
+
+#submitBtn:hover {
+    background-color: green;
+}
+
+#resetBtn:active {
+    background-color: red;
+} */
