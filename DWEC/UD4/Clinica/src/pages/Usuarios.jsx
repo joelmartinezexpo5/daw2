@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import datos from "../services/datos";
 
-function Usuarios(){
+function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
 
     useEffect(() => {
@@ -10,12 +10,12 @@ function Usuarios(){
 
 
 
-    return(
+    return (
         <>
-            <div>
-                <h2>Listado de Usuarios</h2>
-                <table border="1">
-                    <thead>
+            <div className="container mt-5">
+                <h2 className="text-center text-primary mb-4">Gestión de Pacientes</h2>
+                <table className="table table-striped table-hover">
+                    <thead className="table-primary">
                         <tr>
                             <th>ID</th>
                             <th>Username</th>
