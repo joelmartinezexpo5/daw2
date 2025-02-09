@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import $negocio from "../services/negocio";
 
-const PropiedadesExpediente = () => {
+function PropiedadesExpediente(){
   const { id } = useParams(); // Obtener ID de la URL
   const navigate = useNavigate(); // Para redireccionar
   const [expediente, setExpediente] = useState({

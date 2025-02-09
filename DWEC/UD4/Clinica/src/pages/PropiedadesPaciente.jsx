@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import $negocio from "../services/negocio";
 
-const PropiedadesPaciente = () => {
+function PropiedadesPaciente(){
   const { id } = useParams(); // Obtiene el ID si es edición
   const navigate = useNavigate();
   const [paciente, setPaciente] = useState({
