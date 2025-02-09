@@ -8,7 +8,7 @@ function PropiedadesUsuario(){
   const [usuario, setUsuario] = useState({
     username: "",
     password: "",
-    tipo: "usuario",
+    tipo: "",
   });
 
   useEffect(() => {
@@ -28,21 +28,14 @@ function PropiedadesUsuario(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validaciones básicas
-    if (!usuario.nombre || !usuario.email) {
-      alert("El nombre y el email son obligatorios.");
-      return;
-    }
-
-    if (id === "nuevo") {
-      await $negocio.crearUsuario(usuario);
-    } else {
+    if (id) {
       await $negocio.actualizarUsuario(id, usuario);
+    } else {
+      await $negocio.crearUsuario(usuario);    
     }
-
     navigate("/usuarios");
   };
+
 
   return (
     <div className="container mt-5">
@@ -50,22 +43,22 @@ function PropiedadesUsuario(){
       
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow">
         <div className="mb-3">
-          <label className="form-label">Nombre</label>
+          <label className="form-label">Username</label>
           <input
-            type="text" className="form-control" name="nombre" value={usuario.username} onChange={handleChange} required
+            type="text" className="form-control" name="nombre" onChange={handleChange} required
           />
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Email</label>
+          <label className="form-label">Password</label>
           <input
-            type="email" className="form-control" name="email" value={usuario.password} onChange={handleChange} required
+            type="password" className="form-control" name="email" onChange={handleChange} required
           />
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Rol</label>
-          <select className="form-control" name="rol" value={usuario.tipo} onChange={handleChange}>
+          <label className="form-label">Tipo</label>
+          <select className="form-control" name="rol" onChange={handleChange}>
             <option value="usuario">Usuario</option>
             <option value="admin">Administrador</option>
           </select>
