@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import $negocio from "../services/negocio";
 
-const Pacientes = () => {
+function Pacientes(){
   const [pacientes, setPacientes] = useState([]);
   const [filtro, setFiltro] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);

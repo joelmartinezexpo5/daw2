@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./AppMenu.css";
+import { useAuth } from "../context/AuthContext";
 
 function AppMenu() {
+const {user, logout} = useAuth();
+
     return (<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
             <Link className="navbar-brand" to="/">
@@ -40,11 +43,20 @@ function AppMenu() {
                             Usuarios
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    {user ? (
+                        <>
+                            <li className="nav-link text-light">Bienvenido, {user.username}</li>
+                            <li><button className="btn btn-outline-danger" onClick={logout}>Cerrar Sesion</button></li>
+                        </>
+                    ) : (
+                        <li className="nav-item"><Link className="nav-link" to="/login">Iniciar sesion</Link></li>
+                    )}
+
+                    {/* <li className="nav-item">
                         <Link className="nav-link" to="/login">
                             Iniciar sesión
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </div>
