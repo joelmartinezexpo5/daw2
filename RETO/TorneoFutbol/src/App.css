@@ -1,0 +1,56 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+#container-carrusel {
+  height: 400px;
+  width: 600px;
+}
+
+#imagen-carrusel{
+  height: 400px;
+  width: 600px;
+}
+
+#cruzRoja {
+  height: 100px;
+  width: 100px;
+}
+
+#imagen-donacion{
+  height: 432px;
+  width: 598px
+}
+
+.card{
+  width: 600px;
+  height: 600px;
+}
+
+#banner{
+  background: url(../public/images/banner.jpeg);
+  height: 90vh;
+  display: flex;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+#titulos-banner{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.459);
+  width: 1300px;
+  height: 200px;
+}
+
+#titulo-banner{
+  font-size: 4em;
+}
+
+#descripcion-carrusel{
+  background-color: rgba(0, 0, 0, 0.459);
+  color: white;
+}
