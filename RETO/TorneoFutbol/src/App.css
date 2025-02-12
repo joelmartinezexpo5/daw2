@@ -1,56 +1,224 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-#container-carrusel {
-  height: 400px;
-  width: 600px;
-}
-
-#imagen-carrusel{
-  height: 400px;
-  width: 600px;
-}
-
-#cruzRoja {
-  height: 100px;
-  width: 100px;
-}
-
-#imagen-donacion{
-  height: 432px;
-  width: 598px
-}
-
-.card{
-  width: 600px;
-  height: 600px;
-}
-
-#banner{
-  background: url(../public/images/banner.jpeg);
-  height: 90vh;
-  display: flex;
+/* Estilos para el Inicio*/
+.inicio-section {
+  height: 100vh;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('../../public/images/inicio2.webp');
   background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  text-align: center;
+  color: #333;
+}
+
+.inicio-content {
+  position: relative;
+  z-index: 1;
+}
+
+.inicio-titulo {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.inicio-subtitulo {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.inicio-boton {
+  padding: 1rem 2rem;
+  background: #ff6b6b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inicio-boton:hover {
+  background: #ff4c4c;
+}
+
+/* Estilos para la Sección del Estadio */
+.estadio-section {
+  padding: 4rem 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+.estadio-container {
+  text-align: center;
+}
+
+.estadio-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.estadio {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.estadio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, rgba(255, 255, 255, 0.8));
+}
+
+/* Estilos para la Sección de Donaciones con tarjetas 3D */
+.donaciones-section {
+  padding: 4rem 0;
+  background: #fff;
+  color: #333;
+}
+
+.donacion-card {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card-front {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(0deg);
+  border: 1px solid #ddd;
+}
+
+.card-back {
+  background: #f8f9fa;
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+}
+
+.donacion-card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.donacion-card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+.donacion-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.donacion-card h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+.donacion-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.donacion-button {
+  padding: 0.75rem 1.5rem;
+  background: #ff6b6b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.donacion-button:hover {
+  background: #ff4c4c;
+}
+
+/* Estilos para la Sección de Patrocinadores y Colaboradores */
+.sponsors-section {
+  padding: 4rem 0;
+  background: #f8f9fa;
+  color: #333;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  justify-items: center;
   align-items: center;
 }
 
-#titulos-banner{
-  color: white;
-  background-color: rgba(0, 0, 0, 0.459);
-  width: 1300px;
-  height: 200px;
+.sponsor-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#titulo-banner{
-  font-size: 4em;
+.sponsor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-#descripcion-carrusel{
-  background-color: rgba(0, 0, 0, 0.459);
-  color: white;
+.sponsor-card img {
+  max-width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.sponsor-card:hover img {
+  filter: grayscale(0%);
+}
+
+/* Estilos para el Footer */
+.footer-section {
+  padding: 2rem 0;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section p {
+  font-size: 1rem;
+  color: #555;
 }

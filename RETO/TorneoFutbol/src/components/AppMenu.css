@@ -1,12 +1,98 @@
-.navegacion {
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+/* Estilos para el Navbar vertical */
+.navbar-vertical {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px; /* Ancho del Navbar */
+    background: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    z-index: 1000;
+}
+
+/* Logo en la parte superior */
+.navbar-brand {
+    margin-bottom: 2rem;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1); /* Efecto de escala al hacer hover */
+}
+
+/* Menú de navegación vertical */
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espaciado entre enlaces */
+}
+
+.nav-link {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+    position: relative;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px; /* Línea lateral */
+    height: 100%;
+    background: linear-gradient(to bottom, #ff6b6b, #ffa500); /* Degradado lateral */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1); /* Fondo al hacer hover */
+}
+
+.nav-link:hover::before {
+    opacity: 1; /* Línea lateral visible al hacer hover */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 991.98px) {
+    .navbar-vertical {
+        width: 100%; /* Ocupa todo el ancho en móviles */
+        height: auto;
+        bottom: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    ul li {
-        display: inline;
-        padding-right: 10px;
+    .navbar-brand {
+        margin-bottom: 0;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        gap: 0;
+        display: none; /* Oculta el menú en móviles */
+    }
+
+    .navbar-toggler {
+        display: block; /* Muestra el botón de menú en móviles */
     }
 }
