@@ -1,0 +1,30 @@
+'use strict'
+function dibujarRombo(tamanio) {
+    let triangulo = [];
+    // Parte superior del rombo
+    for (let i = 0; i < tamanio; i++) {
+        let linea = "";
+        for (let j = 0; j < tamanio - i - 1; j++) {
+            linea += " ";
+        }
+        for (let k = 0; k < 2 * i + 1; k++) {
+            linea += "*";
+        }
+        triangulo.push(linea);
+    }
+
+    // Parte inferior del rombo
+    for (let i = tamanio - 2; i >= 0; i--) {
+        let linea = "";
+        for (let j = 0; j < tamanio - i - 1; j++) {
+            linea += " ";
+        }
+        for (let k = 0; k < 2 * i + 1; k++) {
+            linea += "*";
+        }
+        triangulo.push(linea);
+    }
+    return triangulo;
+}
+
+console.log(dibujarRombo(4));
