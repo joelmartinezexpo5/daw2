@@ -13,10 +13,24 @@ class Coche{
     }
 
     public function frena($decremento){
-        do
-            
-        $this->velocidad = $this->velocidad - $decremento;
+        if($this->velocidad - $decremento < 0){
+            $this->velocidad = 0;
+        }elseif($this->velocidad - $decremento > 120){
+            $this->velocidad = 120;
+        }else{
+            $this->velocidad = $this->velocidad - $decremento;
+        }
     }
 
-    
+    public function getVelocidad(){
+        return $this->velocidad;
+    }
+
+    public function getMatricula(){
+        return $this->matricula;
+    }
+
+    public function __toString(){
+        return "Matricula: " . $this->matricula . " Velocidad: " . $this->velocidad;
+    }
 }
