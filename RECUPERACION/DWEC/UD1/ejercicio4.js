@@ -6,10 +6,10 @@ function dibujarTriangulo(tamanio){
         let linea ="";
         for(let j=0; j<=tamanio;j++){
             linea += '*'
+            triangulo.push(linea)
         }
-        triangulo.push(linea);
+        return triangulo;
     }
-    return triangulo;
 }
 
 console.log(dibujarTriangulo(5))
