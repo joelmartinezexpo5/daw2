@@ -14,7 +14,6 @@ function dibujarRectangulo(tamanio) {
         }
         rectangulo.push(linea);
     }
-
     return rectangulo;
 }
 console.log(dibujarRectangulo(5));
