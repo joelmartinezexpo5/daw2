@@ -24,7 +24,7 @@ function acertarNumero(numero){
         intento++;
     } while(intento <= MAX_INTENTOS);
     
-    alert(`¡Game Over! El número era ${nAleatorio}`);
+    alert(`¡Has fallado! El número era ${nAleatorio}`);
     return false;
 }
 
