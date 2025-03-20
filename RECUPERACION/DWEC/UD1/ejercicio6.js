@@ -56,30 +56,31 @@ function dibujarTriangulo(tamanio){
     }
 }
 
-do{
-    let figura = prompt(`Introduce la figura que quieres dibujar:\n1. Cuadrado\n2. Triangulo\n3. Rombo\n 0. Salir`);
+let terminar = false;
+do {
+    let figura = prompt(`Introduce la figura que quieres dibujar:\n1. Cuadrado\n2. Triangulo\n3. Rombo\n0. Salir`);
+    if (figura === "0") {
+        terminar = true;
+        alert("Cerrando el programa");
+        continue;
+    }
     let altura = parseInt(prompt("Introduce la altura:"));
-    let terminar = false;
     dibujarFigura(figura, altura);
-}while(!terminar);
+} while(!terminar);
 
-function dibujarFigura(figura, tamanio){
-    switch(figura){
-        case "cuadrado":
-            alert(dibujarRectangulo(tamanio));
-            terminar = false;
+function dibujarFigura(figura, tamanio) {
+    switch(figura) {
+        case "1":
+            alert(dibujarRectangulo(tamanio).join('\n'));
             break;
-        case "triangulo":
-            alert(dibujarTriangulo(tamanio));
-            terminar = false;
+        case "2":
+            alert(dibujarTriangulo(tamanio).join('\n'));
             break;
-        case "rombo":
-            alert(dibujarRombo(tamanio));
-            terminar = false;
+        case "3":
+            alert(dibujarRombo(tamanio).join('\n'));
             break;
         default:
-            alert("Cerrando el programa");
-            terminar = true;
+            alert("Opción no válida");
             break;
     }   
 }
