@@ -3,21 +3,30 @@ function calcularAleatorio(){
 }
 
 function acertarNumero(numero){
+    const MAX_INTENTOS = 5;
     let nAleatorio = calcularAleatorio();
-    let intento = 0;
-    do{
+    let intento = 1;
+    
+    do {
         if(numero === nAleatorio){
             alert("¡Has acertado!");
-            intento = 5;
-        }else if(numero > nAleatorio){
-            alert("Tu numero es mayor que el numero secreto");
-            intento++
-        }else if(numero < nAleatorio){
-            alert("Tu numero es menor que el numero secreto")
-            intento++
-        } 
-    }while(intento !== 5);
+            return true;
+        }else{
+            if(numero > nAleatorio){
+                alert(`Tu numero es mayor que el numero secreto. Te quedan ${MAX_INTENTOS - intento} intentos`);
+            }else{
+                alert(`Tu numero es menor que el numero secreto. Te quedan ${MAX_INTENTOS - intento} intentos`);
+            }
+            if(intento < MAX_INTENTOS){
+                numero = parseInt(prompt("Introduce otro número:"));
+            }
+        }
+        intento++;
+    } while(intento <= MAX_INTENTOS);
+    
+    alert(`¡Game Over! El número era ${nAleatorio}`);
+    return false;
 }
 
-let numero = parseInt(prompt("Introduce un numero para adivinar el numero secreto"));
-acertarNumero(numero)
+let numero = parseInt(prompt("Introduce un numero para adivinar el numero secreto (0-99)"));
+acertarNumero(numero);
