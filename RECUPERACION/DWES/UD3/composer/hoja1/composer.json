@@ -1,0 +1,22 @@
+{
+    "name": "joel/hoja1",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Hoja1\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8001 -t public"
+    },
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "brick/math": "^0.13.0"
+    }
+}
