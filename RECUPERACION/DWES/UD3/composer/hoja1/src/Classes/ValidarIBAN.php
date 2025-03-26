@@ -52,6 +52,8 @@ class ValidarIBAN {
         
         $digitoControlOriginal = substr($this->iban, 2, 2);
 
+        // echo $digitoControlOriginal. '<br>' .$digitoControlCalculado. '<br>';
+
         return $digitoControlCalculado === $digitoControlOriginal;
     }
 
@@ -83,6 +85,8 @@ class ValidarIBAN {
         $digito2 = 11 - ($suma2 % 11);
         if ($digito2 === 11) $digito2 = 0;
         if ($digito2 === 10) $digito2 = 1;
+
+        // echo $digito1. $digito2 . '<br>' . $control;
 
         // Comparar con los dígitos originales
         return $control === "{$digito1}{$digito2}";
