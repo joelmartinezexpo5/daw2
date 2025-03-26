@@ -20,23 +20,18 @@ use Hoja1\Classes\ValidarIBAN; // Usar la clase que contiene las validaciones
     </form>
 
     <?php
-    // Comprobar si el formulario fue enviado y si el campo IBAN está lleno
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['iban'])) {
-        $iban = trim($_POST['iban']); // Limpiar espacios alrededor del IBAN
-
-        // Crear una instancia de la clase ValidarIBAN
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['iban'])) {
+        $iban = $_POST['iban'];
         $validador = new ValidarIBAN($iban);
 
-        // Validar si el IBAN tiene la longitud y formato correcto
-        if ($validador->validarLongitud()) {
-            // Comprobar si el IBAN tiene un dígito de control válido
-            if ($validador->validarDigitoControl()) {
-                    echo "<p style='color: green;'>El IBAN ingresado es válido.</p>";
-                } else {
-                echo "<p style='color: red;'>El IBAN ingresado tiene un dígito de control incorrecto.</p>";
-            }
+        if (!$validador->validarLongitud()) {
+            echo "<p style='color:red;'>El IBAN debe tener 24 caracteres y comenzar con ES.</p>";
+        } elseif (!$validador->validarDigitoControl()) {
+            echo "<p style='color:red;'>El dígito de control del IBAN es incorrecto.</p>";
+        } elseif (!$validador->validarCCC()) {
+            echo "<p style='color:red;'>El CCC es incorrecto.</p>";
         } else {
-            echo "<p style='color: red;'>El IBAN ingresado no tiene el formato correcto.</p>";
+            echo "<p style='color:green;'>IBAN válido.</p>";
         }
     }
     ?>
