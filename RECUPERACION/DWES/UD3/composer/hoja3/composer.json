@@ -4,13 +4,22 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Joel\\Hoja3\\": "src/"
+            "MiAplicacion\\": "app/"
         }
     },
     "authors": [
         {
             "name": "joelmartinezexpo5",
             "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8001 -t public"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "Libreria"
         }
     ],
     "minimum-stability": "stable",
