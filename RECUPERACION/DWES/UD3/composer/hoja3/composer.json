@@ -1,0 +1,20 @@
+{
+    "name": "joel/hoja3",
+    "description": "Hoja 3 de composer",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Joel\\Hoja3\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hackzilla/password-generator": "^1.7"
+    }
+}
