@@ -2,6 +2,8 @@
 
 namespace Hoja1\Classes;
 
+use Brick\Math\BigInteger;
+
 class ValidarIBAN {
     private string $iban;
 
@@ -31,28 +33,62 @@ class ValidarIBAN {
     }
 
     public function validarDigitoControl(): bool {
-        // Reorganizamos el IBAN: "ES00" seguido de los 20 dígitos del CCC
-        $ibanReordenado = substr($this->iban, 4) . '1428'; // "ES" = 14 y "S" = 28
-        // Convertimos el IBAN en un número, sustituyendo las letras por sus valores numéricos
-        $ibanNumerico = '';
-    
-        foreach (str_split($ibanReordenado) as $char) {
-            if (is_numeric($char)) {
-                $ibanNumerico .= $char; // Si es un número, lo agregamos tal cual
-            } else {
-                // Si es una letra, la convertimos a su valor numérico: 'E' = 14, 'S' = 28
-                $ibanNumerico .= (ord($char) - 55); // 'A' = 65 -> 65 - 55 = 10, 'E' = 14, 'S' = 28, etc.
-            }
-        }
-    
-        // Usamos BigInteger para manejar el número grande
+        // Extraer los 20 dígitos del CCC
+        $ccc = substr($this->iban, 4);
+
+        // Mover "ESXX" al final y reemplazar ES por 1428
+        $ibanNumerico = $ccc . '1428' . '00'; // Se usa 00 temporalmente para el cálculo
+
+        // Convertir a BigInteger
         $bigInteger = BigInteger::of($ibanNumerico);
-        
-        // Calculamos el módulo 97
+
+        // Calcular el módulo 97
         $resto = $bigInteger->mod(97)->toInt();
-    
-        // Si el resto es 1, el IBAN es válido
-        return $resto === 1;
+
+        $digitoCalculado = 98 - $resto;
+
+        // Si el número es menor a 10, se agrega un "0" delante
+        $digitoControlCalculado = ($digitoCalculado < 10) ? "0" . $digitoCalculado : (string)$digitoCalculado;
+        
+        $digitoControlOriginal = substr($this->iban, 2, 2);
+
+        return $digitoControlCalculado === $digitoControlOriginal;
     }
+
+    public function validarCCC(){
+        $pesos = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+
+        // Extraer partes del CCC
+        $entidad = substr($this->iban, 4, 4);
+        $oficina = substr($this->iban, 8, 4);
+        $control = substr($this->iban, 12, 2);
+        $cuenta = substr($this->iban, 14, 10);
     
+    
+        // Calcular primer digito de control
+        $bloque1 = "00" . $entidad . $oficina;
+        $suma1 = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $suma1 += $bloque1[$i] * $pesos[$i];
+        }
+        $digito1 = 11 - ($suma1 % 11);
+        if ($digito1 === 11) $digito1 = 0;
+        if ($digito1 === 10) $digito1 = 1;
+
+        // Cálculo del segundo dígito de control
+        $suma2 = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $suma2 += $cuenta[$i] * $pesos[$i];
+        }
+        $digito2 = 11 - ($suma2 % 11);
+        if ($digito2 === 11) $digito2 = 0;
+        if ($digito2 === 10) $digito2 = 1;
+
+        // Comparar con los dígitos originales
+        return $control === "{$digito1}{$digito2}";
+    }
+
+    public function validarIBAN(): bool {
+        return $this->validarLongitud() && $this->validarDigitoControl() && $this->validarCCC();
+    }
 }
