@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Planes de Precios</title>
 </head>
 <body>
-    <h1>Subir imagen</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre">
-        <br>
-        <input type="file">
-        <br>
-        <input type="submit" value="Enviar">
-    </form>
+    <section>
+        <div class="tarjeta-precio">
+            <h2 class="titulo-plan">Básico</h2>
+            <div class="precio">9.99€/mes</div>
+            <ul class="caracteristicas">
+                <li>5GB de almacenamiento</li>
+                <li>1 sitio web</li>
+                <li>Soporte básico</li>
+            </ul>
+            <button class="btn-contratar">Contratar</button>
+        </div>
+
+        <div class="tarjeta-precio">
+            <h2 class="titulo-plan">Profesional</h2>
+            <div class="precio">19.99€/mes</div>
+            <ul class="caracteristicas">
+                <li>20GB de almacenamiento</li>
+                <li>5 sitios web</li>
+                <li>Soporte prioritario</li>
+            </ul>
+            <button class="btn-contratar">Contratar</button>
+        </div>
+
+        <div class="tarjeta-precio">
+            <h2 class="titulo-plan">Empresa</h2>
+            <div class="precio">39.99€/mes</div>
+            <ul class="caracteristicas">
+                <li>100GB de almacenamiento</li>
+                <li>Sitios ilimitados</li>
+                <li>Soporte 24/7</li>
+            </ul>
+            <button class="btn-contratar">Contratar</button>
+        </div>
+    </section>
 </body>
 </html>
