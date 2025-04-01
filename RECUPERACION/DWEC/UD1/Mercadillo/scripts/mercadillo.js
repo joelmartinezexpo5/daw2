@@ -82,7 +82,7 @@ const $negocio = (function() {
     function imprimirInventario() {
         let resultado = "";
         for (let i = 0; i < inventario.length; i++) {
-            resultado += `${inventario[i].nombre} - Categoría: ${inventario[i].categoria} - Cantidad: ${inventario[i].cantidad} - Precio: $${inventario[i].precio} - Total: $${(inventario[i].cantidad * inventario[i].precio).toFixed(2)} <button class="eliminarBtn" data-nombre="${inventario[i].nombre}">Eliminar</button> <button class="editarBtn" data-nombre="${inventario[i].nombre}">Editar</button><br>`;
+            resultado += `${inventario[i].nombre} - Categoría: ${inventario[i].categoria} - Cantidad: ${inventario[i].cantidad} - Precio: $${inventario[i].precio} - Total: $${(inventario[i].cantidad * inventario[i].precio).toFixed(2)} <button class="eliminarBtn" data-nombre="${inventario[i].nombre}">Eliminar</button><br>`;
         }
         return resultado;
     }
