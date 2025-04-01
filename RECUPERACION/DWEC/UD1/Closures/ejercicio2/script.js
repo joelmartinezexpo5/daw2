@@ -32,14 +32,37 @@ const $yedra = (function () {
             modulos[alumno.modulo].numAlumnos++;
         });
 
-        return modulos;
+        for (let modulo in modulos) {
+            modulos[modulo].notaMedia = (modulos[modulo].sumaNotas / modulos[modulo].numAlumnos).toFixed(2);
+            modulos[modulo].convocatoriasMedia = (modulos[modulo].sumaConvocatorias / modulos[modulo].numAlumnos).toFixed(2);
+        }
+
+        return Object.values(modulos);
+    }
+
+    function obtenerJSON(){
+        return JSON.stringify(alumnos, null, 2);
+    }
+
+    function cargarJSON(cadena) {
+        try {
+            let nuevosDatos = JSON.parse(cadena);
+            if (!Array.isArray(nuevosDatos)) throw new Error("El JSON no es un array válido.");
+            alumnos = nuevosDatos;
+            alert("Datos cargados correctamente.");
+        } catch (error) {
+            alert("Error al cargar JSON: " + error.message);
+        }
     }
 
     return {
         obtenerSuspensos,
-        obtenerEstadisticasPorModulo
+        obtenerEstadisticasPorModulo,
+        obtenerJSON,
+        cargarJSON
     };
 })();
 
 console.log($yedra.obtenerSuspensos());
 console.log($yedra.obtenerEstadisticasPorModulo());
+console.log($yedra.obtenerJSON());
