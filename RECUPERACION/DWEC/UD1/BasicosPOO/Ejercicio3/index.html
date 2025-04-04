@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script></script>
+    <link rel="stylesheet" href="./estilos.css">
+    <script type="module" src="./main.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h2>Gestion de Facturas</h2>
+
+        <h3>Datos de Factura</h3>
+        <form action="" id="formFactura">
+            <input type="text" id="clienteNIF" placeholder="NIF del Cliente">
+            <input type="date" id="fecha">
+            <input type="time" id="hora">
+            <label for=""><input type="checkbox" id="pagada">Pagada</label>
+            <button type="button" id="btnActualizar">Actualizar</button>
+        </form>
+
+        <h3>Lineas de Factura</h3>
+    </div>
 </body>
 </html>
