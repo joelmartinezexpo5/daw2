@@ -1,4 +1,4 @@
-import Linea from "./Linea";
+import Linea from "./Linea.js";
 
 class Factura {
     constructor() {
@@ -21,22 +21,33 @@ class Factura {
         return this.lineas.length;
     }
 
-    imprimirFactura() {
-        return `Factura de ${this.clienteNIF}\nFecha: ${this.fecha} ${this.hora}\nPagada: ${this.pagada ? 'Sí' : 'No'}\n` +
-               `Líneas:\n${this.líneas.map(l => `- ${l.concepto}: ${l.cantidad} x ${l.precioUnitario}€`).join('\n')}\n` +
-               `Total: ${this.importeTotal.toFixed(2)}€`;
-    }
 
-    agregarLinea(concepto, cantidad, precio){
+    agregarLinea(concepto, cantidad, precio) {
         if (concepto && cantidad > 0 && precio > 0) {
-            this.líneas.push(new Linea(concepto, cantidad, precio));
+            this.lineas.push(new Linea(concepto, cantidad, precio));
         }
     }
 
-    eliminarLinea(){
-        if(this.lineas.lenght > 0){
+    eliminarLinea() {
+        if (this.lineas.length > 0) {
             this.lineas.pop();
         }
     }
+
+    imprimirFactura() {
+        let lineasTexto = '';
+        for (let i = 0; i < this.lineas.length; i++) {
+            const l = this.lineas[i];
+            lineasTexto += `- ${l.concepto}: ${l.cantidad} x ${l.precioUnitario}€\n`;
+        }
+
+        return `Factura de ${this.clienteNIF}
+    Fecha: ${this.fecha} ${this.hora}
+    Pagada: ${this.pagada ? 'Sí' : 'No'} <br>
+    Líneas: <br>
+    ${lineasTexto}
+    Total: ${this.importeTotal.toFixed(2)}€`;
+    }
+
 }
 export default Factura;

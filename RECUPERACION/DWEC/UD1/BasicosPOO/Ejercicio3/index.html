@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilos.css">
     <script type="module" src="./main.js" defer></script>
-    <title>Document</title>
+    <title>Gestion Facturas</title>
 </head>
 <body>
     <div class="container">
@@ -21,6 +21,24 @@
         </form>
 
         <h3>Lineas de Factura</h3>
+        <form id="formLineas">
+            <input type="text" id="concepto" placeholder="Concepto">
+            <input type="number" id="cantidad" placeholder="Cantidad">
+            <input type="number" id="precioUnitario" placeholder="Precio Unitario" step="0.01">
+            <button type="button" id="btnAgregar">Agregar Línea</button>
+            <button type="button" id="btnEliminar">Eliminar Última Línea</button>
+        </form>
+
+        <h3>Serializacion / Deserializacion</h3>
+        <form action="" id="formSerializacion">
+            <textarea id="entrada" placeholder="Introduce JSON"></textarea>
+            <button type="button" id="btnDeserializar">Deserializar</button>
+            <textarea id="salida" readonly></textarea>
+            <button type="button" id="btnSerializar">Serializar</button>
+        </form>
+
+        <h3>Impresión de Factura</h3>
+        <div class="impresion-factura" id="impresion"></div>
     </div>
 </body>
 </html>
