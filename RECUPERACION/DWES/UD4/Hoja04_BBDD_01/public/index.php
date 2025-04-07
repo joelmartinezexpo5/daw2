@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php foreach ($jugadores as $index => $jugador): ?>
                 <tr>
                     <td><?= htmlspecialchars($jugador) ?></td>
-                    <td><?= htmlspecialchars($pesos[$index]) ?></td>
+                    <td><input type="number" value=<?= htmlspecialchars($pesos[$index]) ?>> kg</td>
                 </tr>
             <?php endforeach; ?>
         </table>
