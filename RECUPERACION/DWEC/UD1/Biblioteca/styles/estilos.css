@@ -1,0 +1,171 @@
+/* Estilos generales del body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Barra de navegación */
+  nav {
+    background-color: #2d3e50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  nav button {
+    background-color: #e1e1e1;
+    color: #2d3e50;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 10px;
+  }
+  
+  nav button:hover {
+    background-color: #2d3e50;
+    color: white;
+  }
+  
+  /* Contenedor principal */
+  #app {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Formulario básico */
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+  }
+  
+  form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para los listados de libros, autores y bibliotecas */
+  ul, .card-container {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li, .card-container .card {
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin: 10px 0;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+  }
+  
+  ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-container .card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Botones dentro de los listados */
+  ul li button,
+  .card-container .card button {
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  
+  ul li button:hover,
+  .card-container .card button:hover {
+    background-color: #e03d4b;
+  }
+  
+  /* Acciones de los listados */
+  ul li .actions,
+  .card-container .card .actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  ul li .actions button,
+  .card-container .card .actions button {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 5px;
+  }
+  
+  ul li .actions .edit,
+  .card-container .card .actions .edit {
+    background-color: #f4a261;
+    color: white;
+  }
+  
+  ul li .actions .edit:hover,
+  .card-container .card .actions .edit:hover {
+    background-color: #e08e4f;
+  }
+  
+  ul li .actions .delete,
+  .card-container .card .actions .delete {
+    background-color: #e76f51;
+    color: white;
+  }
+  
+  ul li .actions .delete:hover,
+  .card-container .card .actions .delete:hover {
+    background-color: #d65f41;
+  }
+  
+  /* Separadores de sección */
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section h2 {
+    background-color: #2d3e50;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  
