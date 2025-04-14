@@ -1,0 +1,15 @@
+{
+    "name": "joel/hoja04_bbdd_02",
+    "description": "Hoja 2 BBDD",
+    "type": "project",
+    "authors": [
+        {
+            "name": "joelmartinezexpo5",
+            "email": "joelmartinezexpo@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
