@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+  }
+  /* Menú lateral */
+  .aside {
+    width: 220px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
+  .aside h2 {
+    margin-bottom: 30px;
+  }
+  .aside nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+  }
+  .main-content {
+    margin-left: 220px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Cabecera */
+  header {
+    background-color: #34495e;
+    color: white;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  /* Panel de bienvenida */
+  .panel-bienvenida {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .texto-bienvenida {
+    text-align: justify;
+    flex: 1;
+  }
+  .img-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 20px;
+    float: right;
+  }
+  /* Panel de tarjetas */
+  .card-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  .card {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 200px;
+    position: relative;
+  }
+  .card.notificacion::after {
+    content: '!';
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+  }
+  /* Pie de página */
+  footer {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+  }
+  /* Botón flotante Arriba */
+  #scrollArriba {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+  }
