@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <script src="./script/script.js" defer></script>
+  <title>Gestión de Equipos</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    button {
+      margin: 5px 0;
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-top: 10px;
+      font-family: monospace;
+    }
+    pre {
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gestión de Equipos</h1>
+
+  <button id="btn-averiados">📋 Ver equipos averiados</button><br>
+  <button id="btn-estadisticas">📊 Ver estadísticas por aula</button><br>
+  <button id="btn-json">🧾 Obtener JSON</button><br>
+
+  <h3>📥 Cargar nueva cadena JSON:</h3>
+  <textarea id="jsonInput">// Pega aquí una cadena JSON válida...</textarea>
+  <br>
+  <button id="btn-cargar">📤 Cargar JSON</button>
+
+  <h3>🖥 Resultado:</h3>
+  <pre id="resultado"></pre>
+</body>
+</html>
