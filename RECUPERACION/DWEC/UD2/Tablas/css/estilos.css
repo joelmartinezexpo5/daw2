@@ -1,0 +1,22 @@
+.tabla {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .fila {
+    display: table-row;
+  }
+  
+  .celda {
+    display: table-cell;
+    border: 1px solid #000;
+    padding: 8px;
+  }
+  
+  .encabezado .celda {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+  
