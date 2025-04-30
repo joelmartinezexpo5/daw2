@@ -28,6 +28,7 @@ function mostrarTabla() {
     tabla.appendChild(encabezado);
 
     // Crear filas de datos
+    const fragmentTabla = document.createDocumentFragment()
     alumnos.forEach(alumno => {
         const fila = document.createElement('div');
         fila.classList.add('fila');
@@ -38,9 +39,11 @@ function mostrarTabla() {
             celda.innerHTML = alumno[clave];
             fila.appendChild(celda);
         });
-
-        tabla.appendChild(fila);
+        
+        fragmentTabla.appendChild(fila);
     });
+    
+    tabla.appendChild(fragmentTabla);
 
     contenedor.appendChild(tabla);
 }
