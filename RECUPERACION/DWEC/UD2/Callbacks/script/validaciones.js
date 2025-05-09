@@ -77,7 +77,7 @@ function validarEmail(valor, callback) {
         return callback(null, new ValidacionError('El email debe tener texto antes y despues del @', 'email'));
     }
 
-    if(dominio.lastIndexOf('.') === -1){
+    if (dominio.lastIndexOf('.') === -1) {
         return callback(null, new ValidacionError('El email debe terminar con un punto seguido de 2 o 3 letras', 'email'));
     }
 
@@ -91,12 +91,25 @@ function validarEmail(valor, callback) {
     callback(valor, null);
 }
 
-function validarFecha(valor, callback){
-        
+function validarFecha(valor, callback) {
+    if (!valor) {
+        return callback(null, new ValidacionError('Debes introducir una fecha', 'fechaNacimiento'));
+    }
+
+    const nacimiento = new Date(valor);
+    const hoy = new Date();
+
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const cumpleEsteAño = new Date(hoy.getFullYear(), nacimiento.getMonth(), nacimiento.getDate()) <= hoy;
+
+    if (!cumpleEsteAño) edad--;
+
+    if (edad < 18 || edad > 24) {
+        return callback(null, new ValidacionError('Debes tener entre 18 y 24 años', 'fechaNacimiento'));
+    }
+
+    callback(valor, null);
 }
-
-
-
 
 
 function mostrarError(error) {
@@ -110,6 +123,7 @@ btnGuardar.addEventListener('click', () => {
     const nombre = document.getElementById('nombre').value;
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
+    const fecha = document.getElementById('fechaNacimiento').value;
 
     document.querySelectorAll('input').forEach(el => el.classList.remove('error'));
 
@@ -131,7 +145,11 @@ btnGuardar.addEventListener('click', () => {
                         validarEmail(email, (valor, error) => {
                             if (error) return mostrarError(error);
 
-                            alert("¡Todo correcto!");
+                            validarFecha(fecha, (valor, error) => {
+                                if (error) return mostrarError(error)
+
+                                alert("¡Todo correcto!");
+                            });
                         });
                     });
                 });
