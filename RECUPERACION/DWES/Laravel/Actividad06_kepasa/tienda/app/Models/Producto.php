@@ -2,31 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Imagen;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Producto extends Model
 {
     use HasFactory;
 
-    // Definir la tabla si el nombre no es el pluralizado automáticamente por Laravel
-    protected $table = 'productos';
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'familia_id'];
 
-    // Definir los campos que pueden ser llenados masivamente
-    protected $fillable = ['nombre', 'descripcion', 'familia_id'];
-
-    // Relación con la tabla 'familias'
-    public function familia()
-    {
-        return $this->belongsTo(Familia::class);
-    }
-
-    // Relación con la tabla 'imagenes'
+    // ✅ RELACIÓN CORRECTA
     public function imagenes()
     {
         return $this->hasMany(Imagen::class);
     }
-}
 
+    public function familia()
+    {
+        return $this->belongsTo(Familia::class);
+    }
+}

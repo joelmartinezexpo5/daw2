@@ -3,9 +3,9 @@
 @section('contenido')
     <h1 class="text-2xl font-bold mb-4">{{ $producto->nombre }}</h1>
 
-    @if($producto->imagen)
-        <img src="{{ asset('imagenes/'.$producto->imagen->archivo) }}" alt="Imagen del producto" class="mb-4 w-full md:w-1/3 h-auto object-cover">
-    @endif
+    @if ($producto->imagenes->isNotEmpty())
+    <img src="{{ asset('storage/imagenes/' . $producto->imagenes->first()->archivo) }}" alt="Imagen del producto">
+@endif
 
     <p class="mb-2"><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
     <p class="mb-2"><strong>Familia:</strong> {{ $producto->familia->nombre }}</p>

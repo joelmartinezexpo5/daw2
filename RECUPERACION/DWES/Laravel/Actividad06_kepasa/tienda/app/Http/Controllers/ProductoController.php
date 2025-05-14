@@ -13,7 +13,7 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::with('familia', 'imagen')->get();
+        $productos = Producto::with('familia', 'imagenes')->get();
         return view('productos.index', compact('productos'));
     }
 
@@ -57,30 +57,33 @@ class ProductoController extends Controller
         $producto->update($request->only('nombre', 'descripcion', 'familia_id'));
 
         if ($request->hasFile('imagen')) {
-            if ($producto->imagen) {
-                Storage::delete('public/imagenes/'.$producto->imagen->archivo);
-                $producto->imagen->delete();
-            }
+    if ($producto->imagenes->isNotEmpty()) { // 👈 usa 'imagenes' correctamente
+        Storage::delete('public/imagenes/' . $producto->imagenes->first()->archivo);
+        $producto->imagenes->first()->delete();
+    }
 
-            $archivo = $request->file('imagen');
-            $nombreArchivo = time().'_'.$archivo->getClientOriginalName();
-            $archivo->storeAs('public/imagenes', $nombreArchivo);
+    $archivo = $request->file('imagen');
+    $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
+    $archivo->storeAs('public/imagenes', $nombreArchivo);
 
-            Imagen::create([
-                'producto_id' => $producto->id,
-                'archivo' => $nombreArchivo,
-            ]);
-        }
+    Imagen::create([
+        'producto_id' => $producto->id,
+        'archivo' => $nombreArchivo,
+    ]);
+}
+
 
         return redirect()->route('productos.index')->with('mensaje', 'Producto actualizado correctamente.');
     }
 
     public function destroy(Producto $producto)
     {
-        if ($producto->imagen) {
-            Storage::delete('public/imagenes/'.$producto->imagen->archivo);
-            $producto->imagen->delete();
-        }
+        if ($producto->imagenes->isNotEmpty()) {
+    foreach ($producto->imagenes as $imagen) {
+        Storage::delete('public/imagenes/' . $imagen->archivo);
+        $imagen->delete();
+    }
+}
 
         $producto->delete();
 
