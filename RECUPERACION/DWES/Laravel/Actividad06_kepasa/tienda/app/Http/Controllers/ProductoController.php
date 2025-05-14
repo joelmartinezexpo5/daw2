@@ -35,7 +35,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
             $nombreArchivo = time().'_'.$archivo->getClientOriginalName();
-            $archivo->storeAs('public/imagenes', $nombreArchivo);
+            Storage::disk('imagenes')->putFileAs('', $archivo, $nombreArchivo);
 
             Imagen::create([
                 'producto_id' => $producto->id,
@@ -57,21 +57,20 @@ class ProductoController extends Controller
         $producto->update($request->only('nombre', 'descripcion', 'familia_id'));
 
         if ($request->hasFile('imagen')) {
-    if ($producto->imagenes->isNotEmpty()) { // 👈 usa 'imagenes' correctamente
-        Storage::delete('public/imagenes/' . $producto->imagenes->first()->archivo);
-        $producto->imagenes->first()->delete();
-    }
+            if ($producto->imagenes->isNotEmpty()) { // 👈 usa 'imagenes' correctamente
+                Storage::delete('public/imagenes/' . $producto->imagenes->first()->archivo);
+                $producto->imagenes->first()->delete();
+            }
 
-    $archivo = $request->file('imagen');
-    $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
-    $archivo->storeAs('public/imagenes', $nombreArchivo);
+            $archivo = $request->file('imagen');
+            $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
+            Storage::disk('imagenes')->putFileAs('', $archivo, $nombreArchivo);
 
-    Imagen::create([
-        'producto_id' => $producto->id,
-        'archivo' => $nombreArchivo,
-    ]);
-}
-
+            Imagen::create([
+                'producto_id' => $producto->id,
+                'archivo' => $nombreArchivo,
+            ]);
+        }
 
         return redirect()->route('productos.index')->with('mensaje', 'Producto actualizado correctamente.');
     }

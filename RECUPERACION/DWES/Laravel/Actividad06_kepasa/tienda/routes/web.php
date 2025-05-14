@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductoController;
 
 Route::get('/', [ProductoController::class, 'index'])->name('inicio');
+// Route::get('dashboard', [ProductoController::class, 'index'])->name('inicio');
 Route::resource('productos', ProductoController::class);
 
 // Agrupar las rutas protegidas

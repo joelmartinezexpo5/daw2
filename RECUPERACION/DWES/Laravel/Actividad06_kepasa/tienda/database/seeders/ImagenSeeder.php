@@ -17,7 +17,7 @@ class ImagenSeeder extends Seeder
         $producto = Producto::first(); // Tomamos el primer producto
         Imagen::create([
             'producto_id' => $producto->id,
-            'archivo' => 'imagen_de_prueba.jpg'
+            'archivo' => 'original.jpeg'
         ]);
     }
 }
