@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <script type="module" src="./users.js"></script>
+    <link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+    <div class="contenedorPrincipal">
+        <h1>Users</h1>
+
+        <div class="filtroVolver">
+            <div>
+                <label for="filtro">Filtro: </label>
+                <input type="text" name="filtro" id="filtro">
+            </div>
+            <p><a href="../index.html">Página principal</a></p>
+        </div>
+
+        <div class="paginador">
+            <div>
+                <label for="numElementos">Mostrar: </label>
+                <select name="numElementos" id="numElementos">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="todos">Todos</option>
+                </select>
+            </div>
+            <div id="paginador" class="paginador"></div>
+        </div>
+
+        <div class="tabla">
+            <div class="cabecera fila">
+                <div>Nombre</div>
+                <div>Apellidos</div>
+                <div>Email</div>
+                <div>Direccion</div>
+                <div>Telefono</div>
+                <div>Compañia</div>
+                <div>Web</div>
+                <div>Acciones</div>
+            </div>
+            <div id="listado" class="listado"></div>
+        </div>
+    </div>
+</body>
+</html>

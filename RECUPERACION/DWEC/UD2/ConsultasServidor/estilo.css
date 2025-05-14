@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1e1e2f;
+    color: #f1f1f1;
+}
+
+.contenedorPrincipal {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.contenedorTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.tarjeta {
+    background: linear-gradient(145deg, #2a2a3d, #1a1a2b);
+    color: #fff;
+    padding: 20px;
+    width: 280px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-6px);
+    background-color: #34344e;
+    cursor: pointer;
+}
+
+.filtroVolver {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+a {
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #ff4c4c;
+}
+
+input,
+select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #2d2d44;
+    color: #f1f1f1;
+}
+
+.tabla {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #2a2a3f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.cabecera {
+    font-weight: 700;
+    font-size: 1.2rem;
+    background-color: #3a3a5a;
+    padding: 15px;
+}
+
+.fila {
+    display: flex;
+    border-top: 1px solid #444;
+    transition: background-color 0.2s ease;
+}
+
+.listado > .fila:hover {
+    background-color: #3f3f5f;
+}
+
+.fila > div {
+    padding: 12px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-right: 1px solid #444;
+}
+
+.fila > div:last-child {
+    border-right: none;
+}
+
+.fila:hover > div {
+    white-space: normal;
+}
+
+.paginador {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-paginador {
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-weight: 600;
+    border: 2px solid #555;
+    background-color: #2f2f45;
+    color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-paginador:hover {
+    background-color: #444466;
+}
+
+.activo {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+}
+
+.inactivo {
+    background-color: #555;
+    color: #999;
+    border: none;
+    cursor: not-allowed;
+}
