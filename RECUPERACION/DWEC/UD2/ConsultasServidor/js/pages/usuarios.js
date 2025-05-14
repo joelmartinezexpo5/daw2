@@ -1,5 +1,12 @@
-import Aplicacion from '../../app.js';
-import { mostrarError, crearElemento } from '../../utils.js';
+import Aplicacion from '../app.js';
+import { 
+  mostrarError, 
+  ocultarError, 
+  crearElemento,
+  obtenerParametroURL,
+  guardarFiltroActual,
+  obtenerFiltroAnterior
+} from '../utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const entidad = 'users';
@@ -7,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let porPagina = Aplicacion.obtenerPreferencia(entidad) || 10;
   let filtro = '';
   let datos = [];
+  let totalRegistros = 0;
 
   // Elementos del DOM
   const selectPorPagina = document.getElementById('por-pagina');
@@ -15,38 +23,68 @@ document.addEventListener('DOMContentLoaded', async () => {
   const btnAnterior = document.getElementById('anterior');
   const btnSiguiente = document.getElementById('siguiente');
   const infoPagina = document.getElementById('info-pagina');
+  const contenedorErrores = document.getElementById('contenedor-errores');
 
   // Configurar valor inicial
   selectPorPagina.value = porPagina;
 
   // Cargar y mostrar datos
   const cargarYMostrarDatos = async () => {
+    ocultarError();
     try {
-      datos = await Aplicacion.cargarDatosPaginados(entidad, paginaActual, porPagina, filtro);
+      const { datos: datosApi, total } = await Aplicacion.cargarDatosPaginados(
+        entidad, 
+        paginaActual, 
+        porPagina, 
+        filtro
+      );
+      
+      datos = datosApi;
+      totalRegistros = total;
       mostrarDatos(datos);
-      infoPagina.textContent = `Página ${paginaActual}`;
+      actualizarPaginacion();
+      
+      // Guardar filtro actual en sessionStorage
+      guardarFiltroActual(entidad, { filtro, paginaActual, porPagina });
     } catch (error) {
       mostrarError('Error al cargar los usuarios. Intente nuevamente.');
+      console.error('Error:', error);
     }
   };
 
   // Mostrar datos en la tabla
   const mostrarDatos = (datos) => {
     tbody.innerHTML = '';
+    
+    if (datos.length === 0) {
+      const fila = crearElemento('tr');
+      fila.innerHTML = `<td colspan="5" style="text-align: center;">No se encontraron usuarios</td>`;
+      tbody.appendChild(fila);
+      return;
+    }
+    
     datos.forEach(usuario => {
       const fila = crearElemento('tr');
       fila.innerHTML = `
         <td>${usuario.id}</td>
         <td>${usuario.name}</td>
         <td>${usuario.email}</td>
-        <td>
-          <button data-user-id="${usuario.id}" data-accion="todos">Ver pendientes</button>
-          <button data-user-id="${usuario.id}" data-accion="albums">Ver álbumes</button>
-          <button data-user-id="${usuario.id}" data-accion="posts">Ver posts</button>
+        <td>${usuario.phone}</td>
+        <td class="acciones">
+          <button data-user-id="${usuario.id}" data-accion="todos" title="Ver tareas">✅</button>
+          <button data-user-id="${usuario.id}" data-accion="albums" title="Ver álbumes">📚</button>
+          <button data-user-id="${usuario.id}" data-accion="posts" title="Ver publicaciones">📝</button>
         </td>
       `;
       tbody.appendChild(fila);
     });
+  };
+
+  // Actualizar controles de paginación
+  const actualizarPaginacion = () => {
+    infoPagina.textContent = `Página ${paginaActual}`;
+    btnAnterior.disabled = paginaActual <= 1;
+    btnSiguiente.disabled = datos.length < porPagina || porPagina === 0;
   };
 
   // Event listeners
@@ -86,6 +124,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  // Cargar filtro anterior si existe
+  const cargarFiltroAnterior = () => {
+    const filtroAnterior = obtenerFiltroAnterior(entidad);
+    if (filtroAnterior) {
+      filtro = filtroAnterior.filtro || '';
+      paginaActual = filtroAnterior.paginaActual || 1;
+      porPagina = filtroAnterior.porPagina || 10;
+      
+      inputFiltro.value = filtro;
+      selectPorPagina.value = porPagina;
+    }
+  };
+
   // Carga inicial
+  cargarFiltroAnterior();
   await cargarYMostrarDatos();
 });

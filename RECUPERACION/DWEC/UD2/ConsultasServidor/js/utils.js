@@ -23,10 +23,31 @@ export const crearElemento = (etiqueta, atributos = {}, texto = '') => {
 };
 
 export const irAPaginaEntidad = (entidad) => {
-  // Cambiar según tu estructura
-  if (entidad === 'users') {
-    window.location.href = 'usuarios.html';
-  } else {
-    window.location.href = `${entidad}.html`;
-  }
+  const paginas = {
+    'users': 'usuarios',
+    'todos': 'tareas',
+    'posts': 'publicaciones',
+    'comments': 'comentarios',
+    'albums': 'albumes',
+    'photos': 'fotos'
+  };
+  window.location.href = `${paginas[entidad] || entidad}.html`;
+};
+
+export const obtenerParametroURL = (nombre) => {
+  const parametros = new URLSearchParams(window.location.search);
+  return parametros.get(nombre);
+};
+
+export const guardarFiltroActual = (entidad, filtro) => {
+  sessionStorage.setItem(`filtro_${entidad}`, JSON.stringify(filtro));
+};
+
+export const obtenerFiltroAnterior = (entidad) => {
+  return JSON.parse(sessionStorage.getItem(`filtro_${entidad}`)) || null;
+};
+
+export const formatearFecha = (fechaString) => {
+  const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(fechaString).toLocaleDateString('es-ES', opciones);
 };

@@ -6,26 +6,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     const conteos = await Aplicacion.obtenerConteosEntidades();
     const contenedor = document.getElementById('contenedor-tarjetas');
     
-    // Mapeo de entidades API a tus archivos HTML
-    const mapeoEntidades = {
-      'users': 'usuarios',
-      'todos': 'tareas',
-      'posts': 'publicaciones',
-      'comments': 'comentarios',
-      'albums': 'albumes',
-      'photos': 'fotos'
+    if (!contenedor) return;
+    
+    const entidadesTraducidas = {
+      'users': 'Usuarios',
+      'todos': 'Tareas',
+      'posts': 'Publicaciones',
+      'comments': 'Comentarios',
+      'albums': 'Álbumes',
+      'photos': 'Fotos'
+    };
+    
+    const iconosEntidades = {
+      'users': '👤',
+      'todos': '✅',
+      'posts': '📝',
+      'comments': '💬',
+      'albums': '📚',
+      'photos': '📷'
     };
     
     for (const [entidad, conteo] of Object.entries(conteos)) {
-      const tarjeta = crearElemento('div', { class: 'tarjeta', 'data-entidad': mapeoEntidades[entidad] || entidad });
+      const tarjeta = crearElemento('div', { 
+        class: 'tarjeta', 
+        'data-entidad': entidad 
+      });
+      
       tarjeta.innerHTML = `
-        <h3>${entidad}</h3>
+        <div style="font-size: 2rem;">${iconosEntidades[entidad] || '📁'}</div>
+        <h3>${entidadesTraducidas[entidad] || entidad}</h3>
         <p>Total: ${conteo}</p>
       `;
-      tarjeta.addEventListener('click', () => irAPaginaEntidad(mapeoEntidades[entidad] || entidad));
+      
+      tarjeta.addEventListener('click', () => irAPaginaEntidad(entidad));
       contenedor.appendChild(tarjeta);
     }
   } catch (error) {
     mostrarError('Error al cargar los datos. Intente nuevamente más tarde.');
+    console.error('Error:', error);
   }
 });
