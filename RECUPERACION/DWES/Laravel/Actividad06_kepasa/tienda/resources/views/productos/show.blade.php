@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-bold mb-4">{{ $producto->nombre }}</h1>
 
     @if ($producto->imagenes->isNotEmpty())
-    <img src="{{ asset('storage/imagenes/' . $producto->imagenes->first()->archivo) }}" alt="Imagen del producto">
+    <img src="{{ asset('imagenes/' . $producto->imagenes->first()->archivo) }}" alt="Imagen" width="200">
 @endif
 
     <p class="mb-2"><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
