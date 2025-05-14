@@ -2,16 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Usuarios</title>
+  <title>Tareas</title>
   <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
-  <h1>Usuarios</h1>
+  <h1>Tareas Pendientes</h1>
   <div id="contenedor-errores"></div>
   
   <div class="controles">
-    <label for="filtro">Filtrar por nombre:</label>
-    <input type="text" id="filtro" placeholder="Buscar usuarios...">
+    <label for="filtro">Filtrar por título:</label>
+    <input type="text" id="filtro">
     <label for="por-pagina">Elementos por página:</label>
     <select id="por-pagina">
       <option value="5">5</option>
@@ -21,25 +21,24 @@
     </select>
   </div>
   
-  <table id="tabla-usuarios">
+  <table id="tabla-datos">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Acciones</th>
+        <th>Usuario ID</th>
+        <th>Título</th>
+        <th>Completado</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
   
   <div class="paginacion">
-    <button id="anterior" disabled>Anterior</button>
+    <button id="anterior">Anterior</button>
     <span id="info-pagina">Página 1</span>
-    <button id="siguiente" disabled>Siguiente</button>
+    <button id="siguiente">Siguiente</button>
   </div>
 
-  <script type="module" src="../js/usuarios.js"></script>
+  <script type="module" src="../js/tareas.js"></script>
 </body>
 </html>

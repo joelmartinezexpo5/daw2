@@ -1,4 +1,3 @@
-// Clase autoinvocada para la lógica principal
 const Aplicacion = (() => {
   const URL_API = 'https://jsonplaceholder.typicode.com';
   
@@ -10,7 +9,12 @@ const Aplicacion = (() => {
       
       const respuesta = await fetch(url);
       if (!respuesta.ok) throw new Error('Error en la respuesta del servidor');
-      return await respuesta.json();
+      
+      // Para obtener el conteo real de elementos (API simula con X-Total-Count)
+      const total = respuesta.headers.get('x-total-count');
+      const datos = await respuesta.json();
+      
+      return { datos, total: total ? parseInt(total) : datos.length };
     } catch (error) {
       console.error(`Error al obtener ${entidad}:`, error);
       throw error;
@@ -23,8 +27,8 @@ const Aplicacion = (() => {
     
     await Promise.all(entidades.map(async entidad => {
       try {
-        const datos = await obtenerDatos(entidad, { _limit: 1 });
-        conteos[entidad] = datos.length;
+        const { total } = await obtenerDatos(entidad, { _limit: 1 });
+        conteos[entidad] = total;
       } catch (error) {
         conteos[entidad] = 'Error';
       }
@@ -33,21 +37,43 @@ const Aplicacion = (() => {
     return conteos;
   };
 
-  const cargarDatosPaginados = async (entidad, pagina = 1, porPagina = 10, filtro = '') => {
+  const cargarDatosPaginados = async (entidad, pagina = 1, porPagina = 10, filtro = '', filtroId = null) => {
     const inicio = (pagina - 1) * porPagina;
     let parametros = { _start: inicio, _limit: porPagina };
     
+    if (filtroId) {
+      parametros = { ...parametros, ...filtroId };
+    }
+    
     try {
-      let datos = await obtenerDatos(entidad, parametros);
+      const { datos, total } = await obtenerDatos(entidad, parametros);
+      let datosFiltrados = datos;
       
       if (filtro) {
         const campoPrincipal = obtenerCampoPrincipal(entidad);
-        datos = datos.filter(item => 
+        datosFiltrados = datos.filter(item => 
           String(item[campoPrincipal]).toLowerCase().includes(filtro.toLowerCase())
         );
       }
       
-      return datos;
+      return { datos: datosFiltrados, total };
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const obtenerDatosFiltradosPorId = async (entidad, campoId, valorId) => {
+    try {
+      // Endpoints que soportan filtrado directo
+      const endpointsConFiltro = ['todos', 'posts', 'comments', 'albums', 'photos'];
+      
+      if (endpointsConFiltro.includes(entidad)) {
+        return await obtenerDatos(entidad, { [campoId]: valorId });
+      }
+      
+      // Para otros endpoints, obtener todos y filtrar en cliente
+      const todosLosDatos = await obtenerDatos(entidad);
+      return todosLosDatos.datos.filter(item => item[campoId] == valorId);
     } catch (error) {
       throw error;
     }
@@ -77,6 +103,7 @@ const Aplicacion = (() => {
     obtenerDatos,
     obtenerConteosEntidades,
     cargarDatosPaginados,
+    obtenerDatosFiltradosPorId,
     obtenerCampoPrincipal,
     guardarPreferencia,
     obtenerPreferencia
