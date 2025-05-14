@@ -57,7 +57,6 @@ function cargarListadoTodos(datos){
         filaListado.classList.add('fila');
         filaListado.setAttribute('data-id', dato.id);
     
-        // Cambiar userId por nombre de autor
         filaListado.innerHTML += `
             <div>${dato.userId}</div>
             <div>${dato.title}</div>
@@ -68,5 +67,23 @@ function cargarListadoTodos(datos){
     }
 }
 
+function cargarListadoAlbums(datos){
+    const listado = document.getElementById('listado');
+    listado.innerHTML = '';
 
-export {guardarLocalStorage, cargarTarjetas, cargarListadoUsers, cargarListadoTodos};
+    for(let dato of datos){
+        const filaListado = document.createElement('div');
+        filaListado.classList.add('fila');
+        filaListado.setAttribute('data-id', dato.id);
+
+        filaListado.innerHTML += `
+            <div>${dato.userId}</div>
+            <div>${dato.title}</div>
+        `;
+
+        listado.appendChild(filaListado);
+    }
+}
+
+
+export {guardarLocalStorage, cargarTarjetas, cargarListadoUsers, cargarListadoTodos, cargarListadoAlbums};
