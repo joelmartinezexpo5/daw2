@@ -10,9 +10,11 @@
                 <p>{{ Str::limit($producto->descripcion, 100) }}</p>
                 <p class="text-sm text-gray-600">Familia: {{ $producto->familia->nombre }}</p>
                 
-                @if($producto->imagen)
-                    <img src="{{ asset('imagenes/'.$producto->imagen->archivo) }}" alt="Imagen" class="mt-2 w-full h-40 object-cover">
-                @endif
+                @if ($producto->imagenes->isNotEmpty())
+    <img src="{{ asset('storage/imagenes/' . $producto->imagenes->first()->archivo) }}" alt="Imagen del producto">
+@else
+    <p>Sin imagen</p>
+@endif
 
                 <a href="{{ route('productos.show', $producto) }}" class="text-blue-500 mt-2 inline-block hover:underline">Ver detalle</a>
             </div>
