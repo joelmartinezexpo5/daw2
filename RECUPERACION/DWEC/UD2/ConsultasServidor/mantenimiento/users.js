@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
     });
 });
 
-// ✅ Descarga los datos paginados y los pinta
+// Descarga los datos paginados y los pinta
 function actualizarListado() {
     const cantidad = elementosPorPagina.value === 'todos' ? 10000 : parseInt(elementosPorPagina.value);
     const start = (paginaActual - 1) * cantidad;
@@ -44,11 +44,9 @@ function actualizarListado() {
         .then(datos => {
             utilidades.cargarListadoUsers(datos);
 
-            // Si estás filtrando, la API devuelve solo esos, no hace falta calcular más
             if (textoFiltro !== '') {
                 totalUsuarios = datos.length;
             } else {
-                // Solo calcular total si no hay filtro
                 App.obtenerDatos('users')
                     .then(todos => {
                         totalUsuarios = todos.length;
