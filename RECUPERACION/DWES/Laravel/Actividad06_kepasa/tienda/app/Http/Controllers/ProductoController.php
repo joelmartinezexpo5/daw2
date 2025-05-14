@@ -88,4 +88,26 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index')->with('mensaje', 'Producto eliminado correctamente.');
     }
+
+    public function agregarACesta(Request $request, Producto $producto)
+    {
+        // Obtener la cesta actual de la sesión
+        $cesta = session()->get('cesta', []);
+
+        // Agregar o actualizar el producto
+        if (isset($cesta[$producto->id])) {
+            $cesta[$producto->id]['cantidad']++;
+        } else {
+            $cesta[$producto->id] = [
+                'nombre' => $producto->nombre,
+                'precio' => $producto->precio,
+                'cantidad' => 1,
+            ];
+        }
+
+        // Guardar en la sesión
+        session()->put('cesta', $cesta);
+
+        return redirect()->route('cesta.index')->with('success', 'Producto agregado a la cesta.');
+    }
 }

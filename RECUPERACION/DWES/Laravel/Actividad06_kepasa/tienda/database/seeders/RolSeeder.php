@@ -21,5 +21,9 @@ class RolSeeder extends Seeder
         if ($user && !$user->hasRole('administrador')) {
             $user->assignRole('administrador');
         }
+        $user = \App\Models\User::find(2);
+        if ($user && !$user->hasRole('cliente')) {
+            $user->assignRole('cliente');
+        }
     }
 }
