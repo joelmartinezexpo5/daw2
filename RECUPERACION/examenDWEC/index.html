@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script type="module" src="main.js" defer></script>
+    <!-- <script type="module" src="validacion.js" defer></script> -->
+    <style>
+        .error {
+            border-color: red;
+            background-color: #ffe6e6;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gestión de Libros</h1>
+
+    <section class="form-section">
+        <h2>Formulario de Libros</h2>
+        <form id="form-libro" class="formulario">
+            <input type="hidden" id="libro-id">
+
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo">
+            </div>
+
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                <input type="text" id="autor">
+            </div>
+
+            <div class="form-group">
+                <label for="publicacion">Fecha de publicación:</label>
+                <input type="date" id="publicacion">
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio (€):</label>
+                <input type="number" id="precio" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de libro:</label>
+                <select id="tipo">
+                    <option value="">Seleccione un tipo</option>
+                    <option value="novela">Novela</option>
+                    <option value="ensayo">Ensayo</option>
+                    <option value="infantil">Infantil</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="btn-guardar">Guardar</button>
+                <button type="button" id="btn-cancelar">Cancelar</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="list-section">
+        <h2>Listado de Libros</h2>
+        <div class="tabla" id="tabla-libros">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    
+</body>
+
+</html>
