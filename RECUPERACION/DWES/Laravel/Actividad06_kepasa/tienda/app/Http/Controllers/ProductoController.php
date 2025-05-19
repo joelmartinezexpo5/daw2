@@ -14,7 +14,13 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::with('familia', 'imagenes')->get();
-        return view('productos.index', compact('productos'));
+        $productos = Producto::all();
+
+        if (auth()->check() && auth()->user()->hasRole('administrador')) {
+            return view('productos.admin_index', compact('productos'));
+        } else {
+            return view('productos.index', compact('productos'));
+        }
     }
 
     public function show(Producto $producto)
