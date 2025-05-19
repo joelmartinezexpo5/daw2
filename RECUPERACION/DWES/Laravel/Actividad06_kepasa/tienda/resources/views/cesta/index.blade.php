@@ -12,8 +12,8 @@
             @foreach($cesta as $producto)
                 <li class="py-4 flex justify-between items-center">
                     <div>
-                        <h2 class="font-semibold">{{ $producto->nombre }}</h2>
-                        <p class="text-sm text-gray-600">{{ $producto->descripcion }}</p>
+                        <h2 class="font-semibold">{{ $producto['nombre'] }}</h2>
+                        <p class="text-sm text-gray-600">{{ $producto['descripcion'] ?? '' }}</p>
                     </div>
                     <form action="{{ route('cesta.eliminar', $producto['id']) }}" method="POST">
                         @csrf

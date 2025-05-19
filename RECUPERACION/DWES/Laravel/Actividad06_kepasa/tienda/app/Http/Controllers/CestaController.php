@@ -25,7 +25,8 @@ class CestaController extends Controller
             $cesta[$producto->id] = [
                 'id' => $producto->id,
                 'nombre' => $producto->nombre,
-                'precio' => $producto->precio ?? 0, // ajusta según tu modelo
+                'descripcion' => $producto->descripcion,
+                'precio' => $producto->precio ?? 0,
                 'cantidad' => 1,
             ];
         }
