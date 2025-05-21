@@ -21,6 +21,7 @@
                 <tr>
                     <th class="px-4 py-2 text-left">ID</th>
                     <th class="px-4 py-2 text-left">Nombre</th>
+                    <th class="px-4 py-2 text-left">Precio</th>
                     <th class="px-4 py-2 text-left">Descripción</th>
                     <th class="px-4 py-2 text-left">Familia</th>
                     <th class="px-4 py-2 text-left">Acciones</th>
@@ -31,9 +32,11 @@
                     <tr class="border-t">
                         <td class="px-4 py-2">{{ $producto->id }}</td>
                         <td class="px-4 py-2">{{ $producto->nombre }}</td>
+                        <td class="px-4 py-2">{{ $producto->precio }}</td>
                         <td class="px-4 py-2 text-sm text-gray-600 truncate max-w-xs">{{ $producto->descripcion }}</td>
                         <td class="px-4 py-2">{{ $producto->familia->nombre ?? 'Sin familia' }}</td>
                         <td class="px-4 py-2 space-x-2">
+                            <a href="{{ route('productos.show', $producto) }}" class="text-blue-600 hover:underline" >Ver</a>
                             <a href="{{ route('productos.edit', $producto) }}" class="text-yellow-600 hover:underline">Editar</a>
 
                             <form action="{{ route('productos.destroy', $producto) }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás seguro de eliminar este producto?')">

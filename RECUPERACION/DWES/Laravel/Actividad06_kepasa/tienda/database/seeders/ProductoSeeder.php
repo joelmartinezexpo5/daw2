@@ -2,28 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Producto;
 use App\Models\Familia;
+use Illuminate\Support\Str;
 
 class ProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    public function run(): void
     {
-        Producto::create([
-            'nombre' => 'Laptop',
-            'descripcion' => 'Laptop de última generación',
-            'familia_id' => Familia::where('nombre', 'Electrónica')->first()->id
-        ]);
+        $familias = Familia::all();
 
-        Producto::create([
-            'nombre' => 'Camiseta',
-            'descripcion' => 'Camiseta de algodón',
-            'familia_id' => Familia::where('nombre', 'Ropa')->first()->id
-        ]);
+        foreach ($familias as $familia) {
+            for ($i = 1; $i <= 3; $i++) {
+                Producto::create([
+                    'nombre' => $familia->nombre . ' Modelo ' . $i,
+                    'descripcion' => 'Descripción del producto ' . $i . ' en la categoría ' . $familia->nombre,
+                    'precio' => rand(100, 1500),
+                    'familia_id' => $familia->id,
+                ]);
+            }
+        }
     }
 }

@@ -9,9 +9,8 @@ class Producto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'descripcion', 'precio', 'familia_id'];
+    protected $fillable = ['nombre', 'descripcion', 'familia_id', 'precio'];
 
-    // ✅ RELACIÓN CORRECTA
     public function imagenes()
     {
         return $this->hasMany(Imagen::class);

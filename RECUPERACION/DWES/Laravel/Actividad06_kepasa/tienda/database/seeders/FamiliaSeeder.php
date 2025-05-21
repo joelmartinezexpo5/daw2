@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Familia;
 
 class FamiliaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    public function run(): void
     {
-        Familia::create(['nombre' => 'Electrónica']);
-        Familia::create(['nombre' => 'Ropa']);
-        Familia::create(['nombre' => 'Alimentos']);
+        $familias = ['Smartphones', 'Portatiles', 'Tablets', 'Auriculares', 'Monitores', 'Accesorios'];
+
+        foreach ($familias as $nombre) {
+            Familia::create(['nombre' => $nombre]);
+        }
     }
 }

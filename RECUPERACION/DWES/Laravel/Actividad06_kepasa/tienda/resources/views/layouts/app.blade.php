@@ -17,8 +17,8 @@
         <nav class="bg-white border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
                 <div>
-                    <a href="{{ route('inicio') }}" class="text-lg font-bold text-gray-700 hover:text-blue-500">
-                        {{ config('app.name', 'Tienda') }}
+                    <a href="{{ route('inicio') }}" class="text-lg font-bold text-gray-700 hover:text-blue-500">Tienda Kepasa
+                        
                     </a>
                 </div>
                 <div class="flex items-center space-x-4">
