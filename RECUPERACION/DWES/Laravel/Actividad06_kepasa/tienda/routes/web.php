@@ -8,8 +8,7 @@ use App\Http\Controllers\CestaController;
 Route::get('/', [ProductoController::class, 'index'])->name('inicio');
 // Listar productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
-// Mostrar un producto específico
-Route::get('/productos/{producto}', [ProductoController::class, 'show'])->name('productos.show');
+
 
 
 Route::middleware(['auth', 'rol:administrador'])->group(function (){
@@ -24,6 +23,9 @@ Route::middleware(['auth', 'rol:administrador'])->group(function (){
     // Eliminar un producto
     Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 });
+
+// Mostrar un producto específico
+Route::get('/productos/{producto}', [ProductoController::class, 'show'])->name('productos.show');
 
 Route::middleware(['auth', 'rol:cliente'])->group(function () {
     // Ver cesta
