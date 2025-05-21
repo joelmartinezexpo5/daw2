@@ -64,7 +64,10 @@ class ProductoController extends Controller
 
     public function update(ProductoRequest $request, Producto $producto)
     {
-        $producto->update($request->only('nombre', 'descripcion', 'familia_id'));
+        $data = $request->only('nombre', 'precio', 'descripcion', 'familia_id');
+        $data['slug'] = Str::slug($request->nombre);
+        
+        $producto->update($data);
 
         if ($request->hasFile('imagen')) {
             if ($producto->imagenes->isNotEmpty()) {
