@@ -27,7 +27,7 @@ class ProductoRequest extends FormRequest
             'precio' => 'required|numeric|min:0',
             'descripcion' => 'required|string|max:1000',
             'familia_id' => 'required|exists:familias,id',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg|max:2048',
         ];
     }
 }

@@ -9,8 +9,6 @@ Route::get('/', [ProductoController::class, 'index'])->name('inicio');
 // Listar productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 
-
-
 Route::middleware(['auth', 'rol:administrador'])->group(function (){
     // Mostrar formulario de creación
     Route::get('/productos/crear', [ProductoController::class, 'create'])->name('productos.create');
