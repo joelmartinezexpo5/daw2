@@ -9,7 +9,7 @@ class Producto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'descripcion', 'familia_id', 'precio'];
+    protected $fillable = ['nombre', 'descripcion', 'familia_id', 'precio', 'slug'];
 
     public function imagenes()
     {
@@ -19,5 +19,10 @@ class Producto extends Model
     public function familia()
     {
         return $this->belongsTo(Familia::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

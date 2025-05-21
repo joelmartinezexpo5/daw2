@@ -8,6 +8,7 @@ use App\Models\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductoRequest;
+use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
@@ -36,7 +37,10 @@ class ProductoController extends Controller
 
     public function store(ProductoRequest $request)
     {
-        $producto = Producto::create($request->only('nombre', 'descripcion', 'familia_id'));
+        $data = $request->only('nombre', 'precio', 'descripcion', 'familia_id');
+        $data['slug'] = Str::slug($request->nombre); // Generate slug from nombre
+
+        $producto = Producto::create($data);
 
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
@@ -63,7 +67,7 @@ class ProductoController extends Controller
         $producto->update($request->only('nombre', 'descripcion', 'familia_id'));
 
         if ($request->hasFile('imagen')) {
-            if ($producto->imagenes->isNotEmpty()) { // 👈 usa 'imagenes' correctamente
+            if ($producto->imagenes->isNotEmpty()) {
                 Storage::delete('public/imagenes/' . $producto->imagenes->first()->archivo);
                 $producto->imagenes->first()->delete();
             }

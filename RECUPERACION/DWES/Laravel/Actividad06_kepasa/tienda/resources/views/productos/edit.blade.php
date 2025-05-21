@@ -13,6 +13,11 @@
         </div>
 
         <div>
+            <label for="precio" class="block font-semibold">Precio</label>
+            <input type="number" step="0.01" name="precio" id="precio" value="{{ old('precio', $producto->precio ?? '') }}" class="w-full border rounded px-3 py-2">
+        </div>
+
+        <div>
             <label for="descripcion" class="block font-semibold">Descripción</label>
             <textarea name="descripcion" id="descripcion" class="w-full border rounded px-3 py-2" required>{{ old('descripcion', $producto->descripcion) }}</textarea>
         </div>

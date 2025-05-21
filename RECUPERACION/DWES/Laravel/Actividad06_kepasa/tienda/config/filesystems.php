@@ -60,13 +60,6 @@ return [
             'report' => false,
         ],
 
-        'public' => [
-            'driver' => 'local',
-            'root' => public_path('imagenes'),
-            'url' => env('APP_URL').'/imagenes',
-            'visibility' => 'public',
-        ],
-
         'imagenes' => [
             'driver' => 'local',
             'root' => public_path('imagenes'),
