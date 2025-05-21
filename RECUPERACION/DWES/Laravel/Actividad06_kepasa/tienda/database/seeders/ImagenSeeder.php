@@ -2,22 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Imagen;
 use App\Models\Producto;
+use App\Models\Imagen;
 
 class ImagenSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    public function run(): void
     {
-        $producto = Producto::first(); // Tomamos el primer producto
-        Imagen::create([
-            'producto_id' => $producto->id,
-            'archivo' => 'original.jpeg'
-        ]);
+        $productosAgrupados = Producto::with('familia')->get()->groupBy('familia_id');
+
+        foreach ($productosAgrupados as $familiaId => $productos) {
+            $familiaNombre = strtolower(str_replace(' ', '', $productos->first()->familia->nombre));
+            $nombreArchivo = "{$familiaNombre}.jpg";
+
+            foreach ($productos as $producto) {
+                Imagen::create([
+                    'producto_id' => $producto->id,
+                    'archivo' => $nombreArchivo,
+                ]);
+            }
+        }
     }
 }

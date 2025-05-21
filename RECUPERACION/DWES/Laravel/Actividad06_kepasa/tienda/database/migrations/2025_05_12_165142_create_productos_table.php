@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
+            $table->decimal('precio', 8, 2);
             $table->foreignId('familia_id')->constrained('familias');
             // $table->foreignId('imagen_id')->nullable()->constrained('imagenes');
             $table->timestamps();

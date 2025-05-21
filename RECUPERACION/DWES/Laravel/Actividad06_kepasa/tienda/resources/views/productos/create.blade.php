@@ -11,6 +11,11 @@
             <input type="text" name="nombre" id="nombre" class="w-full border rounded px-3 py-2" value="{{ old('nombre') }}" required>
         </div>
 
+        <div class="mb-4">
+            <label for="precio" class="block text-gray-700">Precio</label>
+            <input type="number" step="0.01" name="precio" id="precio" value="{{ old('precio', $producto->precio ?? '') }}" class="w-full border border-gray-300 p-2 rounded">
+        </div>
+
         <div>
             <label for="descripcion" class="block font-semibold">Descripción</label>
             <textarea name="descripcion" id="descripcion" class="w-full border rounded px-3 py-2" required>{{ old('descripcion') }}</textarea>
