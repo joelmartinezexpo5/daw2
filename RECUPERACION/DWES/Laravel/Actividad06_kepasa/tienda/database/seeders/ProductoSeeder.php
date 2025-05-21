@@ -15,8 +15,11 @@ class ProductoSeeder extends Seeder
 
         foreach ($familias as $familia) {
             for ($i = 1; $i <= 3; $i++) {
+                $nombre = $familia->nombre . ' Modelo ' . $i;
+
                 Producto::create([
-                    'nombre' => $familia->nombre . ' Modelo ' . $i,
+                    'nombre' => $nombre,
+                    'slug' => Str::slug($nombre),
                     'descripcion' => 'Descripción del producto ' . $i . ' en la categoría ' . $familia->nombre,
                     'precio' => rand(100, 1500),
                     'familia_id' => $familia->id,

@@ -23,11 +23,24 @@ class ProductoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|min:4',
             'precio' => 'required|numeric|min:0',
             'descripcion' => 'required|string|max:1000',
             'familia_id' => 'required|exists:familias,id',
             'imagen' => 'nullable|image|mimes:jpg,jpeg|max:2048',
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'nombre.required' => 'el nombre es obligatorio',
+            'nombre.min' => 'el nombre debe tener al menos 4 letras',
+            'precio.required' => 'el precio es obligatorio',
+            'precio.min' => 'el precio debe ser mayor que cero',
+            'decripcion.required' => 'la descripcion es obligatoria',
+            'descripcion.max' => 'la descripcion no debe sobrepasar los 1000 caracteres',
+            'imagen.mimes' => 'la imagen deb estar en formato jpg o jpeg',
         ];
     }
 }
