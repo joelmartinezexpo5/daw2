@@ -38,7 +38,7 @@ class ProductoController extends Controller
     public function store(ProductoRequest $request)
     {
         $data = $request->only('nombre', 'precio', 'descripcion', 'familia_id');
-        $data['slug'] = Str::slug($request->nombre); // Generate slug from nombre
+        $data['slug'] = Str::slug($request->nombre);
 
         $producto = Producto::create($data);
 
