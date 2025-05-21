@@ -36,7 +36,12 @@ class ProductoController extends Controller
     }
 
     public function store(ProductoRequest $request)
-    {
+    {   
+        /**
+         * request->imagen->isValid()
+         * !empty($request->imagen)
+         * $request->imagen->store
+         */
         $data = $request->only('nombre', 'precio', 'descripcion', 'familia_id');
         $data['slug'] = Str::slug($request->nombre);
 
@@ -52,6 +57,8 @@ class ProductoController extends Controller
                 'archivo' => $nombreArchivo,
             ]);
         }
+
+        
 
         return redirect()->route('productos.index')->with('mensaje', 'Producto creado correctamente.');
     }
