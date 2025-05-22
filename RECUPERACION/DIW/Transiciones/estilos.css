@@ -1,0 +1,77 @@
+.boton{
+    background-color: lightcoral;
+    color: white;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s, box-shadow 0.3s;
+}
+
+.boton:hover{
+    background-color: lightseagreen;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.caja{
+    width: 100px;
+    height: 100px;
+    background-color: lightcoral;
+    position: relative;
+    animation-name: moverColor;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+}
+
+@keyframes moverColor{
+    from{
+        left: 0;
+    }
+    to{
+        left: 500px;
+        background-color: lightseagreen;
+    }
+}
+
+.caja2{
+	width: 100px;
+	height: 100px;
+	background-color: lightcoral;
+	position: relative;
+	animation: cambioForma 5s ease 0s infinite alternate;
+}
+
+@keyframes cambioForma{
+	0%{
+		background-color: lightcoral;
+		border-radius: 0;
+		left: 0;
+	}
+
+	25%{
+		background-color: lightsalmon;
+		border-radius: 25%;
+		left: 100px;
+	}
+
+	50%{
+		background-color: lightskyblue;
+		border-radius: 50%;
+		left: 200px;
+	}
+
+	75%{
+		background-color: lightgreen;
+		border-radius: 25%;
+		left: 300px;
+	}
+
+	100%{
+		background-color: lightslategray;
+		border-radius: 0%;
+		left: 400px;
+	}
+}
