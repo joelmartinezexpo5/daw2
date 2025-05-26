@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; // ✅ Importa la clase correcta
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Producto extends Model
 {
-    protected $fillable = ['titulo', 'descripcion', 'precio', 'imagen', 'familia_codigo'];
+    protected $fillable = ['nombre', 'slug', 'descripcion', 'precio', 'familia_id'];
 
-    public function familia()
+    public function familia(): BelongsTo
     {
-        return $this->belongsTo(Familia::class, 'familia_codigo', 'codigo');
+        return $this->belongsTo(Familia::class);
+    }
+
+    public function imagenes(): HasMany
+    {
+        return $this->hasMany(Imagen::class);
     }
 }

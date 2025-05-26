@@ -2,87 +2,110 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Producto;
 use App\Models\Familia;
+use App\Models\Imagen;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage; // ✅ Asegúrate de tener esta línea
+
+
+
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $productos = Producto::with('familia')->get();
-    return view('productos.index', compact('productos'));
+        $productos = Producto::with('familia', 'imagenes')->get();
+        return view('productos.index', compact('productos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $familias = Familia::all();
-    return view('productos.create', compact('familias'));
+        return view('productos.create', compact('familias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-        'titulo' => 'required',
-        'descripcion' => 'nullable',
-        'precio' => 'required|numeric',
-        'imagen' => 'required',
-        'familia_codigo' => 'required|exists:familias,codigo',
-    ]);
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'familia_id' => 'required|exists:familias,id',
+            'archivo' => 'nullable|image|max:2048'
+        ]);
 
-    Producto::create($request->all());
-    return redirect()->route('productos.index')->with('success', 'Producto creado');
+        $producto = Producto::create([
+            'nombre' => $request->nombre,
+            'slug' => Str::slug($request->nombre),
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'familia_id' => $request->familia_id,
+        ]);
+
+        if ($request->hasFile('archivo')) {
+            $path = $request->file('archivo')->store('imagenes', 'public');
+            Imagen::create([
+                'producto_id' => $producto->id,
+                'archivo' => $path
+            ]);
+        }
+
+        return redirect()->route('productos.index')->with('success', 'Producto creado.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Producto $producto)
     {
-        //
+        $producto->load('familia', 'imagenes');
+        return view('productos.show', compact('producto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Producto $producto)
     {
         $familias = Familia::all();
-    return view('productos.edit', compact('producto', 'familias'));
+        $producto->load('imagenes');
+        return view('productos.edit', compact('producto', 'familias'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Producto $producto)
     {
         $request->validate([
-        'titulo' => 'required',
-        'descripcion' => 'nullable',
-        'precio' => 'required|numeric',
-        'imagen' => 'required',
-        'familia_codigo' => 'required|exists:familias,codigo',
-    ]);
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'familia_id' => 'required|exists:familias,id',
+            'archivo' => 'nullable|image|max:2048'
+        ]);
 
-    $producto->update($request->all());
-    return redirect()->route('productos.index')->with('success', 'Producto actualizado');
+        $producto->update([
+            'nombre' => $request->nombre,
+            'slug' => Str::slug($request->nombre),
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'familia_id' => $request->familia_id,
+        ]);
+
+        if ($request->hasFile('archivo')) {
+            $imagenAnterior = $producto->imagenes()->first();
+            if ($imagenAnterior) {
+                Storage::disk('public')->delete($imagenAnterior->archivo);
+                $imagenAnterior->delete();
+            }
+            $path = $request->file('archivo')->store('imagenes', 'public');
+            Imagen::create([
+                'producto_id' => $producto->id,
+                'archivo' => $path
+            ]);
+        }
+
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Producto $producto)
     {
         $producto->delete();
-    return redirect()->route('productos.index')->with('success', 'Producto eliminado');
+        return redirect()->route('productos.index')->with('success', 'Producto eliminado.');
     }
+
 }

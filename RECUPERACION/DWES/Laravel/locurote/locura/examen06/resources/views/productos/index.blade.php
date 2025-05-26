@@ -1,52 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <title>Listado de productos</title>
-</head>
-<body>
+@extends('layouts.nav')
 
-@include('partials.nav')
-
-<h1>Productos</h1>
+@section('content')
+<h1>Listado de Productos</h1>
 
 @if(session('success'))
-    <p style="color:green;">{{ session('success') }}</p>
+    <p style="color: green">{{ session('success') }}</p>
 @endif
 
-<table border="1" cellpadding="10" cellspacing="0">
+<table border="1" cellpadding="5">
     <thead>
         <tr>
-            <th>Imagen</th>
-            <th>Título</th>
+            <th>Nombre</th>
             <th>Familia</th>
             <th>Precio</th>
+            <th>Imagen</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @forelse ($productos as $producto)
-            <tr>
-                <td>
-                    <img src="{{ asset('images/' . $producto->imagen . '.jpg') }}" alt="{{ $producto->titulo }}" width="80" />
-                </td>
-                <td>{{ $producto->titulo }}</td>
-                <td>{{ $producto->familia->nombre ?? 'N/A' }}</td>
-                <td>{{ number_format($producto->precio, 2) }} €</td>
-                <td>
-                    <a href="{{ route('productos.edit', $producto) }}">Editar</a> |
-                    <form action="{{ route('productos.destroy', $producto) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Seguro que quieres eliminar este producto?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" style="background:none; border:none; color:red; cursor:pointer;">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @empty
-            <tr><td colspan="5">No hay productos aún.</td></tr>
-        @endforelse
+        @foreach($productos as $producto)
+        <tr>
+            <td>{{ $producto->nombre }}</td>
+            <td>{{ $producto->familia->nombre }}</td>
+            <td>${{ $producto->precio }}</td>
+            <td>
+                @if($producto->imagenes->first())
+                    <img src="{{ asset('storage/' . $producto->imagenes->first()->archivo) }}" width="60">
+                @endif
+            </td>
+            <td>
+                <a href="{{ route('productos.show', $producto) }}">Ver</a>
+                <a href="{{ route('productos.edit', $producto) }}">Editar</a>
+                <form action="{{ route('productos.destroy', $producto) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('¿Eliminar este producto?')">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
     </tbody>
 </table>
-
-</body>
-</html>
+@endsection
