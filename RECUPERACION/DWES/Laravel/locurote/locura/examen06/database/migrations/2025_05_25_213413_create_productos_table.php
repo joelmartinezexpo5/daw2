@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // database/migrations/xxxx_xx_xx_create_productos_table.php
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descripcion')->nullable();
+            $table->string('nombre');
+            $table->string('slug');
+            $table->text('descripcion');
             $table->decimal('precio', 8, 2);
-            $table->string('imagen');
-            $table->string('familia_codigo');
-            $table->foreign('familia_codigo')->references('codigo')->on('familias')->onDelete('cascade');
+            $table->foreignId('familia_id')->constrained('familias');
+            // $table->foreignId('imagen_id')->nullable()->constrained('imagenes');
             $table->timestamps();
         });
+
 
     }
 
