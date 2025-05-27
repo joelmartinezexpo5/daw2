@@ -1,0 +1,35 @@
+.texto {
+    display: flex;
+    color: white;
+    justify-content: center;
+    margin-top: 200px;
+    font-size: 48px;
+    font-family: Arial, sans-serif;
+}
+
+.letra {
+    display: inline-block;
+    opacity: 0.7;
+    animation: animacionLetra 1.5s ease-in-out infinite alternate;
+    margin: 5px;
+}
+
+.letra:nth-child(1) { animation-delay: 0s; }
+.letra:nth-child(2) { animation-delay: 0.1s; }
+.letra:nth-child(3) { animation-delay: 0.2s; }
+.letra:nth-child(4) { animation-delay: 0.3s; }
+.letra:nth-child(5) { animation-delay: 0.4s; }
+.letra:nth-child(6) { animation-delay: 0.5s; }
+.letra:nth-child(7) { animation-delay: 0.6s; }
+.letra:nth-child(8) { animation-delay: 0.7s; }
+
+@keyframes animacionLetra {
+    from {
+        opacity: 0.7;
+        transform: rotate(50deg);
+    }
+    to{
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
