@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { barajarCartas, sumarCartas } from "../core/baraja";
-import Jugador from "./Jugador";
-import { use } from "react";
+import { useState } from "react";
+import { barajarCartas, sumarCartas } from "../../core/baraja";
 
-function Mesa() {
+function Mesa(){
     const [baraja, setBaraja] = useState(barajarCartas());
     const [manoJugador, setManoJugador] = useState([]);
     const [manoCrupier, setManoCrupier] = useState([]);
@@ -17,17 +15,17 @@ function Mesa() {
         setManoJugador(nuevaMano);
 
         if(sumarCartas(nuevaMano) > 7.5){
-            setPartidaTerminada(true);
             setGanadasCrupier(ganadasCrupier + 1);
         }
     }
 
     function jugarCrupier(){
-        let nuevaMano=[...manoCrupier];
-        let puntosCrupier=sumarCartas(nuevaMano);
+        const nuevaMano = [...manoCrupier, baraja.pop()];
+        let puntosCrupier = sumarCartas(nuevaMano);
 
         while(puntosCrupier <= 7.5){
             nuevaMano.push(baraja.pop());
+
             puntosCrupier = sumarCartas(nuevaMano);
         }
 
@@ -38,7 +36,7 @@ function Mesa() {
 
         if(puntosCrupier > 7.5 || puntosJugador > puntosCrupier){
             setGanadasJugador(ganadasJugador + 1);
-        } else {
+        }else{
             setGanadasCrupier(ganadasCrupier + 1);
         }
     }
@@ -51,25 +49,19 @@ function Mesa() {
     function nuevaPartida(){
         const nuevaBaraja = barajarCartas();
         setBaraja(nuevaBaraja);
+
         setManoJugador([nuevaBaraja.pop()]);
         setManoCrupier([nuevaBaraja.pop()]);
+
         setTurnoJugador(true);
         setPartidaTerminada(false);
     }
 
-    return (
-        <div>
-            <h1>7 y medio</h1>
-            <h2>Jugador: { ganadasJugador } | Crupier: { ganadasCrupier }</h2>
-            <button onClick={nuevaPartida} disabled={!partidaTerminada}>Nueva partida</button>
-            <Jugador nombre="Crupier" mano={ manoCrupier } />
+    return(
+        <>
 
-            <Jugador nombre="Jugador" mano={ manoJugador } />
-            {console.log(manoJugador)}
+        </>
+    )
 
-            <button onClick={pedirCarta}  >Pedir carta</button>
-            <button onClick={plantarse}>Me planto</button>
-        </div>
-    );
+
 }
-export default Mesa;

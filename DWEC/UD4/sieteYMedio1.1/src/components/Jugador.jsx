@@ -1,6 +1,6 @@
 import React from "react";
 import Carta from "./Carta";
-import { sumarCartas } from "../utils/baraja";
+import { sumarCartas } from "../core/baraja";
 
 function Jugador({ nombre, mano }) {
     return (
