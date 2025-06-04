@@ -1,22 +1,18 @@
 <?php
-namespace App\Services;
 
+namespace App\services;
 use PDO;
 use PDOException;
-// require_once __DIR__ . '/../../vendor/autoload.php';
 
-// Cargar variables de entorno desde el archivo .env
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__,2));
 $dotenv->load();
-
 final class DBConnection
-{
+{ 
     private static ?PDO $connection = null;
-
-    final private function __construct() {}
-
-    final public static function getConnection(): ?PDO
+    final private function __construct(){}
+    final public static function getConexion(): ?PDO
     {
+       
         try {
             if (!self::$connection) {
                 self::$connection = new PDO(
@@ -24,7 +20,7 @@ final class DBConnection
                     username: $_ENV['DB_USERNAME'],
                     password: $_ENV['DB_PASSWORD'],
                 );
-                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             }
         } catch (PDOException $e) {
             echo match ($e->getCode()) {
@@ -38,11 +34,8 @@ final class DBConnection
         return self::$connection;
     }
 
-    private function __clone() {}
+    private function __clone()
+    {
+    }
 }
-
-$connection = DBConnection::getConnection();
-
-if ($connection instanceof PDO) {
-    echo 'Conexión establecida correctamente';
-}
+?>
