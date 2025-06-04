@@ -17,7 +17,8 @@ function AppEnrutador() {
                 <Route path="/" element={<AppLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path="pacientes" element={<Pacientes />} />
-                    <Route path="paciente/:id" element={<PropiedadesPaciente />} />
+                    <Route path="pacientes/crear" element={<PropiedadesPaciente />} />
+                    <Route path="pacientes/editar/:id" element={<PropiedadesPaciente />} />
                     <Route path="expedientes" element={<Expedientes />} />
                     <Route path="expediente/:id" element={<PropiedadesExpediente />} />
                     <Route path="usuarios" element={<Usuarios />} />
