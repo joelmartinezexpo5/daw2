@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,53 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+/* Estilos para simular tabla */
+.table-responsive {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.table-responsive .row {
+  margin: 0;
+  display: flex;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-responsive .row:last-child {
+  border-bottom: none;
+}
+
+.table-responsive .col {
+  flex: 1;
+  padding: 12px 8px;
+  border-right: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+}
+
+.table-responsive .col:last-child {
+  border-right: none;
+}
+
+/* Encabezados */
+.table-responsive .row.bg-primary {
+  border-bottom: 2px solid #0d6efd;
+}
+
+/* Hover efecto */
+.hover-bg-light:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+/* Alineación del contenido */
+.table-responsive .col {
+  justify-content: flex-start;
+}
+
+.table-responsive .row.bg-primary .col {
+  font-weight: 600;
 }
