@@ -1,0 +1,62 @@
+/* Reseteo de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Centrado en la página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+/* Contenedor del desplegable */
+.desplegable {
+    position: relative;
+    width: 200px;
+}
+
+/* Estilo de la cabecera del desplegable */
+.desplegable-cabecera {
+    padding: 15px;
+    background-color: #416642;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+}
+
+/* Contenedor de las opciones */
+.desplegable-contenido {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Estado activo del desplegable */
+.desplegable.activo .desplegable-contenido {
+    max-height: 300px;
+}
+
+/* Estilo de cada opción */
+.desplegable-opcion {
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Efecto al pasar el ratón por las opciones */
+.desplegable-opcion:hover {
+    background-color: #918c8c;
+}
