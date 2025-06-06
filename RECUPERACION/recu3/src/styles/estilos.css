@@ -1,0 +1,56 @@
+/* Estilos básicos para la tabla con divs */
+
+.tabla {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/* Estilo para la cabecera */
+.cabecera {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  border-bottom: 2px solid #999;
+  text-align: center;
+}
+
+/* Estilo para las líneas (filas) */
+.linea {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para los elementos dentro de línea */
+.linea > div {
+  padding: 8px;
+  flex: 1;
+  border-right: 1px solid #ddd;
+}
+
+/* Estilo para filas alternas para mejor legibilidad */
+.linea:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+/* Estilo al pasar el ratón sobre una fila */
+.linea:not(.cabecera):hover {
+  background-color: #eaf2f8;
+}
+
+/* Estilos botones */
+button {
+  margin-right: 5px;
+  min-width: 4em;
+}
+
+/* Estilos formularios */
+label {
+  margin-right: 5px;
+  min-width: 5em;
+  display: inline-block;
+}
+
+input,
+select {
+  margin-bottom: 5px;
+}
