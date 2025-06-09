@@ -14,6 +14,7 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Precio</th>
+            <th>Acciones</th>
         </tr>
         <?php
             $url_servicio = "http://localhost:8001/api/productos/listado";
@@ -28,6 +29,7 @@
             <td>' . $producto->nombre . '</td>
             <td>' . $producto->descripcion . '</td>
             <td>' . $producto->precio . '</td>
+            <td><a href="get.php?id=' . $producto->id . '">Ver</a></td>
         </tr>';
             }
             curl_close($curl);
