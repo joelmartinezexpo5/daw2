@@ -21,7 +21,7 @@ final class CreateProductoController
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['imagen']['tmp_name'];
             $fileName = basename($_FILES['imagen']['name']);
-            $uploadDir = __DIR__ . '/../../../public/uploads/'; 
+            $uploadDir = __DIR__ . '/../../../../public/imagenes/'; 
 
             // Crear carpeta si no existe
             if (!is_dir($uploadDir)) {
@@ -35,7 +35,7 @@ final class CreateProductoController
             // Mover archivo temporal a carpeta destino
             if (move_uploaded_file($fileTmpPath, $destPath)) {
                 // Guardar ruta relativa en el array de datos para la BD
-                $data['imagen'] = 'uploads/' . $newFileName;
+                $data['imagen'] = 'imagenes/' . $newFileName;
             } else {
                 JsonResponse::response(['error' => 'Error al subir la imagen'], 500);
                 return;
