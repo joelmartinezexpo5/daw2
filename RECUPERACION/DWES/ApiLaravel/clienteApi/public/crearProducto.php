@@ -111,5 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit">Crear Producto</button>
 </form>
 
+<a href="mostrarTodos.php">Volver al listado</a>
+
 </body>
 </html>
