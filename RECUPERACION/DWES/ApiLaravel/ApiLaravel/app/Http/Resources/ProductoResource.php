@@ -21,6 +21,7 @@
                 'precio' => $this->precio,
                 'stock' => $this->stock,
                 'categoria' =>new CategoriaResource($this->whenLoaded('categoria')),
+                'url_imagen' => $this->imagen ? url('storage/' . $this->imagen) : null,
             ];
         }
     }

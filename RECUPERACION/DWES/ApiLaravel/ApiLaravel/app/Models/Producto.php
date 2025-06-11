@@ -16,13 +16,18 @@ use App\Models\Categoria;
  *  @OA\Property(property="descripcion", type="string", example="Ratón con conexión Bluetooth"),
  *  @OA\Property(property="precio", type="number", format="float", example=19.99),
  *  @OA\Property(property="stock", type="integer", example=100),
- *  @OA\Property(property="categoria", ref="#/components/schemas/Categoria")
+ *  @OA\Property(property="categoria_id", type="integer", example=1, description="ID de la categoría"),
  * )
  */
 class Producto extends Model
 {
     protected $fillable = [
-        'nombre', 'descripcion', 'precio', 'stock', 'categoria_id'
+        'nombre',
+        'descripcion',
+        'precio',
+        'stock',
+        'categoria_id',
+        'imagen'
     ];
 
     public function categoria()

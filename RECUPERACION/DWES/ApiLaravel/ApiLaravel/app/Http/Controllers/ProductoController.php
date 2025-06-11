@@ -92,11 +92,20 @@ class ProductoController extends Controller
      */
     public function store(StoreProductoRequest $request)
     {
-        $validated = $request->validated();
-        $producto = Producto::create($validated);
+        $datos = $request->validated();
 
-        return response()->json($producto, 201);
+        if ($request->hasFile('imagen')) {
+            $rutaImagen = $request->file('imagen')->store('productos', 'public');
+            $datos['imagen'] = $rutaImagen;
+        }
+
+        $producto = Producto::create($datos);
+
+        return new ProductoResource($producto->load('categoria'));
     }
+
+
+
 
     /**
      * @OA\Put(

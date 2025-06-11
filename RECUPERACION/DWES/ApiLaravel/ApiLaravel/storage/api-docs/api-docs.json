@@ -203,8 +203,10 @@
                         "type": "integer",
                         "example": 100
                     },
-                    "categoria": {
-                        "$ref": "#/components/schemas/Categoria"
+                    "categoria_id": {
+                        "description": "ID de la categoría",
+                        "type": "integer",
+                        "example": 1
                     }
                 },
                 "type": "object"
