@@ -1,0 +1,45 @@
+.principal{
+  animation:tipyng 3s steps(5) forwards;
+  overflow:hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+}
+@keyframes tipyng{
+  0%{
+     width:0; 
+  }
+  100%{
+     width:5ch; 
+  }
+}
+
+
+.texto{
+  animation:des 3s linear forwards;
+}
+
+@keyframes des{
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+
+.boton{
+  animation:escalado 3s linear forwards;
+}
+
+@keyframes escalado{
+  0%{
+    transform:scale(0);
+  }
+
+  100%{
+    transform:scale(1);
+    box-shadow: 10px 10px black;
+  }
+}

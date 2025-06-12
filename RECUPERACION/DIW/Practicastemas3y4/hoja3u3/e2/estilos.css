@@ -1,0 +1,49 @@
+.cabeza{
+    animation:desliz 2s linear forwards;
+}
+
+@keyframes desliz{
+    0%{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+    100%{
+        transform:translateY(10px);
+        opacity:1;
+    }
+}
+
+.imagen:hover{
+      animation:escala 1s linear forwards;
+}
+
+@keyframes escala{
+    0%{
+        transform: scale(1);
+    }
+
+    100%{
+        transform:scale(1.5);
+        box-shadow: 4px 4px 4px 4px black;
+    }
+}
+
+@keyframes escala2{
+    0%{
+        transform: scale(1);
+         background-color: blue;
+    }
+
+    50%{
+        transform:scale(1.5);
+        background-color: yellow;
+    }
+
+    100%{
+        transform: scale(1);
+        background-color: red;
+    }
+}
+.boton:hover{
+    animation:escala2 1s infinite,color 1s infinite ;
+}

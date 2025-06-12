@@ -1,0 +1,36 @@
+.esfera{
+  background-color: blue;
+  border-radius:50%;
+  height:100px;
+  width:100px;
+  animation: todo 10s linear infinite;
+}
+
+
+
+@keyframes todo {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    background-color: blue;
+  }
+
+  25% {
+    transform: translate(200px, 0px) scale(1.5);
+    background-color: red;
+  }
+
+  50% {
+    transform: translate(200px, 200px) scale(0.5);
+    background-color: yellow;
+  }
+
+  75% {
+    transform: translate(0px, 200px) scale(1);
+    background-color: green;
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1.5);
+    background-color: orange;
+  }
+}

@@ -1,0 +1,24 @@
+.carta1{
+   animation: aparecer 3s forwards;
+  
+}
+
+.carta2{
+ animation: aparecer 4s forwards;
+   
+}
+
+.carta3{
+ animation: aparecer 5s forwards;
+ 
+}
+
+@keyframes aparecer{
+    0%{
+      transform: translateY(100px);
+      opacity:0;
+    }
+    100%{
+      transform: translateY(0px);
+    }
+}

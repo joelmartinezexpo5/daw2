@@ -1,0 +1,70 @@
+/* estilos.css */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* CABECERA */
+#main-header {
+  background-color: transparent;
+  transition: background-color 0.4s;
+}
+#main-header:hover {
+  background-color: rgba(43, 42, 42, 0.591);
+}
+
+.nav-link, .dropdown-toggle {
+  color: white;
+}
+
+/* Buscador animado */
+.buscador {
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s, opacity 0.5s;
+  background-color: white;
+  color: black;
+}
+.buscador.expandido {
+  width: 200px;
+  opacity: 1;
+}
+
+/* NOVEDADES */
+.novedades-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.novedades-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* RECOMENDACIONES */
+.opcion, .subopcion {
+  transition: transform 0.3s;
+  margin: 0.5rem;
+}
+.opcion:hover, .subopcion:hover {
+  transform: scale(1.1);
+}
+
+/* PIE DE PÁGINA */
+.glitch {
+  text-shadow: 2px 0 red, -2px 0 blue;
+  animation: glitch 1s infinite;
+}
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red; }
+  50% { text-shadow: -2px 0 blue; }
+  100% { text-shadow: 2px 0 red; }
+}
+
+.social {
+  animation: heartbeat 2s infinite;
+  display: inline-block;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}

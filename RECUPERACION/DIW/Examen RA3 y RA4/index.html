@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streamix</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  <!-- CABECERA -->
+  <header id="main-header" class="d-flex justify-content-between align-items-center p-3 fixed-top">
+    <div class="d-flex align-items-center">
+      <img src="imagen/logo.png" width="40" alt="Logo">
+      <span class="ms-2 text-white fs-4">Streamix</span>
+    </div>
+    <nav class="navbar navbar-expand-lg">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Inicio</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#">Categorías</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Series</a></li>
+            <li><a class="dropdown-item" href="#">Películas</a></li>
+            <li><a class="dropdown-item" href="#">Podcast</a></li>
+            <li><a class="dropdown-item" href="#">Documentales</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Directos</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Novedades</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Mi Lista</a></li>
+      </ul>
+    </nav>
+    <div class="d-flex align-items-center">
+      <i class="bi bi-search text-white me-3" id="lupa"></i>
+      <input type="text" class="form-control buscador" placeholder="Buscar">
+      <i class="bi bi-person-circle text-white ms-3 fs-4"></i>
+    </div>
+  </header>
+
+  <!-- BANNER CARRUSEL -->
+  <section id="banner" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="imagen/serie1.jpg" class="d-block w-100" alt="Serie 1">
+        <div class="carousel-caption bg-black bg-opacity-25 p-3">
+          <h5>Serie Uno</h5>
+          <p>Una historia intrigante que no te puedes perder.</p>
+          <button class="btn btn-primary"><img src="img/logo.png" width="20"> Ver ahora</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="imagen/serie2.jpg" class="d-block w-100" alt="Serie 2">
+        <div class="carousel-caption bg-black bg-opacity-25 p-3">
+          <h5>Serie Dos</h5>
+          <p>Suspenso y acción cada minuto.</p>
+          <button class="btn btn-primary"><img src="img/logo.png" width="20"> Ver ahora</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="imagen/serie3.jpg" class="d-block w-100" alt="Serie 3">
+        <div class="carousel-caption bg-black bg-opacity-25 p-3">
+          <h5>Serie Tres</h5>
+          <p>Drama y emoción garantizados.</p>
+          <button class="btn btn-primary"><img src="imagen/logo.png" width="20"> Ver ahora</button>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </section>
+
+  <!-- NOVEDADES -->
+  <section id="novedades" class="container my-5">
+    <div class="row g-4">
+      <div class="col-md-6 novedades-card p-3 bg-dark text-white rounded">
+        <img src="imagen/nadiesabenada.png" class="img-fluid mb-2">
+        <p>Un podcast para reflexionar sobre el futuro.</p>
+        <audio controls src="./audio/nadiesabenada.mp3"></audio>
+        <button class="btn btn-secondary mt-2"><img src="imagen/logo.png" width="20"> Escuchar</button>
+      </div>
+      <div class="col-md-6 novedades-card p-3 bg-dark text-white rounded">
+        <img src="imagen/chicle.png" class="img-fluid mb-2">
+        <p>Entrevistas que inspiran y motivan.</p>
+        <audio controls src="audio/chicle.mp3"></audio>
+        <button class="btn btn-secondary mt-2"><img src="imagen/logo.png" width="20"> Escuchar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section id="recomendaciones" class="container text-white my-5">
+    <h2 class="text-center">¿Qué prefieres ver?</h2>
+    <div class="text-center my-3">
+      <button class="btn btn-outline-light opcion" data-tipo="cine">🎬 Cine</button>
+      <button class="btn btn-outline-light opcion" data-tipo="series">📺 Series</button>
+    </div>
+    <div id="segunda-pregunta" class="text-center"></div>
+    <div id="resultado-recomendacion" class="text-center mt-4"></div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="d-flex justify-content-between align-items-center bg-dark text-white p-4">
+    <div>
+      <video src="./video/promocion.mp4" poster="imagen/logo.png" width="300" controls></video>
+    </div>
+    <div class="text-end">
+      <h3 class="glitch">Streamix</h3>
+      <div class="fs-4">
+        <i class="bi bi-facebook mx-2 social"></i>
+        <i class="bi bi-twitter mx-2 social"></i>
+        <i class="bi bi-instagram mx-2 social"></i>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="eventos.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.circulo{
+    background-color:blue;
+    height:20px;
+    width:20px;
+    border-radius: 50%;
+transform-origin: bottom; 
+    animation:tam_lineas 1s infinite linear;
+}
+
+@keyframes tam_lineas{
+   0%,100%{
+           transform: scaleY(1);
+   }
+   50%{
+        transform: scaleY(5);
+   }
+}
+
+/* Ímpares: 1º, 3º, 5º */
+.circulo:nth-child(odd) {
+  animation-delay: 0s;
+}
+
+/* Pares: 2º, 4º */
+.circulo:nth-child(even) {
+  animation-delay: 0.5s;
+}

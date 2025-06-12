@@ -1,0 +1,61 @@
+.carrusel-fade {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation-duration: 9s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animaciones desfasadas */
+.fade1 {
+  animation-name: fade1;
+}
+
+.fade2 {
+  animation-name: fade2;
+  animation-delay: 3s;
+}
+
+.fade3 {
+  animation-name: fade3;
+  animation-delay: 6s;
+}
+
+/* Definición de cada animación */
+@keyframes fade1 {
+  0%   { opacity: 1; }
+  33%  { opacity: 1; }
+  34%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes fade2 {
+  0%   { opacity: 0; }
+  33%  { opacity: 0; }
+  34%  { opacity: 1; }
+  66%  { opacity: 1; }
+  67%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes fade3 {
+  0%   { opacity: 0; }
+  66%  { opacity: 0; }
+  67%  { opacity: 1; }
+  100% { opacity: 1; }
+}
